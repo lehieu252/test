@@ -1,0 +1,727 @@
+
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List School</title>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MTDGLF5');</script>
+  <!-- Latest compiled and minified CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP";
+    }
+
+    .header {
+      display: flex;
+      align-items: start;
+      gap: 76px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .logo-container a {
+      display: block;
+      padding: 21px 16px;
+    }
+
+    .logo {
+      max-width: 240px;
+      height: auto;
+    }
+
+    .footer {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-info {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0px 32px;
+    }
+
+    .footer-info a {
+      color: var(--text_color, #323232);
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .banner {
+      display: flex;
+      background-image: url('images/bg_2.png');
+      background-position: center;
+      min-height: 235px;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .banner-link {
+      margin: 8px 32px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .area-link {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      margin-right: 1rem;
+    }
+
+    .banner-link span {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      margin-right: 1rem;
+    }
+
+    .child-link {
+      text-decoration: none;
+      color: var(--white-white-100, #FFF);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+    }
+
+    .banner-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .banner-title-main {
+      color: #FFF;
+      text-align: center;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.8px;
+      padding-bottom: 2px;
+      box-shadow: rgba(242, 195, 28, 0.6) 0px -15px 0px 0px inset;
+    }
+
+    .banner-title-sub {
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+    }
+
+    .banner-title-sub-2{
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-size: 13.295px ;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+      margin-top: 16px;
+    }
+
+    #main {
+      min-height: 54vh;
+    }
+    .filter-dropdown {
+      margin-top: 64px;
+    }
+
+    .dropdown-btn {
+      display: flex;
+      padding: 12px;
+      width: 280px;
+      justify-content: space-between;
+      border-radius: 6px;
+      border: 1px solid var(--Grayscale-Gray-35, #969CA1);
+      background: var(--white-white-100, #FFF);
+    }
+
+    .dropdown-btn img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .dropdown-menu {
+      width: 280px;
+      margin: 16px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .area-card-body {
+      background: var(--Grayscale-Gray-05, #F2F2F3);
+      padding: 16px;
+      min-height: 100px;
+    }
+
+    .sub-card-title {
+      color: var(--Brand-Brand-blue, #1793CC);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.32px;
+      margin-left: 16px;
+      margin-bottom: 8px;
+    }
+
+    .sub-card-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      min-height: 50px;
+    }
+
+    .sub-card-item {
+      border-radius: 8px;
+      width: calc(33.33% - 8px);
+      border: 1px solid var(--Grayscale-Gray-05, #F2F2F3);
+      background: var(--white-white-100, #FFF);
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+      padding: 16px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .school-name {
+      display: flex;
+      padding: 8px;
+      align-items: flex-start;
+      gap: 10px;
+      align-self: stretch;
+      background: var(--Primary-Primary-03, #EBF4FF);
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 0.16px;
+      margin-bottom: 16px;
+    }
+
+    .school-address {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.14px;
+      margin-bottom: 12px;
+    }
+
+    .school-access {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.14px;
+    }
+
+    .area-card-header {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--Grayscale-Gray-20, #CCCED1);
+    }
+
+    .area-card-header a {
+      color: var(--Brand-Brand-blue, #1793CC);
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+    }
+
+    .area-card-header img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .area-redirect {
+      margin-top: 48px;
+      margin-bottom: 108px;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .area-redirect a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--Brand-Brand-blue, #1793CC);
+      text-align: center;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0.16px;
+      gap: 8px;
+    }
+
+    .area-redirect img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .highlight {
+      background-color: #ffeeba;
+      transition: background-color 0.5s ease;
+    }
+
+    #empty {
+      display: flex;
+      justify-content: center;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      padding-left: 12px;
+      letter-spacing: 0.16px;
+      margin-top: 48px;
+      gap: 8px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .image-holder img {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: center;
+
+      }
+
+      .footer-info {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 64px;
+      }
+
+      .banner-title-main {
+        font-size: 24px;
+      }
+
+      .banner-title-sub  {
+        font-size: 20px;
+      }
+
+      .banner-title-sub-2 {
+        font-size: 11px;
+      }
+
+      .area-redirect a {
+        display: flex;
+        width: 100%;
+        padding: 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+        border: 1px solid var(--Brand-Brand-blue, #1793CC);
+        background: var(--white-white-100, #FFF);
+        box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.05);
+      }
+      
+      .area-link,
+      .child-link {
+        font-size: 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .banner-link {
+        margin: 8px 12px;
+        display: flex;
+        align-items: center;
+        width: 93%
+      }
+
+      .dropdown-btn {
+        width: 100%;
+      }
+
+      .dropdown-menu {
+        width: 94%;
+      }
+
+      .sub-card-item {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <iframe src=“https://www.googletagmanager.com/ns.html?id=GTM-MTDGLF5” height=“0" width=“0” style=“display:none;visibility:hidden”>
+    </iframe>
+  </noscript>
+  <header class=".container-fluid header">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+  </header>
+
+  <div class=".container-fluid banner">
+    <div class="banner-link">
+      <a class="area-link" href="./area.html">都道府県</a>
+      <span>></span>
+      <a class="child-link" href="#">大阪府の教室一覧</a>
+    </div>
+    <div class="banner-title">
+      <div>
+        <span class="banner-title-main">大阪府</span>
+        <span class="banner-title-sub">の教室一覧</span>
+      </div>
+      <div class="banner-title-sub-2">
+        ※授業曜日や授業料などは、各教室ページよりお問い合わせください。
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="main">
+    <div class="filter-dropdown">
+      <div class="dropdown-btn" data-bs-toggle="dropdown" aria-expanded="false">
+        <div>
+          市区町村を絞り込む
+        </div>
+        <img src="images/ic-down-arrow.png" />
+      </div>
+      <ul class="dropdown-menu" id="drop-down">
+      </ul>
+    </div>
+
+    <div class="accordion" id="accordion">
+    </div>
+
+    <div id="empty">
+      該当する教室はありません
+    </div>
+
+    <div class="area-redirect">
+      <a href="./area.html">
+        <img src="images/ic-left-arrow.png" />
+        <div>都道府県一覧に戻る</div>
+      </a>
+    </div>
+  </div>
+  <footer class=".container-fluid footer">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+    <div class="footer-info">
+      <a href="https://juku.lifeistech-lesson.jp/" target="_blank">
+        <div>学習塾の方はこちら</div>
+        <img src="images/ic-redirect-black.svg" />
+      </a>
+      <a href="https://life-is-tech.com/" target="_blank">
+        運営会社
+      </a>
+      <a href="https://life-is-tech.com/privacy-policy/" target="_blank">
+        個人情報保護方針
+      </a>
+      <a href="https://life-is-tech.com/privacy-handling/" target="_blank">
+        個人情報の取扱いについて
+      </a>
+    </div>
+  </footer>
+  <script>
+    const data = [{"id":4,"schoolName":"個別指導ステップアップ","className":"神崎川教室","postCode":"532-0036","prefecture":"大阪府","address1":"大阪市","address2":"淀川区","addressAfter":"三津屋中2-9-22","addressDetail":"三津中マンション102","phone":"06-6303-1117","access":"阪急神戸線 神埼川駅から徒歩8分<br>\n三津屋小学校から徒歩8分<br>\n美津島中学校から徒歩15分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜～土曜日13：00～21：50","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kanzakigawa@stepup-kobetsu.com","department1":"神崎川教室","personInCharge1":"稲守 樹生","email2":"k-okazaki@3-piece.co.jp","department2":"本部","personInCharge2":"岡崎 謙司","email3":"nishikujo-02@stepup-kobetsu.com","department3":null,"personInCharge3":"大村 将輝","individualPage":"TPC0004"},{"id":5,"schoolName":"個別指導ステップアップ","className":"十三教室","postCode":"532-0023","prefecture":"大阪府","address1":"大阪市","address2":"淀川区","addressAfter":"十三東5-2-25","addressDetail":"フォックスムーア101","phone":"06-6838-3970","access":"阪急神戸線 十三駅から徒歩10分<br>\n十三中学校から徒歩1分<br>\n木川小学校から徒歩12分<br>\n十三小学校から徒歩6分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜～土曜日13：00～21：50","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"juso@stepup-kobetsu.com","department1":"十三教室","personInCharge1":"岡田 壮市","email2":"k-okazaki@3-piece.co.jp","department2":"本部","personInCharge2":"岡崎 謙司","email3":"nishikujo-02@stepup-kobetsu.com","department3":null,"personInCharge3":"大村 将輝","individualPage":"TPC0005"},{"id":6,"schoolName":"個別指導ステップアップ","className":"野里教室","postCode":"555-0024","prefecture":"大阪府","address1":"大阪市","address2":"西淀川区","addressAfter":"野里1-23-23","addressDetail":"ジオナ塚本店舗2号室","phone":"06-6732-9010","access":"JR塚本駅から徒歩8分<br>\n歌島中学校から徒歩10分<br>\n歌島小学校から徒歩8分<br>\n柏里小学校から徒歩2分<br>\n野里小学校から徒歩3分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"木曜日以外の毎週月曜～土曜日13：00～21：50","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"nozato@stepup-kobetsu.com","department1":"野里教室","personInCharge1":"北村 征大","email2":"k-okazaki@3-piece.co.jp","department2":"本部","personInCharge2":"岡崎 謙司","email3":"nishikujo-02@stepup-kobetsu.com","department3":null,"personInCharge3":"大村 将輝","individualPage":"TPC0006"},{"id":7,"schoolName":"個別指導ステップアップ","className":"瑞光教室","postCode":"533-0004","prefecture":"大阪府","address1":"大阪市","address2":"東淀川区","addressAfter":"小松4-12-25","addressDetail":"コスモハウス瑞光102","phone":"06-6195-1889","access":"地下鉄今里筋線 瑞光四丁目駅から徒歩5分<br>\n阪急京都線 上新庄駅から徒歩10分<br>\n小松小学校から徒歩10分<br>\n瑞光中学校から徒歩5分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"火曜日以外の毎週月曜～土曜日13：00～21：50","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"zuiko@stepup-kobetsu.com","department1":"瑞光教室","personInCharge1":"渡邉 賢志","email2":"k-okazaki@3-piece.co.jp","department2":"本部","personInCharge2":"岡崎 謙司","email3":"nishikujo-02@stepup-kobetsu.com","department3":null,"personInCharge3":"大村 将輝","individualPage":"TPC0007"},{"id":8,"schoolName":"個別指導ステップアップ","className":"姫島教室","postCode":"555-0025","prefecture":"大阪府","address1":"大阪市","address2":"西淀川区","addressAfter":"姫里1-26-27","addressDetail":"マイマイロード101","phone":"06-4862-5180","access":"阪神電鉄 姫島駅から徒歩3分<br>\n姫里小学校から徒歩3分<br>\n西淀中学校から徒歩16分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"木曜日以外の毎週月曜～土曜日13：00～21：50","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"himejima@stepup-kobetsu.com","department1":"姫島教室","personInCharge1":"仙波 武矩","email2":"k-okazaki@3-piece.co.jp","department2":"本部","personInCharge2":"岡崎 謙司","email3":"nishikujo-02@stepup-kobetsu.com","department3":null,"personInCharge3":"大村 将輝","individualPage":"TPC0008"},{"id":9,"schoolName":"個別指導ステップアップ","className":"西九条教室","postCode":"554-0012","prefecture":"大阪府","address1":"大阪市","address2":"此花区","addressAfter":"西九条6-1-4","addressDetail":null,"phone":"06-6468-3777","access":"JR西九条駅から徒歩2分<br>\n阪神西九条駅から徒歩2分<br>\n西九条小学校から徒歩2分<br>\n咲くやこの花中学校・高等学校から徒歩4分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"水曜日以外の毎週月曜～土曜日13：00～21：50","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"nishikujo@stepup-kobetsu.com","department1":"西九条教室","personInCharge1":"水谷 光希","email2":"k-okazaki@3-piece.co.jp","department2":"本部","personInCharge2":"岡崎 謙司","email3":"nishikujo-02@stepup-kobetsu.com","department3":null,"personInCharge3":"大村 将輝","individualPage":"TPC0009"},{"id":10,"schoolName":"個別指導　学","className":"東豊中教室","postCode":"560-0003","prefecture":"大阪府","address1":"豊中市","address2":null,"addressAfter":"東豊中町4-7-8","addressDetail":null,"phone":"06-4865-3393","access":"阪急バス　東豊中小学校前から徒歩2分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜～土曜日13：00～21：50","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"higashitoyonaka@gaku-kobetsu.com","department1":"東豊中教室","personInCharge1":"秋田　龍光","email2":"k-okazaki@3-piece.co.jp","department2":"本部","personInCharge2":"岡崎 謙司","email3":null,"department3":null,"personInCharge3":null,"individualPage":"TPC0010"},{"id":60,"schoolName":"四輝学院","className":"五月が丘校","postCode":"565-0832","prefecture":"大阪府","address1":"吹田市","address2":null,"addressAfter":"五月が丘南9‐5　2F","addressDetail":null,"phone":"06-6380-0411","access":"阪急バス　佐井寺バス停より徒歩1分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜金曜 14:30〜21:50、土曜 14:30〜20:00","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":null,"email1":"satsukigaoka@yotsuki.com","department1":"五月が丘校","personInCharge1":"教室責任者","email2":"csu.yotsuki@gmail.com","department2":"教育事業部","personInCharge2":"谷口","email3":"contact@yotsuki.com","department3":"管理部","personInCharge3":"奥村","individualPage":"YTK0005"},{"id":130,"schoolName":"個別指導塾スタンダード","className":"緑橋教室","postCode":"536-0023","prefecture":"大阪府","address1":"大阪市","address2":"城東区","addressAfter":"東中浜3-2-23","addressDetail":"2-3F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 51.00"},{"id":131,"schoolName":"個別指導塾スタンダード","className":"谷町六丁目駅前教室","postCode":"542-0012","prefecture":"大阪府","address1":"大阪市","address2":"中央区","addressAfter":"谷町６-9-26","addressDetail":"グランセオ谷町6F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 52.00"},{"id":132,"schoolName":"個別指導塾スタンダード","className":"彩都西教室","postCode":"567-0085","prefecture":"大阪府","address1":"茨木市","address2":null,"addressAfter":"彩都あさぎ1-225","addressDetail":"グランドパレス彩都あさぎ1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 53.00"},{"id":133,"schoolName":"個別指導塾スタンダード","className":"長瀬駅前教室","postCode":"577-0821","prefecture":"大阪府","address1":"東大阪市","address2":null,"addressAfter":"吉松2丁目2-3","addressDetail":"近鉄長瀬駅前ビル","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 54.00"},{"id":134,"schoolName":"個別指導塾スタンダード","className":"浜寺教室","postCode":"593-8328","prefecture":"大阪府","address1":"堺市","address2":"西区","addressAfter":"鳳北町８丁433-1","addressDetail":"角野ビル2201","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 55.00"},{"id":135,"schoolName":"個別指導塾スタンダード","className":"北野田教室","postCode":"599-8126","prefecture":"大阪府","address1":"堺市","address2":"東区","addressAfter":"大美野102-3","addressDetail":"大美野マンション1階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 56.00"},{"id":370,"schoolName":"進学教室ライトアップ巽","className":"本校","postCode":"544-0013","prefecture":"大阪府","address1":"大阪市","address2":"生野区","addressAfter":"巽中3-20-3","addressDetail":"セレニティ南巽102","phone":"06-6720-8526","access":"地下鉄千日前線南巽駅より徒歩7分","targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。（オンラインでの受講も可能です）","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"lutlightup@gmail.com","department1":"本校","personInCharge1":"塾長","email2":"mitsuhidesseikou54@gmail.com","department2":null,"personInCharge2":"塾長","email3":null,"department3":null,"personInCharge3":null,"individualPage":"LUT0001"},{"id":445,"schoolName":"鷗州塾","className":"江坂豊津校","postCode":"564-0062","prefecture":"大阪府","address1":"吹田市","address2":null,"addressAfter":"垂水町3丁目4番4号","addressDetail":"江坂Ａ・Ｉビル　1階","phone":"06-6338-5019","access":"地下鉄江坂駅・阪急豊津駅より徒歩約10分","targetGrade":"高校1年〜高校3年","classTime":"毎週月曜～金曜 18:55〜20:15/20:20～21:40","schedule":"毎週月曜～金曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kb_oosaka@aic.oshu.co.jp","department2":"個別指導事業部　大阪","personInCharge2":"石坂 尚志","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0049"},{"id":446,"schoolName":"鷗州塾","className":"都島校","postCode":"534-0015","prefecture":"大阪府","address1":"大阪市","address2":"都島区","addressAfter":"善源寺町1丁目5番47号","addressDetail":"ｱｸﾄﾜﾝﾋﾞﾙ　4階","phone":"06-6929-0419","access":"地下鉄都島駅より徒歩5分・JR桜ノ宮駅より徒歩約10分","targetGrade":"高校1年〜高校3年","classTime":"毎週月・火・水・金曜 18:55〜20:15/20:20～21:40","schedule":"毎週月・火・水・金曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kb_oosaka@aic.oshu.co.jp","department2":"個別指導事業部　大阪","personInCharge2":"石坂 尚志","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0050"},{"id":447,"schoolName":"鷗州塾","className":"梅田校　","postCode":"530-0012","prefecture":"大阪府","address1":"大阪市","address2":"北区","addressAfter":"芝田1丁目4番14号","addressDetail":"芝田町ビル　４階","phone":"06-6374-3119","access":"JR大阪駅・阪急梅田駅徒歩約5分","targetGrade":"高校1年〜高校3年","classTime":"毎週月・火・木曜 18:55〜20:15/20:20～21:40、土曜 17:30〜18:50/18:55〜20:15/20:20～21:40","schedule":"毎週月・火・木・土曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kb_oosaka@aic.oshu.co.jp","department2":"個別指導事業部　大阪","personInCharge2":"石坂 尚志","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0051"},{"id":448,"schoolName":"鷗州塾","className":"三国校　","postCode":"532-0033","prefecture":"大阪府","address1":"大阪市","address2":"淀川区","addressAfter":"新高3-9-14","addressDetail":"ピカソ三国ビル　1階","phone":"06-6350-1519","access":"阪急三国駅から徒歩1分","targetGrade":"高校1年〜高校3年","classTime":"毎週月・火・木・金曜 18:55〜20:15/20:20～21:40","schedule":"毎週月・火・木・金曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kb_oosaka@aic.oshu.co.jp","department2":"個別指導事業部　大阪","personInCharge2":"石坂 尚志","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0052"},{"id":513,"schoolName":"個別指導WAM","className":"西取石校","postCode":"592-0012","prefecture":"大阪府","address1":"高石市","address2":null,"addressAfter":"西取石6-6-71","addressDetail":null,"phone":"0120-333-876","access":"南海本線高石駅、JR阪和線富木駅、JR阪和線北信太駅の各駅から徒歩15分。国道26号線西取石交差点を西へ30ｍ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0001"},{"id":514,"schoolName":"個別指導WAM","className":"福泉校","postCode":"593-8315","prefecture":"大阪府","address1":"堺市","address2":"西区","addressAfter":"菱木2丁2308-5","addressDetail":null,"phone":"0120-333-876","access":"泉大津美原線菱木北交差点を南へ100ｍ。南海バス万崎停留所すぐ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0002"},{"id":521,"schoolName":"個別指導WAM","className":"畠中校","postCode":"597-0072","prefecture":"大阪府","address1":"貝塚市","address2":null,"addressAfter":"畠中1-7-45","addressDetail":null,"phone":"0120-333-876","access":"岸和田牛滝山貝塚線市役所南交差点すぐ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0009"},{"id":522,"schoolName":"個別指導WAM","className":"脇浜校","postCode":"597-0073","prefecture":"大阪府","address1":"貝塚市","address2":null,"addressAfter":"脇浜4-2-19","addressDetail":null,"phone":"0120-333-876","access":"南海二色浜駅より西200ｍの204号線二色の浜交差点を北へ500ｍ。堺阪南線脇浜1丁目交差点から南へ500ｍ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0010"},{"id":529,"schoolName":"個別指導WAM","className":"はびきの校","postCode":"583-0872","prefecture":"大阪府","address1":"羽曳野市","address2":null,"addressAfter":"はびきの1-7-4","addressDetail":null,"phone":"0120-333-876","access":"近鉄バス羽曳山住宅前バス停より北へ徒歩3分。 「セブン-イレブンはびきの４丁目店」の道を挟んで北東の方向にある建物。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0017"},{"id":536,"schoolName":"個別指導WAM","className":"加美北校","postCode":"547-0001","prefecture":"大阪府","address1":"大阪市","address2":"平野区","addressAfter":"加美北4-6-44","addressDetail":null,"phone":"0120-333-876","access":"平野加美北郵便局より南へ40ｍ。ローソン加美北四丁目店の向い。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0024"},{"id":537,"schoolName":"個別指導WAM","className":"沢之町校","postCode":"558-0031","prefecture":"大阪府","address1":"大阪市","address2":"住吉区","addressAfter":"沢之町2-5-32","addressDetail":null,"phone":"0120-333-876","access":"南海高野線我孫子前駅から北東へ500ｍ。遠里小野保育園の北隣。住吉区役所南西の交差点を南へ200ｍ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0025"},{"id":538,"schoolName":"個別指導WAM","className":"南加賀屋校","postCode":"559-0015","prefecture":"大阪府","address1":"大阪市","address2":"住之江区","addressAfter":"南加賀屋3-8-26","addressDetail":null,"phone":"0120-333-876","access":"地下鉄四つ橋線「住之江公園駅」から新なにわ筋を南へ徒歩5分南加賀屋4丁目交差点北東のビル","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0026"},{"id":539,"schoolName":"個別指導WAM","className":"黒原校","postCode":"572-0057","prefecture":"大阪府","address1":"寝屋川市","address2":null,"addressAfter":"黒原旭町5-13","addressDetail":null,"phone":"0120-333-876","access":"京阪本線「萱島」駅から徒歩22分。「手づくりお弁当　まごころキッチン」さんのお隣。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0027"},{"id":540,"schoolName":"個別指導WAM","className":"出口校","postCode":"573-0065","prefecture":"大阪府","address1":"枚方市","address2":null,"addressAfter":"出口4丁目26番1号","addressDetail":null,"phone":"0120-333-876","access":"セブンイレブン枚方出口店から南へ200m。府道13号線沿い。光善寺駅から徒歩15分。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0028"},{"id":541,"schoolName":"個別指導WAM","className":"吉原校","postCode":"578-0904","prefecture":"大阪府","address1":"東大阪市","address2":null,"addressAfter":"吉原2-11-32","addressDetail":null,"phone":"0120-333-876","access":"国道308号線吉田駅前交差点を北へ700ｍ、今米東交差点を西へ200ｍ。栗原神社東交差点すぐ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0029"},{"id":542,"schoolName":"個別指導WAM","className":"近鉄八尾駅前校","postCode":"581-0802","prefecture":"大阪府","address1":"八尾市","address2":null,"addressAfter":"北本町2-15-31","addressDetail":"梅村ビル2F","phone":"0120-333-876","access":"近鉄大阪線　近鉄八尾駅　徒歩２分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0030"},{"id":543,"schoolName":"個別指導WAM","className":"西湊校","postCode":"590-0835","prefecture":"大阪府","address1":"堺市","address2":"堺区","addressAfter":"西湊町6丁2-8","addressDetail":null,"phone":"0120-333-876","access":"阪堺線東湊駅下車すぐ「ドラッグセイムス　堺東湊店」向い 「木下の保育園　西湊町」2Ｆ","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0031"},{"id":544,"schoolName":"個別指導WAM","className":"石津川校","postCode":"592-8334","prefecture":"大阪府","address1":"堺市","address2":"西区","addressAfter":"浜寺石津町中3丁15-18","addressDetail":null,"phone":"0120-333-876","access":"南海本線石津川駅東口を出てすぐ。パン屋2Ｆ。浜寺石津郵便局の斜め向い。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0032"},{"id":545,"schoolName":"個別指導WAM","className":"諏訪森校","postCode":"592-8347","prefecture":"大阪府","address1":"堺市","address2":"西区","addressAfter":"浜寺諏訪森町西3-244","addressDetail":null,"phone":"0120-333-876","access":"南海本線諏訪ノ森駅から徒歩5分。阪堺線船尾駅から徒歩6分。堺阪南線諏訪森中交差点を南へ300ｍ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0033"},{"id":546,"schoolName":"個別指導WAM","className":"小松校","postCode":"533-0004","prefecture":"大阪府","address1":"大阪市","address2":"東淀川区","addressAfter":"小松3-3-7","addressDetail":null,"phone":"0120-333-876","access":"阪急上新庄駅北口から東へ700ｍ。小松1丁目交差点を東へ500ｍ。東淀川消防署小松出張所の隣。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0034"},{"id":547,"schoolName":"個別指導WAM","className":"四宮校","postCode":"571-0017","prefecture":"大阪府","address1":"門真市","address2":null,"addressAfter":"四宮5-11-21","addressDetail":null,"phone":"0120-333-876","access":"府道八尾枚方線「岸和田北交差点」北へすぐ。ダイワサイクル向かい。「岸和田」停留所より徒歩3分。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0035"},{"id":548,"schoolName":"個別指導WAM","className":"日下校","postCode":"579-8003","prefecture":"大阪府","address1":"東大阪市","address2":null,"addressAfter":"日下町5-3-40","addressDetail":null,"phone":"0120-333-876","access":"近鉄けいはんな線新石切駅から国道170号線（旧外環状線）を北へ1.8ｋｍ。孔舎衙（くさか）小学校向い。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0036"},{"id":549,"schoolName":"個別指導WAM","className":"太田校","postCode":"581-0037","prefecture":"大阪府","address1":"八尾市","address2":null,"addressAfter":"太田7-50-2","addressDetail":null,"phone":"0120-333-876","access":"太田7丁目交差点から東へ50ｍ。八尾総合病院より北へ160ｍ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0037"},{"id":550,"schoolName":"個別指導WAM","className":"南高安校","postCode":"581-0881","prefecture":"大阪府","address1":"八尾市","address2":null,"addressAfter":"垣内1-178","addressDetail":null,"phone":"0120-333-876","access":"近鉄大阪線高安駅から南東へ800ｍ。近鉄大阪線恩智駅から北東へ600メートル。外環状線垣内南交差点のダイソーの北隣。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0038"},{"id":551,"schoolName":"個別指導WAM","className":"河内長野駅前校","postCode":"586-0015","prefecture":"大阪府","address1":"河内長野市","address2":null,"addressAfter":"本町10-12","addressDetail":"坂上ビル2.3F","phone":"0120-333-876","access":"南海高野線・近鉄長野線　河内長野駅　徒歩３分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0039"},{"id":552,"schoolName":"個別指導WAM","className":"堺市駅前校","postCode":"590-0014","prefecture":"大阪府","address1":"堺市","address2":"堺区","addressAfter":"田出井町1-1","addressDetail":"ベルマージュ堺専門店街2F","phone":"0120-333-876","access":"JR阪和線　堺市駅　徒歩４分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0040"},{"id":553,"schoolName":"個別指導WAM","className":"東上野芝校","postCode":"591-8035","prefecture":"大阪府","address1":"堺市","address2":"北区","addressAfter":"東上野芝町2丁548","addressDetail":null,"phone":"0120-333-876","access":"JR阪和線上野芝駅より東へ徒歩6分。泉北1号線東上野芝町2丁交差点すぐ。西友より南へ100ｍ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0041"},{"id":554,"schoolName":"個別指導WAM","className":"池浦校","postCode":"595-0024","prefecture":"大阪府","address1":"泉大津市","address2":null,"addressAfter":"池浦町1-22-20-1","addressDetail":null,"phone":"0120-333-876","access":"南海本線泉大津駅より東に800ｍ。消防署建設地のある交差点を南に50ｍ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0042"},{"id":555,"schoolName":"個別指導WAM","className":"山直校","postCode":"596-0808","prefecture":"大阪府","address1":"岸和田市","address2":null,"addressAfter":"三田町208","addressDetail":null,"phone":"0120-333-876","access":"城東小学校西交差点から南へ500m","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0043"},{"id":567,"schoolName":"個別指導WAM","className":"阪急三国校","postCode":"532-0006","prefecture":"大阪府","address1":"大阪市","address2":"淀川区","addressAfter":"西三国2-6-6","addressDetail":"マキエテナントビル1・2F","phone":"0120-333-876","access":"阪急宝塚本線　三国駅　徒歩8分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0055"},{"id":568,"schoolName":"個別指導WAM","className":"加島校","postCode":"532-0031","prefecture":"大阪府","address1":"大阪市","address2":"淀川区","addressAfter":"加島4-1-6","addressDetail":null,"phone":"0120-333-876","access":"JR東西線加島駅から北東へ400ｍ。十三筋加島交差点を西へ50ｍ。大阪市バス加島停留所より徒歩1分。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0056"},{"id":569,"schoolName":"個別指導WAM","className":"高見校","postCode":"554-0001","prefecture":"大阪府","address1":"大阪市","address2":"此花区","addressAfter":"高見3-1-30","addressDetail":null,"phone":"0120-333-876","access":"阪神なんば線「千鳥橋駅」より北へ700m。「高見3丁目」停留所斜め向い、ケーキ屋の2階。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0057"},{"id":570,"schoolName":"個別指導WAM","className":"庄内校","postCode":"561-0833","prefecture":"大阪府","address1":"豊中市","address2":null,"addressAfter":"庄内幸町4-23-10","addressDetail":null,"phone":"0120-333-876","access":"豊中市立小学校・豊中市立第六中学校すぐ近く、教室の並びに「庄内幸町図書館」「デイリーヤマザキ豊中庄内店」","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0058"},{"id":571,"schoolName":"個別指導WAM","className":"吹田桃山台校","postCode":"565-0854","prefecture":"大阪府","address1":"吹田市","address2":null,"addressAfter":"桃山台2-5-8 1F","addressDetail":null,"phone":"0120-333-876","access":"北大阪急行「桃山台駅」から南千里方面へ徒歩約7分。 ライフ桃山台店　吹田桃山台郵便局が目印です。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0059"},{"id":572,"schoolName":"個別指導WAM","className":"氷室町校","postCode":"569-1141","prefecture":"大阪府","address1":"高槻市","address2":null,"addressAfter":"氷室町2-2-26","addressDetail":"フレンドビル2F","phone":"0120-333-876","access":"高槻市営バス「氷室」停留所より徒歩1分。フレンドマート高槻氷室店のむかい。淡いピンク色の建物の2階。1階はとみやま歯科医院。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0060"},{"id":573,"schoolName":"個別指導WAM","className":"刑部校","postCode":"581-0015","prefecture":"大阪府","address1":"八尾市","address2":null,"addressAfter":"刑部3-52","addressDetail":null,"phone":"0120-333-876","access":"府道182号線八尾木交差点から東へ100メートル。刑部小学校を南へ100メートル。曙川小学校より北へ200ｍ。曙川南中学校より北へ100ｍ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0061"},{"id":574,"schoolName":"個別指導WAM","className":"浅香山校","postCode":"591-8008","prefecture":"大阪府","address1":"堺市","address2":"北区","addressAfter":"東浅香山町2丁4","addressDetail":null,"phone":"0120-333-876","access":"JR阪和線浅香駅から南東へ200ｍ。府道187号線東浅香山町1丁西交差点を東へ50ｍ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0062"},{"id":590,"schoolName":"個別指導WAM","className":"桜丘町校","postCode":"573-0018","prefecture":"大阪府","address1":"枚方市","address2":null,"addressAfter":"桜丘町25-3","addressDetail":null,"phone":"0120-333-876","access":"京阪交野線「星ケ丘」駅から徒歩15分。枚方市立桜丘北小学校の南側。ドラッグストア アカカベ 桜丘店より東へ50m。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0078"},{"id":604,"schoolName":"個別指導WAM","className":"楠根校","postCode":"577-0004","prefecture":"大阪府","address1":"東大阪市","address2":null,"addressAfter":"稲田新町1-8-33","addressDetail":null,"phone":"0120-333-876","access":"JR片町線徳庵駅から南東へ500ｍ。のぞみ信用組合徳庵支店の向い。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0092"},{"id":605,"schoolName":"個別指導WAM","className":"六万寺校","postCode":"579-8066","prefecture":"大阪府","address1":"東大阪市","address2":null,"addressAfter":"下六万寺町2-2-12","addressDetail":null,"phone":"0120-333-876","access":"国道170号線六万寺東交差点の北西。万代六万寺店より南へ50ｍ。関西みらい銀行枚岡支店向い。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0093"},{"id":813,"schoolName":"駿台予備学校","className":"上本町校","postCode":"542-0012","prefecture":"大阪府","address1":"大阪市","address2":"中央区","addressAfter":"谷町九丁目2-24","addressDetail":null,"phone":"06-6767-4311","access":"谷町九丁目<br>\n【A】 大阪メトロ谷町線・千日前線「谷町九丁目」下車、大阪メトロ2号出口(階段)、4号出口(エレベーター)より北へ徒歩2分<br>\n【B】 近鉄奈良線「大阪上本町」下車、地下通路より大阪メトロ谷町線・千日前線方面へ徒歩約4分、2号出口(階段)、4号出口(エレベーター)より北へ徒歩2分<br>\n【C】 近鉄大阪線「大阪上本町」下車、地下通路より大阪メトロ谷町線・千日前線方面へ徒歩約7分、2号出口(階段)、4号出口(エレベーター)より北へ徒歩2分","targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":null,"email1":"t_mizuhara@mail.sundai.ac.jp","department1":"本部","personInCharge1":"担当者","email2":"t_kajikawa@mail.sundai.ac.jp","department2":"本部","personInCharge2":"担当者","email3":"k_yoshii@sundai-kyouken.jp>","department3":"本部","personInCharge3":"担当者","individualPage":"SND0012"},{"id":814,"schoolName":"駿台","className":"豊中校","postCode":"560-0021","prefecture":"大阪府","address1":"豊中市","address2":null,"addressAfter":"本町1-6-4","addressDetail":null,"phone":"06-6849-5550","access":"阪急豊中東側<br>\n【A】 阪急宝塚線「豊中」下車　南改札口より東へ徒歩約2分<br>\n【B】 阪急バス「豊中」下車　東へ徒歩約2分","targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":null,"email1":"t_mizuhara@mail.sundai.ac.jp","department1":"本部","personInCharge1":"担当者","email2":"t_kajikawa@mail.sundai.ac.jp","department2":"本部","personInCharge2":"担当者","email3":"k_yoshii@sundai-kyouken.jp>","department3":"本部","personInCharge3":"担当者","individualPage":"SND0013"},{"id":960,"schoolName":"大学受験個別戦略指導会","className":"天王寺校","postCode":"543-0054","prefecture":"大阪府","address1":"大阪市","address2":"天王寺区","addressAfter":"南河堀町10-17","addressDetail":"天王寺北NKビル6F","phone":"06-7656-4408","access":"JR天王寺駅北口より東へ徒歩3分","targetGrade":"高校1年生～高校3年生","classTime":"毎週月曜～土曜 13:30～22:00","schedule":"教室までお問い合わせください。","time":"13:30～22:00","tutationFee":"無料","email1":"furunaga.hisaki@with-us.co.jp","department1":"天王寺校","personInCharge1":"古永 寿樹","email2":"okimura.haruka@with-us.co.jp","department2":"天王寺校","personInCharge2":"沖村 春佳","email3":"nishida.yusuke@with-us.co.jp","department3":"第４統括","personInCharge3":"西田 有佑","individualPage":"WIZ0001"},{"id":1001,"schoolName":"イング","className":"鶴見校","postCode":"538-0052","prefecture":"大阪府","address1":"大阪市","address2":"鶴見区","addressAfter":"横堤5-3-28","addressDetail":"スペースKAWATA3F･4F","phone":"06-6915-3555","access":"大阪メトロ長堀鶴見緑地線横堤駅より徒歩1分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0001"},{"id":1002,"schoolName":"イング","className":"吹田SST校","postCode":"564-0002","prefecture":"大阪府","address1":"吹田市","address2":null,"addressAfter":"岸辺中5丁目2-3","addressDetail":"Gakken多世代スクエア１F","phone":"06-6170-3072","access":"JR 岸辺駅より徒歩9分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0002"},{"id":1003,"schoolName":"イング","className":"信光学院校","postCode":"536-0007","prefecture":"大阪府","address1":"大阪市","address2":"城東区","addressAfter":"成育5-10-14　3F","addressDetail":null,"phone":"06-6932-1535","access":"大阪メトロ今里筋線関目成育駅より徒歩1分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0003"},{"id":1004,"schoolName":"イング","className":"鶴見みどり校","postCode":"538-0053","prefecture":"大阪府","address1":"大阪市","address2":"鶴見区","addressAfter":"鶴見6-6-56","addressDetail":null,"phone":"06-6115-5339","access":"大阪メトロ長堀鶴見緑地線今福鶴見駅より徒歩11分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0004"},{"id":1005,"schoolName":"イング","className":"鴫野校","postCode":"536-0014","prefecture":"大阪府","address1":"大阪市","address2":"城東区  ","addressAfter":"鴫野西3-6-26","addressDetail":"鴫野ビル3Ｆ","phone":"06-6969-7255","access":"地下鉄・ＪＲ各線鴫野駅より徒歩9分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0005"},{"id":1006,"schoolName":"イング","className":"金剛東校","postCode":"584-0082","prefecture":"大阪府","address1":"富田林市 ","address2":null,"addressAfter":"向陽台2-6-24","addressDetail":"牧主第11ビル2Ｆ","phone":"072-128-1911","access":"南海バス富田林病院前より徒歩3分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0006"},{"id":1007,"schoolName":"イング２","className":"高石校","postCode":"592-0014","prefecture":"大阪府","address1":"富田林市","address2":null,"addressAfter":"綾園1-11-22","addressDetail":"サンマルイビル1F・2Ｆ","phone":"072-264-5580","access":"南海本線高石駅より徒歩1分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0007"},{"id":1008,"schoolName":"イング","className":"浜寺校","postCode":"592-8348","prefecture":"大阪府","address1":"堺市","address2":"西区","addressAfter":"浜寺諏訪森町中1-63","addressDetail":null,"phone":"072-265-2494","access":"南海本線諏訪ノ森駅より徒歩2分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0008"},{"id":1009,"schoolName":"イング","className":"光明池校","postCode":"594-1101","prefecture":"大阪府","address1":"和泉市  ","address2":null,"addressAfter":"室堂町824-36","addressDetail":"コムボックス光明池1Ｆ","phone":"072-551-7702","access":"泉北高速鉄道光明池駅より徒歩5分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0009"},{"id":1010,"schoolName":"イング","className":"和泉中央校","postCode":"594-0041","prefecture":"大阪府","address1":"和泉市  ","address2":null,"addressAfter":"いぶき野5-1-14","addressDetail":"エコール・いずみ　東館3Ｆ　801","phone":"072-558-2207","access":"泉北高速線道和泉中央駅より徒歩6分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0010"},{"id":1012,"schoolName":"イング","className":"新金岡校","postCode":"591-8021","prefecture":"大阪府","address1":"堺市","address2":"北区","addressAfter":"新金岡町5-1-2","addressDetail":"南海バス新金岡ビル2Ｆ","phone":"072-251-0302","access":"大阪メトロ御堂筋線新金岡駅より徒歩3分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0012"},{"id":1013,"schoolName":"イング","className":"G-PAPILS堀江校","postCode":"550-0014","prefecture":"大阪府","address1":"大阪市","address2":"西区","addressAfter":"北堀江4-12-10","addressDetail":"グランドメゾン長堀B棟1Ｆ","phone":"06-4393-8688","access":"大阪メトロ千日前線西長堀駅より徒歩5分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0013"},{"id":1014,"schoolName":"イング","className":"花園校","postCode":"578-0933","prefecture":"大阪府","address1":"東大阪市 ","address2":null,"addressAfter":"玉串元町1丁目1-6","addressDetail":"ルート花園66 1Ｆ","phone":"072-964-7915","access":"近鉄奈良線河内花園駅より徒歩12分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0014"},{"id":1015,"schoolName":"イング","className":"七道校","postCode":"590-0906","prefecture":"大阪府","address1":"堺市","address2":"堺区","addressAfter":"三宝町1-20","addressDetail":"七道駅前ローソンビル3Ｆ","phone":"072-227-2940","access":"南海本線七道駅より徒歩1分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0015"},{"id":1016,"schoolName":"イング","className":"金剛校","postCode":"589-0011","prefecture":"大阪府","address1":"大阪狭山市  ","address2":null,"addressAfter":"半田1-618-1","addressDetail":"宮崎ビル2Ｆ","phone":"072-367-3160","access":"南海高野線金剛駅より徒歩1分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0016"},{"id":1017,"schoolName":"イング","className":"美原校","postCode":"587-0051","prefecture":"大阪府","address1":"堺市","address2":"美原区","addressAfter":"北余部492-3","addressDetail":null,"phone":"072-361-6300","access":"南海バス農芸高校前より徒歩1分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0017"},{"id":1018,"schoolName":"イング","className":"宿院校","postCode":"590-0946","prefecture":"大阪府","address1":"堺市","address2":"堺区","addressAfter":"熊野町東1-2-1","addressDetail":"肥塚ビル2Ｆ","phone":"072-222-6961","access":"南海本線堺駅より徒歩11分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0018"},{"id":1019,"schoolName":"イング","className":"日根野校","postCode":"598-0021","prefecture":"大阪府","address1":"泉佐野市  ","address2":null,"addressAfter":"日根野7014番地","addressDetail":"アーバンウェル日根野1Ｆ2号室","phone":"072-450-3115","access":"JR日根野駅より徒歩1分","targetGrade":"高校1年生〜3年生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"yamamoto_masataka@ing-edu.com","department1":"第4事業部","personInCharge1":"山本様","email2":"ueda_yuki@ing-edu.com","department2":"第4事業部","personInCharge2":"上田様","email3":null,"department3":null,"personInCharge3":null,"individualPage":"ING0019"},{"id":1042,"schoolName":"ヤマダパソコンスクール","className":"なんば校","postCode":"556-0011","prefecture":"大阪府","address1":"大阪市","address2":"浪速区","addressAfter":"難波中二丁目11番35号","addressDetail":"LABI 1 LIFE SELECT  なんば","phone":"06-6649-8121","access":"地下鉄各線「なんば駅」より徒歩6分","targetGrade":"中学2年生～高校3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"sem-saka@tecc.co.jp","department1":"ｿﾘｭｰｼｮﾝｻｰﾋﾞｽ事業部","personInCharge1":"柴田恵理子","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"YMD0022"}];
+    const dropDownData = ["池田市","泉大津市","泉佐野市","和泉市","茨木市","大阪狭山市","大阪市","- 旭区","- 阿倍野区","- 生野区","- 北区","- 此花区","- 城東区","- 住之江区","- 住吉区","- 大正区","- 中央区","- 鶴見区","- 天王寺区","- 浪速区","- 西区","- 西成区","- 西淀川区","- 東住吉区","- 東成区","- 東淀川区","- 平野区","- 福島区","- 港区","- 都島区","- 淀川区","貝塚市","柏原市","交野市","門真市","河南町","河内長野市","岸和田市","熊取町","堺市","- 北区","- 堺区","- 中区","- 西区","- 東区","- 南区","- 美原区","四條畷市","島本町","吹田市","摂津市","泉南市","太子町","大東市","高石市","高槻市","田尻町","忠岡町","千早赤阪村","豊中市","豊能町","富田林市","寝屋川市","能勢町","羽曳野市","阪南市","東大阪市","枚方市","藤井寺市","松原市","岬町","箕面市","守口市","八尾市"];
+    const tokyo23 = ["足立区","荒川区","板橋区","江戸川区","大田区","葛飾区","北区","江東区","品川区","渋谷区","新宿区","杉並区","墨田区","世田谷区","台東区","中央区","千代田区","豊島区","中野区","練馬区","文京区","港区","目黒区"];
+    const prefecture = '大阪府';
+    let parentAddess1 = null;
+    let dropDownInnerHTML = '';
+    const schoolDataMapping = {};
+    const dropdownMap = {};
+    const empty = document.getElementById('empty');
+
+    if (data.length) {
+      empty.style.display = 'none';
+    }
+
+    const dropdownMenu = document.getElementById('drop-down');
+    const createDropDownItem = (address1, address2) => {
+      return `
+          <li><a class="dropdown-item" href="#area_${address1}_${address2}">${address2 ? '- ' + address2 : address1}</a></li>
+        `
+    }
+
+    dropDownData.map((v) => {
+      if (v.includes('- ')) {
+        if (!schoolDataMapping[`${parentAddess1}`][`${v.slice(2)}`]) {
+          schoolDataMapping[`${parentAddess1}`][`${v.slice(2)}`] = [];
+        }
+      }
+      else {
+        parentAddess1 = v;
+        if (!schoolDataMapping[`${v}`]) {
+          schoolDataMapping[`${v}`] = {};
+        }
+      }
+    })
+
+    for (let i = 0; i < data.length; i += 1) {
+      if (data[i].prefecture === '東京都') {
+        if (tokyo23.includes(data[i].address1)) {
+          data[i].address2 = data[i].address1;
+          data[i].address1 = '23区';
+        }
+        else if (tokyo23.includes(data[i].address2)) {
+          data[i].address1 = '23区';
+        }
+      }
+      dropdownMap[`${data[i].address1}`] = 1;
+      dropdownMap[`${data[i].address1}_${data[i].address2}`] = 1;
+      if (!schoolDataMapping[`${data[i].address1}`]) {
+        schoolDataMapping[`${data[i].address1}`] = {};
+      }
+      if (!schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`]) {
+        schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`] = [];
+      }
+      schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`].push(data[i]);
+    }
+
+    parentAddess1 = null;
+    dropDownData.map((v) => {
+      if (v.includes('- ')) {
+        if (!dropdownMap[`${parentAddess1}_${v.slice(2)}`]) {
+          return;
+        }
+        const dropdownItem = createDropDownItem(parentAddess1, v.slice(2));
+        dropDownInnerHTML += dropdownItem;
+      }
+      else {
+        parentAddess1 = v;
+        if (!dropdownMap[`${v}`]) {
+          return;
+        }
+        const dropdownItem = createDropDownItem(parentAddess1, null)
+        dropDownInnerHTML += dropdownItem;
+      }
+    })
+
+    if(prefecture === 'オンライン教室' || !dropDownInnerHTML.length) {
+      const dropdownBtn = document.querySelector('.dropdown-btn');
+      if (dropdownBtn) {
+        dropdownBtn.style.display = 'none';
+      }
+    }
+    
+    dropdownMenu.innerHTML = dropDownInnerHTML;
+
+    let index = 0;
+
+    const accordion = document.getElementById('accordion');
+
+    const createAreaCardItem = (address1) => {
+      return `
+        <div class="area-card"  id="area_${address1}_null">
+          <div class="area-card-header"><a class="collapsed d-flex justify-content-between align-content-center"
+              data-bs-toggle="collapse" href="#collapse_${address1}_null">
+              <div>${address1}</div><img src="images/ic-down-arrow.png">
+            </a></div>
+        </div>`
+    }
+
+    const createCollapseItem = (address1, subCardList) => {
+      return `
+        <div id="collapse_${address1}_null" class="collapse">
+          <div class="area-card-body">
+            <div class="collapsed" data-bs-toggle="collapse">
+              ${subCardList}
+            </div>
+          </div>
+        </div>`
+    }
+
+    const createSubCardItems = (address1, address2, subCardListItems) => {
+      return `
+        <div class="sub-card-title" id='target_${address1}_${address2}'>
+          ${address2 !== 'null' && address2 !== '-' ? address2 : ''}
+        </div>
+        <div class="sub-card-list">
+          ${subCardListItems}
+        </div>`
+    }
+
+    const onClick = (path) => {
+      window.location.href = path;
+    }
+
+    const createSubCardListItems = (listDatas) => {
+      let rs = '';
+      for (let i = 0; i < listDatas.length; i += 1) {
+        if(prefecture !== 'オンライン教室') {
+          if(listDatas[i].access) {
+            rs += `
+            <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+              <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+              <div class="school-address">
+                <img src="images/ic-map.png" />
+                <div>${listDatas[i].prefecture} ${(listDatas[i].address1 === '23区' || !listDatas[i].address1) ? '' : listDatas[i].address1} ${listDatas[i].address2 || ''} ${listDatas[i].addressAfter || ''} ${listDatas[i].addressDetail || ''}</div>
+              </div>
+              <div class="school-access">
+                <img src="images/ic-car.png" />
+                <div>${listDatas[i].access}</div>
+              </div>
+            </a>`
+          }
+          else {
+            rs += `
+            <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+              <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+              <div class="school-address">
+                <img src="images/ic-map.png" />
+                <div>${listDatas[i].prefecture} ${(listDatas[i].address1 === '23区' || !listDatas[i].address1) ? '' : listDatas[i].address1} ${listDatas[i].address2 || ''} ${listDatas[i].addressAfter || ''} ${listDatas[i].addressDetail || ''}</div>
+              </div>
+            </a>`
+          }
+        }
+        else {
+          rs += `
+          <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+            <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+          </a>`
+        }
+      }
+      return rs;
+    }
+
+    let areaInnerHTML = '';
+
+    for (const [key, value] of Object.entries(schoolDataMapping)) {
+      let subCard = "";
+      let hasSchoolData = false;
+      for (const [key2, value2] of Object.entries(value)) {
+        if (value2.length) {
+          hasSchoolData = true;
+          subCard += createSubCardItems(
+            key,
+            key2,
+            createSubCardListItems(value2)
+          );
+        }
+      }
+      if (hasSchoolData) {
+        const areaCard = createAreaCardItem(key);
+        areaInnerHTML += areaCard;
+        const collapse = createCollapseItem(key, subCard);
+        areaInnerHTML += collapse;
+      }
+
+      index++;
+    }
+
+    accordion.innerHTML = areaInnerHTML;
+
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+    dropdownItems.forEach(function (item) {
+      item.addEventListener('click', function (event) {
+        const attr = this.getAttribute('href').substring(1).split('_');
+        const address1 = attr[1];
+        const address2 = attr[2];
+        const areaCardId = `area_${address1}_null`;
+        const collapseId = `collapse_${address1}_null`;
+        const targetId = `target_${address1}_${address2}`;
+        const areaCard = document.getElementById(areaCardId);
+        const collapseElement = document.getElementById(collapseId);
+        const targetElement = document.getElementById(targetId);
+        if (collapseElement) {
+          if (!collapseElement.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(collapseElement);
+            bsCollapse.show();
+          }
+          setTimeout(() => {
+            if (targetElement && !targetId.includes('null')) {
+              targetElement.classList.add('highlight');
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+
+              setTimeout(() => {
+                targetElement.classList.remove('highlight');
+              }, 1500);
+            }
+            else {
+              areaCard.classList.add('highlight');
+
+              areaCard.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+
+              setTimeout(() => {
+                areaCard.classList.remove('highlight');
+              }, 1500);
+            }
+          }, 400);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
+  

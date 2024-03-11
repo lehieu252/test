@@ -1,0 +1,727 @@
+
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List School</title>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MTDGLF5');</script>
+  <!-- Latest compiled and minified CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP";
+    }
+
+    .header {
+      display: flex;
+      align-items: start;
+      gap: 76px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .logo-container a {
+      display: block;
+      padding: 21px 16px;
+    }
+
+    .logo {
+      max-width: 240px;
+      height: auto;
+    }
+
+    .footer {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-info {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0px 32px;
+    }
+
+    .footer-info a {
+      color: var(--text_color, #323232);
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .banner {
+      display: flex;
+      background-image: url('images/bg_2.png');
+      background-position: center;
+      min-height: 235px;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .banner-link {
+      margin: 8px 32px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .area-link {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      margin-right: 1rem;
+    }
+
+    .banner-link span {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      margin-right: 1rem;
+    }
+
+    .child-link {
+      text-decoration: none;
+      color: var(--white-white-100, #FFF);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+    }
+
+    .banner-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .banner-title-main {
+      color: #FFF;
+      text-align: center;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.8px;
+      padding-bottom: 2px;
+      box-shadow: rgba(242, 195, 28, 0.6) 0px -15px 0px 0px inset;
+    }
+
+    .banner-title-sub {
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+    }
+
+    .banner-title-sub-2{
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-size: 13.295px ;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+      margin-top: 16px;
+    }
+
+    #main {
+      min-height: 54vh;
+    }
+    .filter-dropdown {
+      margin-top: 64px;
+    }
+
+    .dropdown-btn {
+      display: flex;
+      padding: 12px;
+      width: 280px;
+      justify-content: space-between;
+      border-radius: 6px;
+      border: 1px solid var(--Grayscale-Gray-35, #969CA1);
+      background: var(--white-white-100, #FFF);
+    }
+
+    .dropdown-btn img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .dropdown-menu {
+      width: 280px;
+      margin: 16px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .area-card-body {
+      background: var(--Grayscale-Gray-05, #F2F2F3);
+      padding: 16px;
+      min-height: 100px;
+    }
+
+    .sub-card-title {
+      color: var(--Brand-Brand-blue, #1793CC);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.32px;
+      margin-left: 16px;
+      margin-bottom: 8px;
+    }
+
+    .sub-card-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      min-height: 50px;
+    }
+
+    .sub-card-item {
+      border-radius: 8px;
+      width: calc(33.33% - 8px);
+      border: 1px solid var(--Grayscale-Gray-05, #F2F2F3);
+      background: var(--white-white-100, #FFF);
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+      padding: 16px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .school-name {
+      display: flex;
+      padding: 8px;
+      align-items: flex-start;
+      gap: 10px;
+      align-self: stretch;
+      background: var(--Primary-Primary-03, #EBF4FF);
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 0.16px;
+      margin-bottom: 16px;
+    }
+
+    .school-address {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.14px;
+      margin-bottom: 12px;
+    }
+
+    .school-access {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.14px;
+    }
+
+    .area-card-header {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--Grayscale-Gray-20, #CCCED1);
+    }
+
+    .area-card-header a {
+      color: var(--Brand-Brand-blue, #1793CC);
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+    }
+
+    .area-card-header img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .area-redirect {
+      margin-top: 48px;
+      margin-bottom: 108px;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .area-redirect a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--Brand-Brand-blue, #1793CC);
+      text-align: center;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0.16px;
+      gap: 8px;
+    }
+
+    .area-redirect img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .highlight {
+      background-color: #ffeeba;
+      transition: background-color 0.5s ease;
+    }
+
+    #empty {
+      display: flex;
+      justify-content: center;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      padding-left: 12px;
+      letter-spacing: 0.16px;
+      margin-top: 48px;
+      gap: 8px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .image-holder img {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: center;
+
+      }
+
+      .footer-info {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 64px;
+      }
+
+      .banner-title-main {
+        font-size: 24px;
+      }
+
+      .banner-title-sub  {
+        font-size: 20px;
+      }
+
+      .banner-title-sub-2 {
+        font-size: 11px;
+      }
+
+      .area-redirect a {
+        display: flex;
+        width: 100%;
+        padding: 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+        border: 1px solid var(--Brand-Brand-blue, #1793CC);
+        background: var(--white-white-100, #FFF);
+        box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.05);
+      }
+      
+      .area-link,
+      .child-link {
+        font-size: 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .banner-link {
+        margin: 8px 12px;
+        display: flex;
+        align-items: center;
+        width: 93%
+      }
+
+      .dropdown-btn {
+        width: 100%;
+      }
+
+      .dropdown-menu {
+        width: 94%;
+      }
+
+      .sub-card-item {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <iframe src=“https://www.googletagmanager.com/ns.html?id=GTM-MTDGLF5” height=“0" width=“0” style=“display:none;visibility:hidden”>
+    </iframe>
+  </noscript>
+  <header class=".container-fluid header">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+  </header>
+
+  <div class=".container-fluid banner">
+    <div class="banner-link">
+      <a class="area-link" href="./area.html">都道府県</a>
+      <span>></span>
+      <a class="child-link" href="#">広島県の教室一覧</a>
+    </div>
+    <div class="banner-title">
+      <div>
+        <span class="banner-title-main">広島県</span>
+        <span class="banner-title-sub">の教室一覧</span>
+      </div>
+      <div class="banner-title-sub-2">
+        ※授業曜日や授業料などは、各教室ページよりお問い合わせください。
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="main">
+    <div class="filter-dropdown">
+      <div class="dropdown-btn" data-bs-toggle="dropdown" aria-expanded="false">
+        <div>
+          市区町村を絞り込む
+        </div>
+        <img src="images/ic-down-arrow.png" />
+      </div>
+      <ul class="dropdown-menu" id="drop-down">
+      </ul>
+    </div>
+
+    <div class="accordion" id="accordion">
+    </div>
+
+    <div id="empty">
+      該当する教室はありません
+    </div>
+
+    <div class="area-redirect">
+      <a href="./area.html">
+        <img src="images/ic-left-arrow.png" />
+        <div>都道府県一覧に戻る</div>
+      </a>
+    </div>
+  </div>
+  <footer class=".container-fluid footer">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+    <div class="footer-info">
+      <a href="https://juku.lifeistech-lesson.jp/" target="_blank">
+        <div>学習塾の方はこちら</div>
+        <img src="images/ic-redirect-black.svg" />
+      </a>
+      <a href="https://life-is-tech.com/" target="_blank">
+        運営会社
+      </a>
+      <a href="https://life-is-tech.com/privacy-policy/" target="_blank">
+        個人情報保護方針
+      </a>
+      <a href="https://life-is-tech.com/privacy-handling/" target="_blank">
+        個人情報の取扱いについて
+      </a>
+    </div>
+  </footer>
+  <script>
+    const data = [{"id":195,"schoolName":"個別指導塾スタンダード","className":"福山駅前教室","postCode":"720-0066","prefecture":"広島県","address1":"福山市","address2":null,"addressAfter":"三之丸町8-17","addressDetail":"Kビル3F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 116.00"},{"id":196,"schoolName":"個別指導塾スタンダード","className":"福山山手教室","postCode":"720-0092","prefecture":"広島県","address1":"福山市","address2":null,"addressAfter":"山手町3-2-6","addressDetail":"レジデンスビューティー1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 117.00"},{"id":197,"schoolName":"個別指導塾スタンダード","className":"神辺教室","postCode":"720-2121","prefecture":"広島県","address1":"福山市","address2":null,"addressAfter":"神辺町湯野286-1","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 118.00"},{"id":198,"schoolName":"個別指導塾スタンダード","className":"福山春日教室","postCode":"721-0907","prefecture":"広島県","address1":"福山市","address2":null,"addressAfter":"春日町1-2-39","addressDetail":"北村店舗1-2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 119.00"},{"id":199,"schoolName":"個別指導塾スタンダード","className":"新尾道駅前教室","postCode":"722-0022","prefecture":"広島県","address1":"尾道市","address2":null,"addressAfter":"栗原町9311-6","addressDetail":"黒飛ビル3F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 120.00"},{"id":200,"schoolName":"個別指導塾スタンダード","className":"三原駅前教室","postCode":"723-0014","prefecture":"広島県","address1":"三原市","address2":null,"addressAfter":"城町1-20-16","addressDetail":"通ビル3F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 121.00"},{"id":201,"schoolName":"個別指導塾スタンダード","className":"松永教室","postCode":"729-0104","prefecture":"広島県","address1":"福山市","address2":null,"addressAfter":"松永町1-13","addressDetail":"松永町1丁目貸店舗・事務所","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 122.00"},{"id":202,"schoolName":"個別指導塾スタンダード","className":"安古市教室","postCode":"731-0154","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"上安2-11-16","addressDetail":"2階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 123.00"},{"id":203,"schoolName":"個別指導塾スタンダード","className":"坂町教室","postCode":"731-4311","prefecture":"広島県","address1":"坂町","address2":null,"addressAfter":"北新地2-3-40","addressDetail":"坂複合第一ビル3階7号室","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 124.00"},{"id":204,"schoolName":"個別指導塾スタンダード","className":"五日市教室","postCode":"731-5133","prefecture":"広島県","address1":"広島市","address2":"佐伯区","addressAfter":"旭園3-35","addressDetail":"IBビル302","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 125.00"},{"id":205,"schoolName":"個別指導塾スタンダード","className":"広島駅前教室","postCode":"732-0828","prefecture":"広島県","address1":"広島市","address2":"南区","addressAfter":"京橋町1-3","addressDetail":"TATSUMI広島駅前ビル402","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 126.00"},{"id":206,"schoolName":"個別指導塾スタンダード","className":"府中教室","postCode":"735-0023","prefecture":"広島県","address1":"府中町","address2":null,"addressAfter":"浜田本町3-29","addressDetail":"伊藤ビル1階左端","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 127.00"},{"id":207,"schoolName":"個別指導塾スタンダード","className":"海田教室","postCode":"736-0046","prefecture":"広島県","address1":"海田町","address2":null,"addressAfter":"窪町4-46","addressDetail":"サンシャミービル２F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 128.00"},{"id":208,"schoolName":"個別指導塾スタンダード","className":"呉教室","postCode":"737-0051","prefecture":"広島県","address1":"呉市","address2":null,"addressAfter":"中央1丁目2-2","addressDetail":"西川ビル2階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 129.00"},{"id":209,"schoolName":"個別指導塾スタンダード","className":"広駅前教室","postCode":"737-0142","prefecture":"広島県","address1":"呉市","address2":null,"addressAfter":"広駅前1-2-1","addressDetail":"広駅前ビル201","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 130.00"},{"id":210,"schoolName":"個別指導塾スタンダード","className":"西条大坪教室","postCode":"739-0005","prefecture":"広島県","address1":"東広島市","address2":null,"addressAfter":"西条大坪町2-12","addressDetail":"新興ビル301","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 131.00"},{"id":211,"schoolName":"個別指導塾スタンダード","className":"高陽教室","postCode":"739-1734","prefecture":"広島県","address1":"広島市","address2":"安佐北区","addressAfter":"口田4-1-4","addressDetail":"岩下ビル１F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 132.00"},{"id":212,"schoolName":"個別指導塾スタンダード","className":"高屋教室","postCode":"739-2102","prefecture":"広島県","address1":"東広島市","address2":null,"addressAfter":"高屋町杵原1311-2","addressDetail":"影山ビル1階C","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 133.00"},{"id":213,"schoolName":"個別指導塾スタンダード","className":"黒瀬教室","postCode":"739-2625","prefecture":"広島県","address1":"東広島市","address2":null,"addressAfter":"黒瀬町上保田39","addressDetail":"ルービンデンスボーダ31F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 134.00"},{"id":348,"schoolName":"KATEKYO学院","className":"呉駅前","postCode":"737-0051","prefecture":"広島県","address1":"呉市","address2":null,"addressAfter":"中央1-3-1","addressDetail":"井山ビル３F","phone":"0823-24-4466","access":"JR呉駅より徒歩２分","targetGrade":"高校1年～高校3年、高卒生","classTime":"ご希望の曜日、時間で調整できます","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"katekyo@katekyo-kure.com","department1":"教務部","personInCharge1":"藤本　直哉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"PRO0001"},{"id":349,"schoolName":"啓誠塾","className":"温品校","postCode":"732-0033","prefecture":"広島県","address1":"広島市","address2":"東区","addressAfter":"温品5丁目2-32","addressDetail":null,"phone":"082-289-7734","access":"温品小学校より徒歩10分","targetGrade":"高校1年～高校3年","classTime":"教室までお問い合わせください。","schedule":"毎週月曜日～金曜日","time":"14：00～21:00","tutationFee":"無料","email1":"keisei_nukushina@outlook.com","department1":"本部","personInCharge1":"宮下 征也","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STU0001"},{"id":350,"schoolName":"啓誠塾","className":"二葉校","postCode":"732-0048","prefecture":"広島県","address1":"広島市","address2":"東区","addressAfter":"山根町21-40","addressDetail":null,"phone":"082-258-1036","access":"二葉中学校より徒歩1分","targetGrade":"高校1年～高校3年","classTime":"教室までお問い合わせください。","schedule":"毎週月曜日～金曜日","time":"14：00～21:00","tutationFee":"無料","email1":"keisei_nukushina@outlook.com","department1":"本部","personInCharge1":"宮下 征也","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STU0002"},{"id":351,"schoolName":"啓誠塾","className":"府中校","postCode":"735-0012","prefecture":"広島県","address1":"府中町","address2":null,"addressAfter":"八幡2丁目3-3-101","addressDetail":"シャトレアンジェ101","phone":"082-567-4922","access":"府中中学校より徒歩2分","targetGrade":"高校1年～高校3年","classTime":"教室までお問い合わせください。","schedule":"毎週月曜日～金曜日","time":"14：00～21:00","tutationFee":"無料","email1":"keisei_nukushina@outlook.com","department1":"本部","personInCharge1":"宮下 征也","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STU0003"},{"id":397,"schoolName":"鷗州塾","className":"己斐校","postCode":"733-0812","prefecture":"広島県","address1":"広島市","address2":"西区","addressAfter":"己斐本町2丁目12番31号","addressDetail":null,"phone":"082-273-6086","access":"JR西広島駅・広島電鉄広電西広島駅より徒歩7分","targetGrade":"高校1年〜高校3年","classTime":"毎週月曜～金曜 18:55～20:15/20:20～21:40、土曜 17:30〜18:50/18:55〜20:15","schedule":"毎週月曜～土曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0001"},{"id":398,"schoolName":"鷗州塾","className":"海田校","postCode":"736-0082","prefecture":"広島県","address1":"広島市","address2":"安芸区","addressAfter":"船越南3丁目2番20号","addressDetail":"中国ｼﾞｪｲｱｰﾙﾊﾞｽ海田支店ﾋﾞﾙ2階","phone":"082-822-0990","access":"JR海田市駅から徒歩7分","targetGrade":"高校1年〜高校3年","classTime":"毎週月・火・水・金曜 18:55〜20:15/20:20～21:40","schedule":"毎週月・火・水・金曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0002"},{"id":399,"schoolName":"鷗州塾","className":"五日市校","postCode":"731-5136","prefecture":"広島県","address1":"広島市","address2":"佐伯区","addressAfter":"楽々園2丁目1番24号","addressDetail":null,"phone":"082-923-0915","access":"広島電鉄楽々園駅より徒歩3分","targetGrade":"高校1年〜高校3年","classTime":"毎週月・火・木・金曜 18:55〜20:15/20:20～21:40、土曜 17:30〜18:50/18:55〜20:15/20:20～21:40","schedule":"毎週月・火・木・金・土曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0003"},{"id":400,"schoolName":"鷗州塾","className":"福山校","postCode":"720-0045","prefecture":"広島県","address1":"福山市","address2":null,"addressAfter":"宝町4番1号","addressDetail":null,"phone":"084-923-0838","access":"JR福山駅より徒歩5分","targetGrade":"高校1年〜高校3年","classTime":"毎週火曜～金曜 18:55〜20:15/20:20～21:40、土曜 17:30〜18:50/18:55〜20:15/20:20～21:40","schedule":"毎週火曜〜土曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kb_okayama@aic.oshu.co.jp","department2":"個別指導事業部　岡山","personInCharge2":"玉川 路晃","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0004"},{"id":402,"schoolName":"鷗州塾","className":"皆実校","postCode":"734-0007","prefecture":"広島県","address1":"広島市","address2":"南区","addressAfter":"皆実町6丁目2番21号","addressDetail":null,"phone":"082-252-9767","access":"広島電皆実町六丁目駅目の前","targetGrade":"高校1年〜高校3年","classTime":"毎週月・水・木・金曜 18:55〜20:15/20:20～21:40、土曜 17:30〜18:50/18:55〜20:15","schedule":"毎週月・水・木・金・土曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0006"},{"id":403,"schoolName":"鷗州塾","className":"牛田校","postCode":"732-0063","prefecture":"広島県","address1":"広島市","address2":"東区","addressAfter":"牛田東2丁目1番28号","addressDetail":null,"phone":"082-222-1009","access":"牛田東1丁目バス停より徒歩1分","targetGrade":"高校1年〜高校3年","classTime":"毎週火曜～金曜 18:55〜20:15/20:20～21:40","schedule":"毎週火曜～金曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0007"},{"id":404,"schoolName":"鷗州塾","className":"安古市校","postCode":"731-0123","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"古市3丁目1-6","addressDetail":null,"phone":"082-879-9151","access":"古市小学校前バス停目の前","targetGrade":"高校1年〜高校3年","classTime":"毎週月・木・金曜 18:55〜20:15/20:20～21:40、土曜 17:30〜18:50/18:55〜20:15","schedule":"毎週月・木・金・土曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0008"},{"id":406,"schoolName":"鷗州塾","className":"緑井校","postCode":"731-0103","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"緑井2丁目12番11号","addressDetail":null,"phone":"082-870-1819","access":"ネクスコ西日本前バス停・スイミング前バス停より徒歩約3分","targetGrade":"高校1年〜高校3年","classTime":"毎週火・水曜 18:55〜20:15/20:20～21:40、土曜 17:30〜18:50/18:55〜20:15","schedule":"毎週火・水・土曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0010"},{"id":407,"schoolName":"鷗州塾","className":"舟入校","postCode":"730-0846","prefecture":"広島県","address1":"広島市","address2":"中区","addressAfter":"西川口町12番10号","addressDetail":null,"phone":"082-293-1911","access":"市立舟入高校より徒歩3分・広島電鉄舟入川口町駅目の前","targetGrade":"高校1年〜高校3年","classTime":"毎週水曜～金曜 18:35〜19:55/20:00～21:20","schedule":"毎週水曜～金曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0011"},{"id":408,"schoolName":"鷗州塾","className":"宮内校","postCode":"738-0034","prefecture":"広島県","address1":"廿日市市","address2":null,"addressAfter":"宮内4丁目11番20号","addressDetail":null,"phone":"0829-38-3319","access":"ザ・ビッグ宮内店目の前","targetGrade":"高校1年〜高校3年","classTime":"毎週火曜～木曜 18:55〜20:15/20:20～21:40","schedule":"毎週火曜～木曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0012"},{"id":409,"schoolName":"鷗州塾","className":"西条校","postCode":"739-0016","prefecture":"広島県","address1":"東広島市","address2":null,"addressAfter":"西条岡町9番14号","addressDetail":null,"phone":"082-423-1123","access":"JR西条駅より徒歩3分","targetGrade":"高校1年〜高校3年","classTime":"毎週月・水・木・金曜 18:55〜20:15/20:20～21:40、土曜 16:05～17:25/17:30〜18:50/18:55〜20:15","schedule":"毎週月・水・木・金・土曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0013"},{"id":410,"schoolName":"鷗州塾","className":"松永校","postCode":"729-0111","prefecture":"広島県","address1":"福山市","address2":null,"addressAfter":"今津町2丁目1番7号","addressDetail":null,"phone":"084-933-0811","access":"JR松永駅より徒歩3分","targetGrade":"高校1年〜高校3年","classTime":"毎週月曜～金曜 18:55〜20:15/20:20～21:40、土曜 16:05～17:25/17:30〜18:50/18:55〜20:15","schedule":"毎週月曜～土曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0014"},{"id":411,"schoolName":"鷗州塾","className":"三原校","postCode":"723-0017","prefecture":"広島県","address1":"三原市","address2":null,"addressAfter":"港町1丁目4番20号","addressDetail":null,"phone":"0848-62-3219","access":"JR三原駅より徒歩5分","targetGrade":"高校1年〜高校3年","classTime":"毎週火・水・金曜 18:25〜19:45/19:50～21:10","schedule":"毎週火・水・金曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0015"},{"id":426,"schoolName":"鷗州塾","className":"高屋校","postCode":"739-2125","prefecture":"広島県","address1":"東広島市","address2":null,"addressAfter":"高屋町中島31-1","addressDetail":null,"phone":"082-434-7019","access":"JR西高屋駅より徒歩約5分","targetGrade":"高校1年〜高校3年","classTime":"毎週火曜～金曜 18:55〜20:15/20:20～21:40","schedule":"毎週火曜～金曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0030"},{"id":429,"schoolName":"鷗州塾","className":"尾道校","postCode":"722-0035","prefecture":"広島県","address1":"尾道市","address2":null,"addressAfter":"土堂２丁目８番１７号","addressDetail":null,"phone":"0848-21-1219","access":"JR尾道駅から徒歩約10分","targetGrade":"高校1年〜高校3年","classTime":"毎週火・木曜 20:20～21:40、土曜 17:30〜18:50/18:55〜20:15/20:20～21:40","schedule":"毎週火・木・土曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0033"},{"id":434,"schoolName":"鷗州塾","className":"広島駅前本校","postCode":"732-0821","prefecture":"広島県","address1":"広島市","address2":"南区","addressAfter":"大須賀町13番13号","addressDetail":null,"phone":"082-568-1519","access":"JR広島駅南口より徒歩約5分","targetGrade":"高校1年〜高校3年","classTime":"毎週月曜～金曜 18:55〜20:15/20:20～21:40、土曜 16:05～17:25/17:30〜18:50/18:55〜20:15","schedule":"毎週月曜～土曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0038"},{"id":435,"schoolName":"鷗州塾","className":"大塚校","postCode":"731-3167","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"大塚西5丁目3番30号","addressDetail":"ﾌﾟﾙﾐｴｰﾙA.CITY　1階101号室","phone":"082-849-5119","access":"広域公園テニスコートバス停より徒歩3分・マックスバリュ西風新都店近く","targetGrade":"高校1年〜高校3年","classTime":"毎週水・木曜 18:55〜20:15/20:20～21:40","schedule":"毎週水・木曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0039"},{"id":437,"schoolName":"鷗州塾","className":"宇品校","postCode":"734-0014","prefecture":"広島県","address1":"広島市","address2":"南区","addressAfter":"宇品西５丁目11-1-101-Ａ","addressDetail":null,"phone":"082-255-2119","access":"広島バス宇品四丁目より徒歩すぐ・ベイシティ宇品より徒歩すぐ","targetGrade":"高校1年〜高校3年","classTime":"毎週月・木・金曜 18:55〜20:15/20:20～21:40","schedule":"毎週月・木・金曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0041"},{"id":438,"schoolName":"鷗州塾","className":"山本校","postCode":"731-0137","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"山本2丁目3-33","addressDetail":"田村ビル1階","phone":"082-875-7019","access":"山本小学校前バス停より徒歩約5分","targetGrade":"高校1年〜高校3年","classTime":"毎週火・木曜 18:55〜20:15/20:20～21:40","schedule":"毎週火・木曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0042"},{"id":442,"schoolName":"鷗州塾","className":"西原校","postCode":"731-0113","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"西原6丁目1-1","addressDetail":"セレッソコート西原","phone":"082-871-4419","access":"アストラムライン西原駅より徒歩3分","targetGrade":"高校1年〜高校3年","classTime":"毎週火曜～木曜 18:55〜20:15/20:20～21:40","schedule":"毎週火曜～木曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0046"},{"id":444,"schoolName":"鷗州塾","className":"中筋校","postCode":"731-0122","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"中筋2丁目7-15","addressDetail":"アヴァンセ中筋301号室","phone":"082-831-4419","access":"アストラムライン中筋駅目の前","targetGrade":"高校1年〜高校3年","classTime":"毎週火・水・金曜 18:55〜20:15/20:20～21:40、土曜 17:30〜18:50/18:55〜20:15/20:20～21:40","schedule":"毎週火・水・金・土曜","time":"教室までお問い合わせください。","tutationFee":"無料(施設費税込715円)","email1":"navi@aic.oshu.co.jp","department1":"広報戦略部","personInCharge1":"櫻田　陽子","email2":"kobetsu@aic.oshu.co.jp","department2":"個別指導事業部","personInCharge2":"品川 雅俊","email3":null,"department3":null,"personInCharge3":null,"individualPage":"AIC0048"},{"id":498,"schoolName":"進学個別塾ALL-up","className":"大塚教室","postCode":"731-3168","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"伴南4-1-1","addressDetail":"フレスポ西風新都内","phone":"070-6575-5392","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0001"},{"id":499,"schoolName":"進学個別塾ALL-up","className":"高取北教室","postCode":"731-0144","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"高取北1-4-25-2F","addressDetail":null,"phone":"070-6402-7119","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0002"},{"id":500,"schoolName":"進学個別塾ALL-up","className":"亀崎教室","postCode":"739-1742","prefecture":"広島県","address1":"広島市","address2":"安佐北区","addressAfter":"亀崎1-2-26-3F","addressDetail":null,"phone":"070-6576-6377","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0003"},{"id":501,"schoolName":"進学個別塾ALL-up","className":"中広教室","postCode":"733-0013","prefecture":"広島県","address1":"広島市","address2":"西区","addressAfter":"横川新町15-5-1F","addressDetail":null,"phone":"070-6405-6936","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0004"},{"id":502,"schoolName":"進学個別塾ALL-up","className":"翠教室","postCode":"734-0005","prefecture":"広島県","address1":"広島市","address2":"南区","addressAfter":"翠3-11-17-101","addressDetail":null,"phone":"070-6480-9348","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0005"},{"id":503,"schoolName":"進学個別塾ALL-up","className":"古田教室","postCode":"733-0851","prefecture":"広島県","address1":"広島市","address2":"西区","addressAfter":"田方2-34-9-202","addressDetail":"田方ハナミズキ","phone":"070-6576-6931","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0006"},{"id":504,"schoolName":"進学個別塾ALL-up","className":"己斐教室","postCode":"733-0815","prefecture":"広島県","address1":"広島市","address2":"西区","addressAfter":"己斐上3-3-24-1F","addressDetail":null,"phone":"070-6576-7912","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0007"},{"id":505,"schoolName":"進学個別塾ALL-up","className":"観音教室","postCode":"733-0035","prefecture":"広島県","address1":"広島市","address2":"西区","addressAfter":"南観音3-5-2-2F","addressDetail":"空港通りビル","phone":"070-6405-6936","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0008"},{"id":506,"schoolName":"進学個別塾ALL-up","className":"五日市教室","postCode":"731-5127","prefecture":"広島県","address1":"広島市","address2":"佐伯区","addressAfter":"五日市7-9-17","addressDetail":null,"phone":"070-5519-2456","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0009"},{"id":507,"schoolName":"進学個別塾ALL-up","className":"国泰寺教室","postCode":"730-0052","prefecture":"広島県","address1":"広島市","address2":"中区","addressAfter":"千田町1-12-5-1F","addressDetail":null,"phone":"070-1735-9115","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0010"},{"id":508,"schoolName":"進学個別塾ALL-up","className":"祇園教室","postCode":"731-0138","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"祇園3-4-11-1F","addressDetail":null,"phone":"082-962-0657","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0011"},{"id":509,"schoolName":"進学個別塾ALL-up","className":"大町教室","postCode":"731-0124","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"大町東1-15-23-1F","addressDetail":null,"phone":"070-5469-0396","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0012"},{"id":510,"schoolName":"進学個別塾ALL-up","className":"原教室","postCode":"731-0113","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"西原6-1-1-202","addressDetail":"セレッソコート西原","phone":"070-5070-5408","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0013"},{"id":511,"schoolName":"進学個別塾ALL-up","className":"海田教室","postCode":"736-0065","prefecture":"広島県","address1":"海田町","address2":null,"addressAfter":"南昭和町1-10-1F","addressDetail":null,"phone":"070-5519-7515","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0014"},{"id":512,"schoolName":"進学個別塾ALL-up","className":"青葉台教室","postCode":"739-0401","prefecture":"広島県","address1":"廿日市市","address2":null,"addressAfter":"福面2-7-25","addressDetail":null,"phone":"070-6576-9118","access":null,"targetGrade":"高校1年～高校3年","classTime":"毎週月～金　日時は要相談","schedule":"要相談","time":"要相談","tutationFee":"無料","email1":"no.takenaka.allup@gmail.com","department1":"本部","personInCharge1":"竹中","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"INV0015"},{"id":820,"schoolName":"駿台予備学校","className":"広島校","postCode":"732-0052","prefecture":"広島県","address1":"広島市","address2":"東区","addressAfter":"光町1-12-10","addressDetail":null,"phone":"082-568-7680","access":"JR 広島駅北口（新幹線口）より徒歩3分","targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":null,"email1":"t_mizuhara@mail.sundai.ac.jp","department1":"本部","personInCharge1":"担当者","email2":"t_kajikawa@mail.sundai.ac.jp","department2":"本部","personInCharge2":"担当者","email3":"k_yoshii@sundai-kyouken.jp>","department3":"本部","personInCharge3":"担当者","individualPage":"SND0019"},{"id":936,"schoolName":"対話式進学塾1対1ネッツ","className":"広島駅前校","postCode":"732-0057","prefecture":"広島県","address1":"広島市","address2":"東区","addressAfter":"二葉の里1-1-72","addressDetail":"GKDビル202","phone":"0120-969-121","access":"JR「広島駅」北口から徒歩6分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"広島駅前校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0063"},{"id":937,"schoolName":"対話式進学塾1対1ネッツ","className":"中筋校","postCode":"731-0122","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"中筋3-27-26","addressDetail":"LeChat壱番館1F","phone":"0120-969-121","access":"アストラムライン中筋駅から北に徒歩3分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"中筋校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0064"},{"id":938,"schoolName":"対話式進学塾1対1ネッツ","className":"緑井校","postCode":"731-0103","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"緑井2-3-46","addressDetail":"武本ビル２F","phone":"0120-969-121","access":"‍JR「緑井駅」徒歩１分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"緑井校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0065"},{"id":939,"schoolName":"対話式進学塾1対1ネッツ","className":"上安校","postCode":"731-0154","prefecture":"広島県","address1":"広島市","address2":"安佐南区","addressAfter":"上安2-25-20","addressDetail":"龍本マンション101","phone":"0120-969-121","access":"アストラムライン上安駅から高取駅方面へ徒歩1分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"上安校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0066"},{"id":940,"schoolName":"対話式進学塾1対1ネッツ","className":"古江校","postCode":"733-0873","prefecture":"広島県","address1":"広島市","address2":"西区","addressAfter":"古江新町4-18","addressDetail":"アルカス大田3F","phone":"0120-969-121","access":"広島電鉄「古江」駅徒歩１分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"古江校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0067"},{"id":941,"schoolName":"対話式進学塾1対1ネッツ","className":"中広校","postCode":"733-0012","prefecture":"広島県","address1":"広島市","address2":"西区","addressAfter":"中広町3-4-10　2F","addressDetail":null,"phone":"0120-969-121","access":"JR「横川駅」から天満方面に徒歩10分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"中広校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0068"},{"id":942,"schoolName":"対話式進学塾1対1ネッツ","className":"白島校","postCode":"730-0001","prefecture":"広島県","address1":"広島市","address2":"中区","addressAfter":"白島北町1-50","addressDetail":"広栄ビル2F","phone":"0120-969-121","access":"「白島駅」から東に徒歩2分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"白島校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0069"},{"id":943,"schoolName":"対話式進学塾1対1ネッツ","className":"皆実町校","postCode":"734-0007","prefecture":"広島県","address1":"広島市","address2":"南区","addressAfter":"皆実町5-20-9　2Ｆ","addressDetail":null,"phone":"0120-969-121","access":"広電「広大附属学校前駅」徒歩１分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"皆実町校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0070"},{"id":944,"schoolName":"対話式進学塾1対1ネッツ","className":"安芸府中校","postCode":"735-0006","prefecture":"広島県","address1":"安芸郡","address2":null,"addressAfter":"府中町本町2-16-11","addressDetail":"椿ガーデン1-1","phone":"0120-969-121","access":"JR芸備線「矢賀駅」徒歩１５分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"安芸府中校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0071"},{"id":1040,"schoolName":"ヤマダパソコンスクール","className":"LABI広島校","postCode":"730-0021","prefecture":"広島県","address1":"広島市","address2":"中区","addressAfter":"胡町5-22","addressDetail":"LABI 広島","phone":"082-545-8945","access":"市内電車「八丁堀」より徒歩1分","targetGrade":"中学2年生～高校3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"sem-saka@tecc.co.jp","department1":"ｿﾘｭｰｼｮﾝｻｰﾋﾞｽ事業部","personInCharge1":"柴田恵理子","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"YMD0020"}];
+    const dropDownData = ["安芸太田町","安芸高田市","江田島市","大崎上島町","大竹市","尾道市","海田町","北広島町","熊野町","呉市","坂町","庄原市","神石高原町","世羅町","竹原市","廿日市市","東広島市","広島市","- 安芸区","- 安佐北区","- 安佐南区","- 佐伯区","- 中区","- 西区","- 東区","- 南区","福山市","府中市","府中町","三原市","三次市"];
+    const tokyo23 = ["足立区","荒川区","板橋区","江戸川区","大田区","葛飾区","北区","江東区","品川区","渋谷区","新宿区","杉並区","墨田区","世田谷区","台東区","中央区","千代田区","豊島区","中野区","練馬区","文京区","港区","目黒区"];
+    const prefecture = '広島県';
+    let parentAddess1 = null;
+    let dropDownInnerHTML = '';
+    const schoolDataMapping = {};
+    const dropdownMap = {};
+    const empty = document.getElementById('empty');
+
+    if (data.length) {
+      empty.style.display = 'none';
+    }
+
+    const dropdownMenu = document.getElementById('drop-down');
+    const createDropDownItem = (address1, address2) => {
+      return `
+          <li><a class="dropdown-item" href="#area_${address1}_${address2}">${address2 ? '- ' + address2 : address1}</a></li>
+        `
+    }
+
+    dropDownData.map((v) => {
+      if (v.includes('- ')) {
+        if (!schoolDataMapping[`${parentAddess1}`][`${v.slice(2)}`]) {
+          schoolDataMapping[`${parentAddess1}`][`${v.slice(2)}`] = [];
+        }
+      }
+      else {
+        parentAddess1 = v;
+        if (!schoolDataMapping[`${v}`]) {
+          schoolDataMapping[`${v}`] = {};
+        }
+      }
+    })
+
+    for (let i = 0; i < data.length; i += 1) {
+      if (data[i].prefecture === '東京都') {
+        if (tokyo23.includes(data[i].address1)) {
+          data[i].address2 = data[i].address1;
+          data[i].address1 = '23区';
+        }
+        else if (tokyo23.includes(data[i].address2)) {
+          data[i].address1 = '23区';
+        }
+      }
+      dropdownMap[`${data[i].address1}`] = 1;
+      dropdownMap[`${data[i].address1}_${data[i].address2}`] = 1;
+      if (!schoolDataMapping[`${data[i].address1}`]) {
+        schoolDataMapping[`${data[i].address1}`] = {};
+      }
+      if (!schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`]) {
+        schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`] = [];
+      }
+      schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`].push(data[i]);
+    }
+
+    parentAddess1 = null;
+    dropDownData.map((v) => {
+      if (v.includes('- ')) {
+        if (!dropdownMap[`${parentAddess1}_${v.slice(2)}`]) {
+          return;
+        }
+        const dropdownItem = createDropDownItem(parentAddess1, v.slice(2));
+        dropDownInnerHTML += dropdownItem;
+      }
+      else {
+        parentAddess1 = v;
+        if (!dropdownMap[`${v}`]) {
+          return;
+        }
+        const dropdownItem = createDropDownItem(parentAddess1, null)
+        dropDownInnerHTML += dropdownItem;
+      }
+    })
+
+    if(prefecture === 'オンライン教室' || !dropDownInnerHTML.length) {
+      const dropdownBtn = document.querySelector('.dropdown-btn');
+      if (dropdownBtn) {
+        dropdownBtn.style.display = 'none';
+      }
+    }
+    
+    dropdownMenu.innerHTML = dropDownInnerHTML;
+
+    let index = 0;
+
+    const accordion = document.getElementById('accordion');
+
+    const createAreaCardItem = (address1) => {
+      return `
+        <div class="area-card"  id="area_${address1}_null">
+          <div class="area-card-header"><a class="collapsed d-flex justify-content-between align-content-center"
+              data-bs-toggle="collapse" href="#collapse_${address1}_null">
+              <div>${address1}</div><img src="images/ic-down-arrow.png">
+            </a></div>
+        </div>`
+    }
+
+    const createCollapseItem = (address1, subCardList) => {
+      return `
+        <div id="collapse_${address1}_null" class="collapse">
+          <div class="area-card-body">
+            <div class="collapsed" data-bs-toggle="collapse">
+              ${subCardList}
+            </div>
+          </div>
+        </div>`
+    }
+
+    const createSubCardItems = (address1, address2, subCardListItems) => {
+      return `
+        <div class="sub-card-title" id='target_${address1}_${address2}'>
+          ${address2 !== 'null' && address2 !== '-' ? address2 : ''}
+        </div>
+        <div class="sub-card-list">
+          ${subCardListItems}
+        </div>`
+    }
+
+    const onClick = (path) => {
+      window.location.href = path;
+    }
+
+    const createSubCardListItems = (listDatas) => {
+      let rs = '';
+      for (let i = 0; i < listDatas.length; i += 1) {
+        if(prefecture !== 'オンライン教室') {
+          if(listDatas[i].access) {
+            rs += `
+            <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+              <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+              <div class="school-address">
+                <img src="images/ic-map.png" />
+                <div>${listDatas[i].prefecture} ${(listDatas[i].address1 === '23区' || !listDatas[i].address1) ? '' : listDatas[i].address1} ${listDatas[i].address2 || ''} ${listDatas[i].addressAfter || ''} ${listDatas[i].addressDetail || ''}</div>
+              </div>
+              <div class="school-access">
+                <img src="images/ic-car.png" />
+                <div>${listDatas[i].access}</div>
+              </div>
+            </a>`
+          }
+          else {
+            rs += `
+            <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+              <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+              <div class="school-address">
+                <img src="images/ic-map.png" />
+                <div>${listDatas[i].prefecture} ${(listDatas[i].address1 === '23区' || !listDatas[i].address1) ? '' : listDatas[i].address1} ${listDatas[i].address2 || ''} ${listDatas[i].addressAfter || ''} ${listDatas[i].addressDetail || ''}</div>
+              </div>
+            </a>`
+          }
+        }
+        else {
+          rs += `
+          <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+            <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+          </a>`
+        }
+      }
+      return rs;
+    }
+
+    let areaInnerHTML = '';
+
+    for (const [key, value] of Object.entries(schoolDataMapping)) {
+      let subCard = "";
+      let hasSchoolData = false;
+      for (const [key2, value2] of Object.entries(value)) {
+        if (value2.length) {
+          hasSchoolData = true;
+          subCard += createSubCardItems(
+            key,
+            key2,
+            createSubCardListItems(value2)
+          );
+        }
+      }
+      if (hasSchoolData) {
+        const areaCard = createAreaCardItem(key);
+        areaInnerHTML += areaCard;
+        const collapse = createCollapseItem(key, subCard);
+        areaInnerHTML += collapse;
+      }
+
+      index++;
+    }
+
+    accordion.innerHTML = areaInnerHTML;
+
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+    dropdownItems.forEach(function (item) {
+      item.addEventListener('click', function (event) {
+        const attr = this.getAttribute('href').substring(1).split('_');
+        const address1 = attr[1];
+        const address2 = attr[2];
+        const areaCardId = `area_${address1}_null`;
+        const collapseId = `collapse_${address1}_null`;
+        const targetId = `target_${address1}_${address2}`;
+        const areaCard = document.getElementById(areaCardId);
+        const collapseElement = document.getElementById(collapseId);
+        const targetElement = document.getElementById(targetId);
+        if (collapseElement) {
+          if (!collapseElement.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(collapseElement);
+            bsCollapse.show();
+          }
+          setTimeout(() => {
+            if (targetElement && !targetId.includes('null')) {
+              targetElement.classList.add('highlight');
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+
+              setTimeout(() => {
+                targetElement.classList.remove('highlight');
+              }, 1500);
+            }
+            else {
+              areaCard.classList.add('highlight');
+
+              areaCard.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+
+              setTimeout(() => {
+                areaCard.classList.remove('highlight');
+              }, 1500);
+            }
+          }, 400);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
+  
