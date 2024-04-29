@@ -1,0 +1,727 @@
+
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List School</title>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MTDGLF5');</script>
+  <!-- Latest compiled and minified CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP";
+    }
+
+    .header {
+      display: flex;
+      align-items: start;
+      gap: 76px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .logo-container a {
+      display: block;
+      padding: 21px 16px;
+    }
+
+    .logo {
+      max-width: 240px;
+      height: auto;
+    }
+
+    .footer {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-info {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0px 32px;
+    }
+
+    .footer-info a {
+      color: var(--text_color, #323232);
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .banner {
+      display: flex;
+      background-image: url('images/bg_2.png');
+      background-position: center;
+      min-height: 235px;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .banner-link {
+      margin: 8px 32px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .area-link {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      margin-right: 1rem;
+    }
+
+    .banner-link span {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      margin-right: 1rem;
+    }
+
+    .child-link {
+      text-decoration: none;
+      color: var(--white-white-100, #FFF);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+    }
+
+    .banner-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .banner-title-main {
+      color: #FFF;
+      text-align: center;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.8px;
+      padding-bottom: 2px;
+      box-shadow: rgba(242, 195, 28, 0.6) 0px -15px 0px 0px inset;
+    }
+
+    .banner-title-sub {
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+    }
+
+    .banner-title-sub-2{
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-size: 13.295px ;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+      margin-top: 16px;
+    }
+
+    #main {
+      min-height: 54vh;
+    }
+    .filter-dropdown {
+      margin-top: 64px;
+    }
+
+    .dropdown-btn {
+      display: flex;
+      padding: 12px;
+      width: 280px;
+      justify-content: space-between;
+      border-radius: 6px;
+      border: 1px solid var(--Grayscale-Gray-35, #969CA1);
+      background: var(--white-white-100, #FFF);
+    }
+
+    .dropdown-btn img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .dropdown-menu {
+      width: 280px;
+      margin: 16px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .area-card-body {
+      background: var(--Grayscale-Gray-05, #F2F2F3);
+      padding: 16px;
+      min-height: 100px;
+    }
+
+    .sub-card-title {
+      color: var(--Brand-Brand-blue, #1793CC);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.32px;
+      margin-left: 16px;
+      margin-bottom: 8px;
+    }
+
+    .sub-card-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      min-height: 50px;
+    }
+
+    .sub-card-item {
+      border-radius: 8px;
+      width: calc(33.33% - 8px);
+      border: 1px solid var(--Grayscale-Gray-05, #F2F2F3);
+      background: var(--white-white-100, #FFF);
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+      padding: 16px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .school-name {
+      display: flex;
+      padding: 8px;
+      align-items: flex-start;
+      gap: 10px;
+      align-self: stretch;
+      background: var(--Primary-Primary-03, #EBF4FF);
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 0.16px;
+      margin-bottom: 16px;
+    }
+
+    .school-address {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.14px;
+      margin-bottom: 12px;
+    }
+
+    .school-access {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.14px;
+    }
+
+    .area-card-header {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--Grayscale-Gray-20, #CCCED1);
+    }
+
+    .area-card-header a {
+      color: var(--Brand-Brand-blue, #1793CC);
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+    }
+
+    .area-card-header img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .area-redirect {
+      margin-top: 48px;
+      margin-bottom: 108px;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .area-redirect a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--Brand-Brand-blue, #1793CC);
+      text-align: center;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0.16px;
+      gap: 8px;
+    }
+
+    .area-redirect img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .highlight {
+      background-color: #ffeeba;
+      transition: background-color 0.5s ease;
+    }
+
+    #empty {
+      display: flex;
+      justify-content: center;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      padding-left: 12px;
+      letter-spacing: 0.16px;
+      margin-top: 48px;
+      gap: 8px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .image-holder img {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: center;
+
+      }
+
+      .footer-info {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 64px;
+      }
+
+      .banner-title-main {
+        font-size: 24px;
+      }
+
+      .banner-title-sub  {
+        font-size: 20px;
+      }
+
+      .banner-title-sub-2 {
+        font-size: 11px;
+      }
+
+      .area-redirect a {
+        display: flex;
+        width: 100%;
+        padding: 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+        border: 1px solid var(--Brand-Brand-blue, #1793CC);
+        background: var(--white-white-100, #FFF);
+        box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.05);
+      }
+      
+      .area-link,
+      .child-link {
+        font-size: 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .banner-link {
+        margin: 8px 12px;
+        display: flex;
+        align-items: center;
+        width: 93%
+      }
+
+      .dropdown-btn {
+        width: 100%;
+      }
+
+      .dropdown-menu {
+        width: 94%;
+      }
+
+      .sub-card-item {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <iframe src=“https://www.googletagmanager.com/ns.html?id=GTM-MTDGLF5” height=“0" width=“0” style=“display:none;visibility:hidden”>
+    </iframe>
+  </noscript>
+  <header class=".container-fluid header">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+  </header>
+
+  <div class=".container-fluid banner">
+    <div class="banner-link">
+      <a class="area-link" href="./area.html">都道府県</a>
+      <span>></span>
+      <a class="child-link" href="#">兵庫県の教室一覧</a>
+    </div>
+    <div class="banner-title">
+      <div>
+        <span class="banner-title-main">兵庫県</span>
+        <span class="banner-title-sub">の教室一覧</span>
+      </div>
+      <div class="banner-title-sub-2">
+        ※授業曜日や授業料などは、各教室ページよりお問い合わせください。
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="main">
+    <div class="filter-dropdown">
+      <div class="dropdown-btn" data-bs-toggle="dropdown" aria-expanded="false">
+        <div>
+          市区町村を絞り込む
+        </div>
+        <img src="images/ic-down-arrow.png" />
+      </div>
+      <ul class="dropdown-menu" id="drop-down">
+      </ul>
+    </div>
+
+    <div class="accordion" id="accordion">
+    </div>
+
+    <div id="empty">
+      該当する教室はありません
+    </div>
+
+    <div class="area-redirect">
+      <a href="./area.html">
+        <img src="images/ic-left-arrow.png" />
+        <div>都道府県一覧に戻る</div>
+      </a>
+    </div>
+  </div>
+  <footer class=".container-fluid footer">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+    <div class="footer-info">
+      <a href="https://juku.lifeistech-lesson.jp/" target="_blank">
+        <div>学習塾の方はこちら</div>
+        <img src="images/ic-redirect-black.svg" />
+      </a>
+      <a href="https://life-is-tech.com/" target="_blank">
+        運営会社
+      </a>
+      <a href="https://life-is-tech.com/privacy-policy/" target="_blank">
+        個人情報保護方針
+      </a>
+      <a href="https://life-is-tech.com/privacy-handling/" target="_blank">
+        個人情報の取扱いについて
+      </a>
+    </div>
+  </footer>
+  <script>
+    const data = [{"id":144,"schoolName":"個別指導塾スタンダード","className":"川西教室","postCode":"666-0033","prefecture":"兵庫県","address1":"川西市","address2":null,"addressAfter":"栄町10-5","addressDetail":"パルティ川西2階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 62.00"},{"id":145,"schoolName":"個別指導塾スタンダード","className":"有野教室","postCode":"651-1313","prefecture":"兵庫県","address1":"神戸市","address2":"北区","addressAfter":"有野中町1-19-1","addressDetail":"M＆MPartⅡ1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 63.00"},{"id":146,"schoolName":"個別指導塾スタンダード","className":"学園都市教室","postCode":"651-2103","prefecture":"兵庫県","address1":"神戸市","address2":"西区","addressAfter":"学園西町1-1-2","addressDetail":"神戸学園都市ビル2階神戸学園都市コミュニティプラザ第2・5・6会議室","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 64.00"},{"id":147,"schoolName":"個別指導塾スタンダード","className":"神戸教室","postCode":"652-0035","prefecture":"兵庫県","address1":"神戸市","address2":"兵庫区","addressAfter":"西多聞通1-1-11","addressDetail":"柳屋ビル2階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 65.00"},{"id":148,"schoolName":"個別指導塾スタンダード","className":"長田教室","postCode":"653-0841","prefecture":"兵庫県","address1":"神戸市","address2":"長田区","addressAfter":"松野通2-3-2","addressDetail":"KONTI松野1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 66.00"},{"id":149,"schoolName":"個別指導塾スタンダード","className":"須磨教室","postCode":"654-0055","prefecture":"兵庫県","address1":"神戸市","address2":"須磨区","addressAfter":"須磨浦通6-4-11","addressDetail":"須磨浦ビラー1階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 67.00"},{"id":150,"schoolName":"個別指導塾スタンダード","className":"垂水駅前教室","postCode":"655-0029","prefecture":"兵庫県","address1":"神戸市","address2":"垂水区","addressAfter":"天ノ下町1-1","addressDetail":"ウエステ垂水2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 68.00"},{"id":151,"schoolName":"個別指導塾スタンダード","className":"舞子教室","postCode":"655-0037","prefecture":"兵庫県","address1":"神戸市","address2":"垂水区","addressAfter":"歌敷山１丁目7-20","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 69.00"},{"id":152,"schoolName":"個別指導塾スタンダード","className":"三田ウッディタウン教室","postCode":"669-1324","prefecture":"兵庫県","address1":"三田市","address2":null,"addressAfter":"ゆりのき台1-102","addressDetail":"ウッディタウン中央駅ビル1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 70.00"},{"id":153,"schoolName":"個別指導塾スタンダード","className":"三田学園前教室","postCode":"669-1535","prefecture":"兵庫県","address1":"三田市","address2":null,"addressAfter":"南が丘2-13-47","addressDetail":"三田第一ビル2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 71.00"},{"id":154,"schoolName":"個別指導塾スタンダード","className":"三木教室","postCode":"673-0403","prefecture":"兵庫県","address1":"三木市","address2":null,"addressAfter":"末広2-5-10","addressDetail":"末広ビル2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 72.00"},{"id":155,"schoolName":"個別指導塾スタンダード","className":"明石教室","postCode":"673-0892","prefecture":"兵庫県","address1":"明石市","address2":null,"addressAfter":"明石市本町1-2-33","addressDetail":"興生ビル６階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 73.00"},{"id":156,"schoolName":"個別指導塾スタンダード","className":"やしろビオ教室","postCode":"673-1431","prefecture":"兵庫県","address1":"加東市","address2":null,"addressAfter":"社1126-1","addressDetail":"イオン社2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 74.00"},{"id":157,"schoolName":"個別指導塾スタンダード","className":"イオン小野教室","postCode":"675-1378","prefecture":"兵庫県","address1":"小野市","address2":null,"addressAfter":"王子町868-1","addressDetail":"イオン小野1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 75.00"},{"id":158,"schoolName":"個別指導塾スタンダード","className":"姫路大手前教室","postCode":"670-0012","prefecture":"兵庫県","address1":"姫路市","address2":null,"addressAfter":"本町68","addressDetail":"タイメイクビル3階3-4","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 76.00"},{"id":159,"schoolName":"個別指導塾スタンダード","className":"書写教室","postCode":"670-0073","prefecture":"兵庫県","address1":"姫路市","address2":null,"addressAfter":"御立中8-10-18","addressDetail":"グランイル書写1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 77.00"},{"id":160,"schoolName":"個別指導塾スタンダード","className":"野里教室","postCode":"670-0806","prefecture":"兵庫県","address1":"姫路市","address2":null,"addressAfter":"増位新町2-19","addressDetail":"野里駅前ビル2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 78.00"},{"id":161,"schoolName":"個別指導塾スタンダード","className":"イオンタウン姫路別所教室","postCode":"671-0221","prefecture":"兵庫県","address1":"姫路市","address2":null,"addressAfter":"別所町別所2-66","addressDetail":"イオンタウン姫路別所店","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 79.00"},{"id":162,"schoolName":"個別指導塾スタンダード","className":"網干教室","postCode":"671-1234","prefecture":"兵庫県","address1":"姫路市","address2":null,"addressAfter":"網干区新在家1371-12","addressDetail":"竹田ビル2階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 80.00"},{"id":163,"schoolName":"個別指導塾スタンダード","className":"飾磨教室","postCode":"672-8052","prefecture":"兵庫県","address1":"姫路市","address2":null,"addressAfter":"飾磨区玉地1-32","addressDetail":"信光第一ビル2階東号室","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 81.00"},{"id":164,"schoolName":"個別指導塾スタンダード","className":"野口教室","postCode":"675-0018","prefecture":"兵庫県","address1":"加古川市","address2":null,"addressAfter":"野口町坂元105番1","addressDetail":"マックスバリュー野口店1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 82.00"},{"id":165,"schoolName":"個別指導塾スタンダード","className":"加西教室","postCode":"675-2302","prefecture":"兵庫県","address1":"加西市","address2":null,"addressAfter":"北条町栗田1","addressDetail":"ラ・メゾンタカセ1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 83.00"},{"id":166,"schoolName":"個別指導塾スタンダード","className":"高砂教室","postCode":"676-0001","prefecture":"兵庫県","address1":"高砂市","address2":null,"addressAfter":"中島1-3-10","addressDetail":"2階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 84.00"},{"id":167,"schoolName":"個別指導塾スタンダード","className":"福崎教室","postCode":"679-2212","prefecture":"兵庫県","address1":"福崎町","address2":null,"addressAfter":"福田379-1","addressDetail":"オールウェイズ神埼","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 85.00"},{"id":168,"schoolName":"個別指導塾スタンダード","className":"本竜野教室","postCode":"679-4129","prefecture":"兵庫県","address1":"たつの市","address2":null,"addressAfter":"龍野町堂本402-3","addressDetail":"福井テナント","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 86.00"},{"id":321,"schoolName":"学習塾ペガサス","className":"園田教室","postCode":"661-0984","prefecture":"兵庫県","address1":"尼崎市","address2":null,"addressAfter":"御園1-23-13-204","addressDetail":null,"phone":"06-6493-0799","access":"JR塚口駅より徒歩10分(御園郵便局2階)","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜金曜 16:00〜21:00、土曜 13:00〜16:00","schedule":"毎週月曜〜土曜","time":"16:00〜21:00(土曜は13:00～16:00)","tutationFee":"無料","email1":"sonoda@pega-just.com","department1":null,"personInCharge1":"井野","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"PGS0001"},{"id":372,"schoolName":"特進館学院","className":"三田教室","postCode":"669-1321","prefecture":"兵庫県","address1":"三田市","address2":null,"addressAfter":"けやき台1-1","addressDetail":null,"phone":"079-563-8060","access":"神戸電鉄南ウッディタウン駅より徒歩10分","targetGrade":"高校1年～高校3年","classTime":"月曜～土曜 13:30～22:00","schedule":"毎週月曜〜土曜","time":"13:30～22：00","tutationFee":"無料","email1":"kaneko@g.tokushinkan.co.jp","department1":"教務部","personInCharge1":"金子 祐太","email2":"info@g.tokushinkan.co.jp","department2":"教務部","personInCharge2":"上田 智仁","email3":null,"department3":null,"personInCharge3":null,"individualPage":"HTL0001"},{"id":374,"schoolName":"個別指導Wam","className":"明石魚住校","postCode":"673-0084","prefecture":"兵庫県","address1":"明石市","address2":null,"addressAfter":"魚住町住吉1-1-7","addressDetail":"ルネ住吉ビル　２階","phone":"078-945-6013","access":"山陽魚住駅徒歩５分　JR魚住駅徒歩８分","targetGrade":"高校1年～高校3年","classTime":"毎週月曜～金曜 16:40～21:30、土曜 13:10～19:50","schedule":"上記授業曜日・時間内で随時","time":"上記授業曜日・時間内で随時","tutationFee":"無料","email1":"wam-akashiuozumi@broadnet.ne.jp","department1":"明石魚住校","personInCharge1":"松本 茂憲","email2":"wamakashiuozumi@gmail.com","department2":"明石魚住校","personInCharge2":"松本 茂憲","email3":null,"department3":null,"personInCharge3":null,"individualPage":"MAC0001"},{"id":560,"schoolName":"個別指導WAM","className":"筑紫が丘校","postCode":"651-1212","prefecture":"兵庫県","address1":"神戸市","address2":"北区","addressAfter":"筑紫が丘2丁目12-17","addressDetail":null,"phone":"0120-333-876","access":"「広陵小学校」正門前の道を、南東に約100ｍ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0045"},{"id":561,"schoolName":"個別指導WAM","className":"玉津校","postCode":"651-2128","prefecture":"兵庫県","address1":"神戸市","address2":"西区","addressAfter":"玉津町今津605-6","addressDetail":null,"phone":"0120-333-876","access":"高津橋小学校より西へ500ｍ。ミニストップ神戸玉津店より西へ100ｍ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0046"},{"id":562,"schoolName":"個別指導WAM","className":"名谷校","postCode":"654-0151","prefecture":"兵庫県","address1":"神戸市","address2":"須磨区","addressAfter":"北落合1丁目1番4号","addressDetail":"白川コーポレーションビル303号室","phone":"0120-333-876","access":"神戸市営地下鉄　西神・山手線　名谷駅　徒歩１２分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0047"},{"id":563,"schoolName":"個別指導WAM","className":"桃山台校","postCode":"655-0854","prefecture":"兵庫県","address1":"神戸市","address2":"垂水区","addressAfter":"桃山台4-2-1","addressDetail":null,"phone":"0120-333-876","access":"神戸市バス・山陽バス桃山台3丁目停留所すぐ。桃山台中学校前。コープ桃山台の向い。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0048"},{"id":564,"schoolName":"個別指導WAM","className":"魚崎南校","postCode":"658-0025","prefecture":"兵庫県","address1":"神戸市","address2":"東灘区","addressAfter":"魚崎南町4-5-17","addressDetail":null,"phone":"0120-333-876","access":"神戸市バス魚崎南3丁目停留所すぐ。ホームセンターコーナンより東へ150ｍ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0049"},{"id":565,"schoolName":"個別指導WAM","className":"御影校","postCode":"658-0053","prefecture":"兵庫県","address1":"神戸市","address2":"東灘区","addressAfter":"住吉宮町7-3-27 ドマーニ住吉1F","addressDetail":null,"phone":"0120-333-876","access":"JR東海道本線　住吉駅　徒歩5分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0050"},{"id":566,"schoolName":"個別指導WAM","className":"津田校","postCode":"672-8074","prefecture":"兵庫県","address1":"姫路市","address2":"飾磨区","addressAfter":"加茂294-1","addressDetail":null,"phone":"0120-333-876","access":"山陽電鉄網干線「西飾磨」駅から徒歩10分。国道250線今在家東交差点「エディオン」から北に２００メートル。加納歯科クリニックの隣。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0051"},{"id":567,"schoolName":"個別指導WAM","className":"鳥羽校","postCode":"673-0019","prefecture":"兵庫県","address1":"明石市","address2":null,"addressAfter":"沢野南町1丁目1番地の1 立花ビル205号","addressDetail":null,"phone":"0120-333-876","access":"山陽本線 西明石駅より徒歩18分。サイゼリヤ明石鳥羽店より南に徒歩1分。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0052"},{"id":568,"schoolName":"個別指導WAM","className":"備後校","postCode":"675-0032","prefecture":"兵庫県","address1":"加古川市","address2":null,"addressAfter":"加古川町備後390-1","addressDetail":null,"phone":"0120-333-876","access":"国道250号線沿い、加古川中学校南交差点すぐ。<br>\nセブンイレブン加古川備後店さん隣。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0053"},{"id":569,"schoolName":"個別指導WAM","className":"宝殿駅前校","postCode":"676-0808","prefecture":"兵庫県","address1":"高砂市","address2":null,"addressAfter":"神爪1-6-5","addressDetail":null,"phone":"0120-333-876","access":"JR神戸線　宝殿駅　徒歩１分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0054"},{"id":580,"schoolName":"個別指導WAM","className":"名神校","postCode":"661-0021","prefecture":"兵庫県","address1":"尼崎市","address2":null,"addressAfter":"名神町2-2-23","addressDetail":null,"phone":"0120-333-876","access":"県道13号線名和小学校前交差点より西へ160ｍ。セブンイレブンの西隣。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0065"},{"id":581,"schoolName":"個別指導WAM","className":"園田校","postCode":"661-0985","prefecture":"兵庫県","address1":"尼崎市","address2":null,"addressAfter":"南清水37-30","addressDetail":null,"phone":"0120-333-876","access":"県道41号線園田小学校前交差点より北へ160ｍ。ファミリーマートの向い。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0066"},{"id":582,"schoolName":"個別指導WAM","className":"小曽根校","postCode":"663-8122","prefecture":"兵庫県","address1":"西宮市","address2":null,"addressAfter":"小曽根町3-1-36","addressDetail":null,"phone":"0120-333-876","access":"学文中学校より北へ400ｍ。阪神バス小曽根三丁目停留所より北へ100ｍ。シェル石油の斜め向い。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0067"},{"id":583,"schoolName":"個別指導WAM","className":"荻野校","postCode":"664-0002","prefecture":"兵庫県","address1":"伊丹市","address2":null,"addressAfter":"荻野4丁目29","addressDetail":null,"phone":"0120-333-876","access":"荻野小学校より北へ180ｍ。コープミニの前、中村酒店の隣。伊丹市営バス荻野停留所すぐ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0068"},{"id":584,"schoolName":"個別指導WAM","className":"萩原台校","postCode":"666-0006","prefecture":"兵庫県","address1":"川西市","address2":null,"addressAfter":"萩原台西1-74","addressDetail":null,"phone":"0120-333-876","access":"阪急バス萩原台停留所すぐ。萩原台タウンショップ内。パン屋ＰＯＯの隣。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0069"},{"id":585,"schoolName":"個別指導WAM","className":"姫路校","postCode":"670-0962","prefecture":"兵庫県","address1":"姫路市","address2":null,"addressAfter":"南駅前町96-1","addressDetail":null,"phone":"0120-333-876","access":"JR姫路駅南口より徒歩1分。 ファミリーマート姫路駅南店の隣ビル1F。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0070"},{"id":722,"schoolName":"創造学園個別","className":"甲南山手校","postCode":"658-0012","prefecture":"兵庫県","address1":"神戸市","address2":"東灘区","addressAfter":"本庄町1-16-15","addressDetail":"サンフォレストビル3F","phone":"078-413-4359","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsukonan@sozogakuen.co.jp","department1":"甲南山手校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0001"},{"id":723,"schoolName":"創造学園個別","className":"本山校","postCode":"658-0003","prefecture":"兵庫県","address1":"神戸市","address2":"東灘区","addressAfter":"本山北町3-4-21","addressDetail":"プラーシュ本山2･3F","phone":"078-453-4359","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_motoyama@sozogakuen.co.jp","department1":"本山校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0002"},{"id":724,"schoolName":"創造学園個別","className":"御影校","postCode":"658-0054","prefecture":"兵庫県","address1":"神戸市","address2":"東灘区","addressAfter":"御影中町1-10-11","addressDetail":"野村ビル1F","phone":"078-841-3759","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsumikage@sozogakuen.co.jp","department1":"御影校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0003"},{"id":725,"schoolName":"創造学園個別","className":"HAT神戸校","postCode":"657-0855","prefecture":"兵庫県","address1":"神戸市","address2":"灘区","addressAfter":"摩耶海岸通2-3-13番館","addressDetail":null,"phone":"078-805-4359","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsuhat@sozogakuen.co.jp","department1":"HAT神戸校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0004"},{"id":726,"schoolName":"エディック個別","className":"三田駅前校","postCode":"669-1528","prefecture":"兵庫県","address1":"三田市","address2":null,"addressAfter":"駅前町1-38","addressDetail":"JR三田駅NKビル2F","phone":"079-563-7777","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsusanda_e@sozogakuen.co.jp","department1":"三田駅前校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0005"},{"id":727,"schoolName":"エディック個別","className":"三田校","postCode":"669-1322","prefecture":"兵庫県","address1":"三田市","address2":null,"addressAfter":"すずかけ台3-2","addressDetail":null,"phone":"079-553-8150","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsusanda_h@sozogakuen.co.jp","department1":"三田校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0006"},{"id":728,"schoolName":"エディック個別","className":"北神校","postCode":"651-1305","prefecture":"兵庫県","address1":"神戸市","address2":"北区","addressAfter":"西山1-17-1","addressDetail":"北神星和台ビル1F","phone":"078-950-3759","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsuhokushin@sozogakuen.co.jp","department1":"北神校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0007"},{"id":729,"schoolName":"エディック個別","className":"北鈴蘭台校","postCode":"651-1142","prefecture":"兵庫県","address1":"神戸市","address2":"北区","addressAfter":"甲栄台1-2-10","addressDetail":"スタープラザ1F","phone":"078-594-8158","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsukitasuzu@sozogakuen.co.jp","department1":"北鈴蘭台校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0008"},{"id":730,"schoolName":"エディック個別","className":"鈴蘭台校","postCode":"651-1113","prefecture":"兵庫県","address1":"神戸市","address2":"北区","addressAfter":"鈴蘭台南町6-1-43","addressDetail":"ダイエー鈴蘭台店5F","phone":"078-595-5259","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsusuzurandai@sozogakuen.co.jp","department1":"鈴蘭台校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0009"},{"id":731,"schoolName":"エディック個別","className":"西神校","postCode":"651-2273","prefecture":"兵庫県","address1":"神戸市","address2":"西区","addressAfter":"糀台5-3-11","addressDetail":"西神ボウルプラザ3Ｆ","phone":"078-992-9555","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsuseishin@sozogakuen.co.jp","department1":"西神校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0010"},{"id":732,"schoolName":"エディック個別","className":"西神南校","postCode":"651-2242","prefecture":"兵庫県","address1":"神戸市","address2":"西区","addressAfter":"井吹台東町1-1-1","addressDetail":"西神南センタービル2F","phone":"078-997-4159","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsuseishins@sozogakuen.co.jp","department1":"西神南校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0011"},{"id":733,"schoolName":"エディック個別","className":"伊川谷校","postCode":"651-2111","prefecture":"兵庫県","address1":"神戸市","address2":"西区","addressAfter":"池上2-30-6","addressDetail":null,"phone":"078-978-3760","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsuikawadani@sozogakuen.co.jp","department1":"伊川谷校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0012"},{"id":734,"schoolName":"創造学園個別","className":"学園都市校2号館","postCode":"651-2103","prefecture":"兵庫県","address1":"神戸市","address2":"西区","addressAfter":"学園西町1-1","addressDetail":"ユニバープラザビル4F","phone":"078-795-5259","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsugakuentosi2@sozogakuen.co.jp","department1":"学園都市校2号館","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0013"},{"id":735,"schoolName":"創造学園個別","className":"名谷校","postCode":"654-0154","prefecture":"兵庫県","address1":"神戸市","address2":"須磨区","addressAfter":"中落合3-16-4","addressDetail":"神戸国際ビジネスカレッジ2F","phone":"078-792-8159","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsumyodani@sozogakuen.co.jp","department1":"名谷校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0014"},{"id":736,"schoolName":"エディック個別","className":"板宿校","postCode":"654-0021","prefecture":"兵庫県","address1":"神戸市","address2":"須磨区","addressAfter":"平田町2-3-5","addressDetail":"板宿グリーンタウン2F","phone":"078-735-3788","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsuitayado@sozogakuen.co.jp","department1":"板宿校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0015"},{"id":737,"schoolName":"創造学園個別","className":"垂水校2号館","postCode":"655-0027","prefecture":"兵庫県","address1":"神戸市","address2":"垂水区","addressAfter":"神田町4-36","addressDetail":"ニュー垂水ビル3","phone":"078-706-5259","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsutarumi2@sozogakuen.co.jp","department1":"垂水校2号館","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0016"},{"id":738,"schoolName":"エディック個別","className":"舞多聞校","postCode":"655-0051","prefecture":"兵庫県","address1":"神戸市","address2":"垂水区","addressAfter":"舞多聞西6丁目1番2号","addressDetail":null,"phone":"078-787-4359","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_edicmaitamon@sozogakuen.co.jp","department1":"舞多聞校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0017"},{"id":739,"schoolName":"創造学園個別","className":"明石校","postCode":"673-0891","prefecture":"兵庫県","address1":"明石市","address2":null,"addressAfter":"大明石町1-3-8","addressDetail":"ユタカ第２ビル3F","phone":"078-918-4359","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsuakashi@sozogakuen.co.jp","department1":"明石校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0018"},{"id":740,"schoolName":"創造学園個別","className":"大久保校","postCode":"674-0068","prefecture":"兵庫県","address1":"明石市","address2":null,"addressAfter":"大久保町ゆりのき通1-3-2","addressDetail":"明石ビブレ5F","phone":"078-934-3759","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsuokubo@sozogakuen.co.jp","department1":"大久保校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0019"},{"id":741,"schoolName":"エディック個別","className":"播磨校","postCode":"675-0150","prefecture":"兵庫県","address1":"播磨町","address2":null,"addressAfter":"南野添3-6-10","addressDetail":null,"phone":"079-437-1177","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"gharima@sozogakuen.co.jp","department1":"播磨校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0020"},{"id":742,"schoolName":"エディック個別","className":"東加古川校","postCode":"675-0101","prefecture":"兵庫県","address1":"加古川市","address2":null,"addressAfter":"平岡町新在家1138-8","addressDetail":"INUI東かこがわ駅北BLD3F","phone":"079-425-1010","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_edicekakogawa@sozogakuen.co.jp","department1":"東加古川校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0021"},{"id":743,"schoolName":"エディック個別","className":"別府校","postCode":"675-0122","prefecture":"兵庫県","address1":"加古川市","address2":null,"addressAfter":"別府町別府1053-1","addressDetail":"サンロイヤル新居弐番館1F","phone":"079-441-3759","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsubefu@sozogakuen.co.jp","department1":"別府校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0022"},{"id":744,"schoolName":"エディック個別","className":"浜の宮校","postCode":"675-0022","prefecture":"兵庫県","address1":"加古川市","address2":null,"addressAfter":"尾上町口里814-32","addressDetail":null,"phone":"079-421-0018","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_edichamanomiya@sozogakuen.co.jp","department1":"浜の宮校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0023"},{"id":745,"schoolName":"創造学園個別","className":"加古川校2号館","postCode":"675-0066","prefecture":"兵庫県","address1":"加古川市","address2":null,"addressAfter":"加古川町寺家町621","addressDetail":"JAビル2F","phone":"079-456-5259","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsukakogawa2@sozogakuen.co.jp","department1":"加古川校2号館","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0024"},{"id":746,"schoolName":"エディック個別","className":"小野校","postCode":"675-1331","prefecture":"兵庫県","address1":"小野市","address2":null,"addressAfter":"神明町235-3","addressDetail":"小野神鉄ビル","phone":"0794-62-3750","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsuono@sozogakuen.co.jp","department1":"小野校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0025"},{"id":747,"schoolName":"エディック個別","className":"曽根校","postCode":"676-0077","prefecture":"兵庫県","address1":"高砂市","address2":null,"addressAfter":"松陽1-10-43","addressDetail":"コープ高砂3F","phone":"079-448-0115","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_edicsone@sozogakuen.co.jp","department1":"曽根校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0026"},{"id":748,"schoolName":"エディック個別","className":"宝殿校","postCode":"676-0807","prefecture":"兵庫県","address1":"高砂市","address2":null,"addressAfter":"米田町島25番地 C-3","addressDetail":null,"phone":"079-432-4359","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kobetsuhouden@sozogakuen.co.jp","department1":"宝殿校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0027"},{"id":749,"schoolName":"エディック個別","className":"姫路校","postCode":"670-0934","prefecture":"兵庫県","address1":"姫路市","address2":null,"addressAfter":"朝日町54番地","addressDetail":"ラッキービルディング1・2F","phone":"079-284-5700","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"khimeji@sozogakuen.co.jp","department1":"姫路校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0028"},{"id":750,"schoolName":"創造学園個別","className":"姫路校","postCode":"670-0917","prefecture":"兵庫県","address1":"姫路市","address2":null,"addressAfter":"忍町89","addressDetail":"姫路アンビシャスビル","phone":"079-284-5259","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"khimeji2@sozogakuen.co.jp","department1":"姫路校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0029"},{"id":751,"schoolName":"エディック個別","className":"手柄校","postCode":"670-0954","prefecture":"兵庫県","address1":"姫路市","address2":null,"addressAfter":"栗山町125番地","addressDetail":null,"phone":"079-283-8864","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜　","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"gtegara@sozogakuen.co.jp","department1":"手柄校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0030"},{"id":752,"schoolName":"創造学園","className":"六甲校","postCode":"657-0064","prefecture":"兵庫県","address1":"神戸市","address2":"灘区","addressAfter":"山田町3-1-15","addressDetail":"六甲アトリエハウス5F","phone":"078-857-4359","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週月曜〜土曜","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_rokkou@sozogakuen.co.jp","department1":"六甲校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0031"},{"id":753,"schoolName":"エディック","className":"六甲アイランド校","postCode":"658-0032","prefecture":"兵庫県","address1":"神戸市","address2":"東灘区","addressAfter":"向洋町中2丁目9番1","addressDetail":"ロッコウアイパーク5F","phone":"050-5469-6383","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週月曜〜土曜","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_rokkoisland@sozogakuen.co.jp","department1":"六甲アイランド校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0032"},{"id":754,"schoolName":"エディック","className":"東山校","postCode":"652-0042","prefecture":"兵庫県","address1":"神戸市","address2":"兵庫区","addressAfter":"東山町2-7-9","addressDetail":null,"phone":"078-576-3759","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週月曜〜土曜","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_edichigashiyama@sozogakuen.co.jp","department1":"東山校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0033"},{"id":755,"schoolName":"エディック","className":"須磨海浜校","postCode":"654-0044","prefecture":"兵庫県","address1":"神戸市","address2":"須磨区","addressAfter":"稲葉町2-1-9","addressDetail":"ヴィラン橋本1F","phone":"078-737-4359","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週月曜〜土曜","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_edicsumakaihin@sozogakuen.co.jp","department1":"須磨海浜校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0034"},{"id":756,"schoolName":"エディック","className":"舞子坂校","postCode":"655-0044","prefecture":"兵庫県","address1":"神戸市","address2":"垂水区","addressAfter":"舞子坂4-2-32","addressDetail":null,"phone":"078-783-5555","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週月曜〜土曜","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_edicmaikozaka@sozogakuen.co.jp","department1":"舞子坂校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0035"},{"id":757,"schoolName":"エディック","className":"西明石校","postCode":"673-0005","prefecture":"兵庫県","address1":"明石市","address2":null,"addressAfter":"小久保1-16-10","addressDetail":"アンセルモ西明石1F","phone":"078-928-4811","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週月曜〜土曜","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_edicwakashi@sozogakuen.co.jp","department1":"西明石校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0036"},{"id":758,"schoolName":"エディック","className":"魚住校","postCode":"674-0081","prefecture":"兵庫県","address1":"明石市","address2":null,"addressAfter":"魚住町錦ヶ丘4-5-1","addressDetail":"ＮＳビル4F","phone":"078-947-6211","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週月曜〜土曜","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_edicuozumi@sozogakuen.co.jp","department1":"魚住校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0037"},{"id":759,"schoolName":"エディック","className":"土山校","postCode":"675-0104","prefecture":"兵庫県","address1":"加古川市","address2":null,"addressAfter":"平岡町土山1215-1","addressDetail":"ハリマビル2F","phone":"078-941-2800","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週月曜〜土曜","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_edictsuchiyama@sozogakuen.co.jp","department1":"土山校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0038"},{"id":760,"schoolName":"エディック","className":"高砂校","postCode":"676-0022","prefecture":"兵庫県","address1":"高砂市","address2":null,"addressAfter":"高砂町浜田町1-8-24","addressDetail":null,"phone":"079-443-0224","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週月曜〜土曜","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"gtakasago@sozogakuen.co.jp","department1":"高砂校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0039"},{"id":761,"schoolName":"エディック","className":"安室校","postCode":"670-0083","prefecture":"兵庫県","address1":"姫路市","address2":null,"addressAfter":"辻井8-15-15","addressDetail":null,"phone":"079-298-5800","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週月曜〜土曜","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_edicyasumuro@sozogakuen.co.jp","department1":"安室校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0040"},{"id":762,"schoolName":"エディック","className":"花北校","postCode":"670-0806","prefecture":"兵庫県","address1":"姫路市","address2":null,"addressAfter":"増位新町1丁目24番地","addressDetail":"ミラキタシティ花北2F","phone":"079-225-7211","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週月曜〜土曜","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_edichanakita@sozogakuen.co.jp","department1":"花北校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0041"},{"id":763,"schoolName":"エディック","className":"高丘校","postCode":"670-0056","prefecture":"兵庫県","address1":"姫路市","address2":null,"addressAfter":"東今宿2-7-16","addressDetail":"吉本ビル3F","phone":"079-292-3759","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週月曜〜土曜","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_edictakaoka@sozogakuen.co.jp","department1":"高丘校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0042"},{"id":764,"schoolName":"エディック","className":"ひめじ別所校","postCode":"671-0221","prefecture":"兵庫県","address1":"姫路市","address2":null,"addressAfter":"別所町別所2-145","addressDetail":null,"phone":"0120-543-200","access":null,"targetGrade":"高校1年〜高校3年","classTime":"毎週月曜〜土曜","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"k_edicbessyo@sozogakuen.co.jp","department1":"ひめじ別所校","personInCharge1":null,"email2":"webmaster@sozogakuen.info","department2":"Webサイト","personInCharge2":"担当者","email3":"gs1@sozogakuen.co.jp","department3":"業務推進","personInCharge3":null,"individualPage":"SZG0043"},{"id":781,"schoolName":"駿台予備学校","className":"神戸校","postCode":"651-0094","prefecture":"兵庫県","address1":"神戸市","address2":"中央区","addressAfter":"琴ノ緒町5-5-10","addressDetail":null,"phone":"078-241-1100","access":"三ノ宮駅北側<br>\n【A】 地下鉄「三宮」下車、東出口②北東へ徒歩約2分<br>\n【B】 JR「三ノ宮」下車、東口を出て北へ徒歩約1分<br>\n【C】 阪急「神戸三宮」下車、東口を出て北東（JR東口方面）へ、JR「三ノ宮」東口より北へ徒歩約1分<br>\n【D】 阪神「神戸三宮」下車、地下出入口を出て北（JR東口方面）へ、JR「三ノ宮」東口より北へ徒歩約1分<br>\n【E】 ポートライナー「三宮」下車、北へ徒歩約2分","targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":null,"email1":"t_mizuhara@mail.sundai.ac.jp","department1":"本部","personInCharge1":"担当者","email2":"t_kajikawa@mail.sundai.ac.jp","department2":"本部","personInCharge2":"担当者","email3":"k_yoshii@sundai-kyouken.jp>","department3":"本部","personInCharge3":"担当者","individualPage":"SND0017"},{"id":782,"schoolName":"駿台","className":"西宮北口校","postCode":"663-8204","prefecture":"兵庫県","address1":"西宮市","address2":null,"addressAfter":"高松町5-39","addressDetail":null,"phone":"0798-67-1500","access":"阪急「西宮北口」下車　南改札口より徒歩すぐ","targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":null,"email1":"t_mizuhara@mail.sundai.ac.jp","department1":"本部","personInCharge1":"担当者","email2":"t_kajikawa@mail.sundai.ac.jp","department2":"本部","personInCharge2":"担当者","email3":"k_yoshii@sundai-kyouken.jp>","department3":"本部","personInCharge3":"担当者","individualPage":"SND0018"},{"id":790,"schoolName":"岡村ゼミナール","className":"姫路駅前校高校部","postCode":"670-0921","prefecture":"兵庫県","address1":"姫路市","address2":"綿町","addressAfter":126666,"addressDetail":null,"phone":"079-224-0551","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"okyobikou@oksemi.co.jp","department1":"高校部","personInCharge1":"吉本　敏","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"OMZ0001"}];
+    const dropDownData = ["相生市","明石市","赤穂市","朝来市","芦屋市","尼崎市","淡路市","伊丹市","市川町","猪名川町","稲美町","小野市","加古川市","加西市","加東市","神河町","上郡町","香美町","川西市","神戸市","- 北区","- 須磨区","- 垂水区","- 中央区","- 長田区","- 灘区","- 西区","- 東灘区","- 兵庫区","佐用町","三田市","宍粟市","新温泉町","洲本市","太子町","高砂市","多可町","宝塚市","たつの市","丹波篠山市","丹波市","豊岡市","西宮市","西脇市","播磨町","姫路市","福崎町","三木市","南あわじ市","養父市"];
+    const tokyo23 = ["足立区","荒川区","板橋区","江戸川区","大田区","葛飾区","北区","江東区","品川区","渋谷区","新宿区","杉並区","墨田区","世田谷区","台東区","中央区","千代田区","豊島区","中野区","練馬区","文京区","港区","目黒区"];
+    const prefecture = '兵庫県';
+    let parentAddess1 = null;
+    let dropDownInnerHTML = '';
+    const schoolDataMapping = {};
+    const dropdownMap = {};
+    const empty = document.getElementById('empty');
+
+    if (data.length) {
+      empty.style.display = 'none';
+    }
+
+    const dropdownMenu = document.getElementById('drop-down');
+    const createDropDownItem = (address1, address2) => {
+      return `
+          <li><a class="dropdown-item" href="#area_${address1}_${address2}">${address2 ? '- ' + address2 : address1}</a></li>
+        `
+    }
+
+    dropDownData.map((v) => {
+      if (v.includes('- ')) {
+        if (!schoolDataMapping[`${parentAddess1}`][`${v.slice(2)}`]) {
+          schoolDataMapping[`${parentAddess1}`][`${v.slice(2)}`] = [];
+        }
+      }
+      else {
+        parentAddess1 = v;
+        if (!schoolDataMapping[`${v}`]) {
+          schoolDataMapping[`${v}`] = {};
+        }
+      }
+    })
+
+    for (let i = 0; i < data.length; i += 1) {
+      if (data[i].prefecture === '東京都') {
+        if (tokyo23.includes(data[i].address1)) {
+          data[i].address2 = data[i].address1;
+          data[i].address1 = '23区';
+        }
+        else if (tokyo23.includes(data[i].address2)) {
+          data[i].address1 = '23区';
+        }
+      }
+      dropdownMap[`${data[i].address1}`] = 1;
+      dropdownMap[`${data[i].address1}_${data[i].address2}`] = 1;
+      if (!schoolDataMapping[`${data[i].address1}`]) {
+        schoolDataMapping[`${data[i].address1}`] = {};
+      }
+      if (!schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`]) {
+        schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`] = [];
+      }
+      schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`].push(data[i]);
+    }
+
+    parentAddess1 = null;
+    dropDownData.map((v) => {
+      if (v.includes('- ')) {
+        if (!dropdownMap[`${parentAddess1}_${v.slice(2)}`]) {
+          return;
+        }
+        const dropdownItem = createDropDownItem(parentAddess1, v.slice(2));
+        dropDownInnerHTML += dropdownItem;
+      }
+      else {
+        parentAddess1 = v;
+        if (!dropdownMap[`${v}`]) {
+          return;
+        }
+        const dropdownItem = createDropDownItem(parentAddess1, null)
+        dropDownInnerHTML += dropdownItem;
+      }
+    })
+
+    if(prefecture === 'オンライン教室' || !dropDownInnerHTML.length) {
+      const dropdownBtn = document.querySelector('.dropdown-btn');
+      if (dropdownBtn) {
+        dropdownBtn.style.display = 'none';
+      }
+    }
+    
+    dropdownMenu.innerHTML = dropDownInnerHTML;
+
+    let index = 0;
+
+    const accordion = document.getElementById('accordion');
+
+    const createAreaCardItem = (address1) => {
+      return `
+        <div class="area-card"  id="area_${address1}_null">
+          <div class="area-card-header"><a class="collapsed d-flex justify-content-between align-content-center"
+              data-bs-toggle="collapse" href="#collapse_${address1}_null">
+              <div>${address1}</div><img src="images/ic-down-arrow.png">
+            </a></div>
+        </div>`
+    }
+
+    const createCollapseItem = (address1, subCardList) => {
+      return `
+        <div id="collapse_${address1}_null" class="collapse">
+          <div class="area-card-body">
+            <div class="collapsed" data-bs-toggle="collapse">
+              ${subCardList}
+            </div>
+          </div>
+        </div>`
+    }
+
+    const createSubCardItems = (address1, address2, subCardListItems) => {
+      return `
+        <div class="sub-card-title" id='target_${address1}_${address2}'>
+          ${address2 !== 'null' && address2 !== '-' ? address2 : ''}
+        </div>
+        <div class="sub-card-list">
+          ${subCardListItems}
+        </div>`
+    }
+
+    const onClick = (path) => {
+      window.location.href = path;
+    }
+
+    const createSubCardListItems = (listDatas) => {
+      let rs = '';
+      for (let i = 0; i < listDatas.length; i += 1) {
+        if(prefecture !== 'オンライン教室') {
+          if(listDatas[i].access) {
+            rs += `
+            <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+              <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+              <div class="school-address">
+                <img src="images/ic-map.png" />
+                <div>${listDatas[i].prefecture} ${(listDatas[i].address1 === '23区' || !listDatas[i].address1) ? '' : listDatas[i].address1} ${listDatas[i].address2 || ''} ${listDatas[i].addressAfter || ''} ${listDatas[i].addressDetail || ''}</div>
+              </div>
+              <div class="school-access">
+                <img src="images/ic-car.png" />
+                <div>${listDatas[i].access}</div>
+              </div>
+            </a>`
+          }
+          else {
+            rs += `
+            <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+              <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+              <div class="school-address">
+                <img src="images/ic-map.png" />
+                <div>${listDatas[i].prefecture} ${(listDatas[i].address1 === '23区' || !listDatas[i].address1) ? '' : listDatas[i].address1} ${listDatas[i].address2 || ''} ${listDatas[i].addressAfter || ''} ${listDatas[i].addressDetail || ''}</div>
+              </div>
+            </a>`
+          }
+        }
+        else {
+          rs += `
+          <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+            <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+          </a>`
+        }
+      }
+      return rs;
+    }
+
+    let areaInnerHTML = '';
+
+    for (const [key, value] of Object.entries(schoolDataMapping)) {
+      let subCard = "";
+      let hasSchoolData = false;
+      for (const [key2, value2] of Object.entries(value)) {
+        if (value2.length) {
+          hasSchoolData = true;
+          subCard += createSubCardItems(
+            key,
+            key2,
+            createSubCardListItems(value2)
+          );
+        }
+      }
+      if (hasSchoolData) {
+        const areaCard = createAreaCardItem(key);
+        areaInnerHTML += areaCard;
+        const collapse = createCollapseItem(key, subCard);
+        areaInnerHTML += collapse;
+      }
+
+      index++;
+    }
+
+    accordion.innerHTML = areaInnerHTML;
+
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+    dropdownItems.forEach(function (item) {
+      item.addEventListener('click', function (event) {
+        const attr = this.getAttribute('href').substring(1).split('_');
+        const address1 = attr[1];
+        const address2 = attr[2];
+        const areaCardId = `area_${address1}_null`;
+        const collapseId = `collapse_${address1}_null`;
+        const targetId = `target_${address1}_${address2}`;
+        const areaCard = document.getElementById(areaCardId);
+        const collapseElement = document.getElementById(collapseId);
+        const targetElement = document.getElementById(targetId);
+        if (collapseElement) {
+          if (!collapseElement.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(collapseElement);
+            bsCollapse.show();
+          }
+          setTimeout(() => {
+            if (targetElement && !targetId.includes('null')) {
+              targetElement.classList.add('highlight');
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+
+              setTimeout(() => {
+                targetElement.classList.remove('highlight');
+              }, 1500);
+            }
+            else {
+              areaCard.classList.add('highlight');
+
+              areaCard.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+
+              setTimeout(() => {
+                areaCard.classList.remove('highlight');
+              }, 1500);
+            }
+          }, 400);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
+  

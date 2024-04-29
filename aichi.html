@@ -1,0 +1,727 @@
+
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List School</title>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MTDGLF5');</script>
+  <!-- Latest compiled and minified CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP";
+    }
+
+    .header {
+      display: flex;
+      align-items: start;
+      gap: 76px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .logo-container a {
+      display: block;
+      padding: 21px 16px;
+    }
+
+    .logo {
+      max-width: 240px;
+      height: auto;
+    }
+
+    .footer {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-info {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0px 32px;
+    }
+
+    .footer-info a {
+      color: var(--text_color, #323232);
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .banner {
+      display: flex;
+      background-image: url('images/bg_2.png');
+      background-position: center;
+      min-height: 235px;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .banner-link {
+      margin: 8px 32px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .area-link {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      margin-right: 1rem;
+    }
+
+    .banner-link span {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      margin-right: 1rem;
+    }
+
+    .child-link {
+      text-decoration: none;
+      color: var(--white-white-100, #FFF);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+    }
+
+    .banner-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .banner-title-main {
+      color: #FFF;
+      text-align: center;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.8px;
+      padding-bottom: 2px;
+      box-shadow: rgba(242, 195, 28, 0.6) 0px -15px 0px 0px inset;
+    }
+
+    .banner-title-sub {
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+    }
+
+    .banner-title-sub-2{
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-size: 13.295px ;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+      margin-top: 16px;
+    }
+
+    #main {
+      min-height: 54vh;
+    }
+    .filter-dropdown {
+      margin-top: 64px;
+    }
+
+    .dropdown-btn {
+      display: flex;
+      padding: 12px;
+      width: 280px;
+      justify-content: space-between;
+      border-radius: 6px;
+      border: 1px solid var(--Grayscale-Gray-35, #969CA1);
+      background: var(--white-white-100, #FFF);
+    }
+
+    .dropdown-btn img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .dropdown-menu {
+      width: 280px;
+      margin: 16px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .area-card-body {
+      background: var(--Grayscale-Gray-05, #F2F2F3);
+      padding: 16px;
+      min-height: 100px;
+    }
+
+    .sub-card-title {
+      color: var(--Brand-Brand-blue, #1793CC);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.32px;
+      margin-left: 16px;
+      margin-bottom: 8px;
+    }
+
+    .sub-card-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      min-height: 50px;
+    }
+
+    .sub-card-item {
+      border-radius: 8px;
+      width: calc(33.33% - 8px);
+      border: 1px solid var(--Grayscale-Gray-05, #F2F2F3);
+      background: var(--white-white-100, #FFF);
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+      padding: 16px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .school-name {
+      display: flex;
+      padding: 8px;
+      align-items: flex-start;
+      gap: 10px;
+      align-self: stretch;
+      background: var(--Primary-Primary-03, #EBF4FF);
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 0.16px;
+      margin-bottom: 16px;
+    }
+
+    .school-address {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.14px;
+      margin-bottom: 12px;
+    }
+
+    .school-access {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.14px;
+    }
+
+    .area-card-header {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--Grayscale-Gray-20, #CCCED1);
+    }
+
+    .area-card-header a {
+      color: var(--Brand-Brand-blue, #1793CC);
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+    }
+
+    .area-card-header img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .area-redirect {
+      margin-top: 48px;
+      margin-bottom: 108px;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .area-redirect a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--Brand-Brand-blue, #1793CC);
+      text-align: center;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0.16px;
+      gap: 8px;
+    }
+
+    .area-redirect img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .highlight {
+      background-color: #ffeeba;
+      transition: background-color 0.5s ease;
+    }
+
+    #empty {
+      display: flex;
+      justify-content: center;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      padding-left: 12px;
+      letter-spacing: 0.16px;
+      margin-top: 48px;
+      gap: 8px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .image-holder img {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: center;
+
+      }
+
+      .footer-info {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 64px;
+      }
+
+      .banner-title-main {
+        font-size: 24px;
+      }
+
+      .banner-title-sub  {
+        font-size: 20px;
+      }
+
+      .banner-title-sub-2 {
+        font-size: 11px;
+      }
+
+      .area-redirect a {
+        display: flex;
+        width: 100%;
+        padding: 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+        border: 1px solid var(--Brand-Brand-blue, #1793CC);
+        background: var(--white-white-100, #FFF);
+        box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.05);
+      }
+      
+      .area-link,
+      .child-link {
+        font-size: 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .banner-link {
+        margin: 8px 12px;
+        display: flex;
+        align-items: center;
+        width: 93%
+      }
+
+      .dropdown-btn {
+        width: 100%;
+      }
+
+      .dropdown-menu {
+        width: 94%;
+      }
+
+      .sub-card-item {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <iframe src=“https://www.googletagmanager.com/ns.html?id=GTM-MTDGLF5” height=“0" width=“0” style=“display:none;visibility:hidden”>
+    </iframe>
+  </noscript>
+  <header class=".container-fluid header">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+  </header>
+
+  <div class=".container-fluid banner">
+    <div class="banner-link">
+      <a class="area-link" href="./area.html">都道府県</a>
+      <span>></span>
+      <a class="child-link" href="#">愛知県の教室一覧</a>
+    </div>
+    <div class="banner-title">
+      <div>
+        <span class="banner-title-main">愛知県</span>
+        <span class="banner-title-sub">の教室一覧</span>
+      </div>
+      <div class="banner-title-sub-2">
+        ※授業曜日や授業料などは、各教室ページよりお問い合わせください。
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="main">
+    <div class="filter-dropdown">
+      <div class="dropdown-btn" data-bs-toggle="dropdown" aria-expanded="false">
+        <div>
+          市区町村を絞り込む
+        </div>
+        <img src="images/ic-down-arrow.png" />
+      </div>
+      <ul class="dropdown-menu" id="drop-down">
+      </ul>
+    </div>
+
+    <div class="accordion" id="accordion">
+    </div>
+
+    <div id="empty">
+      該当する教室はありません
+    </div>
+
+    <div class="area-redirect">
+      <a href="./area.html">
+        <img src="images/ic-left-arrow.png" />
+        <div>都道府県一覧に戻る</div>
+      </a>
+    </div>
+  </div>
+  <footer class=".container-fluid footer">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+    <div class="footer-info">
+      <a href="https://juku.lifeistech-lesson.jp/" target="_blank">
+        <div>学習塾の方はこちら</div>
+        <img src="images/ic-redirect-black.svg" />
+      </a>
+      <a href="https://life-is-tech.com/" target="_blank">
+        運営会社
+      </a>
+      <a href="https://life-is-tech.com/privacy-policy/" target="_blank">
+        個人情報保護方針
+      </a>
+      <a href="https://life-is-tech.com/privacy-handling/" target="_blank">
+        個人情報の取扱いについて
+      </a>
+    </div>
+  </footer>
+  <script>
+    const data = [{"id":122,"schoolName":"個別指導塾スタンダード","className":"東岡崎教室","postCode":"444-0864","prefecture":"愛知県","address1":"岡崎市","address2":null,"addressAfter":"明大寺町字寺東9-1-2F","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 40.00"},{"id":123,"schoolName":"個別指導塾スタンダード","className":"愛知教育大学前富士松教室","postCode":"448-0007","prefecture":"愛知県","address1":"刈谷市","address2":null,"addressAfter":"東境町奥町屋1-1","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 41.00"},{"id":124,"schoolName":"個別指導塾スタンダード","className":"刈谷西教室","postCode":"448-0843","prefecture":"愛知県","address1":"刈谷市","address2":null,"addressAfter":"新栄町5丁目3-2","addressDetail":"藤井ビル1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 42.00"},{"id":125,"schoolName":"個別指導塾スタンダード","className":"名駅教室","postCode":"451-0045","prefecture":"愛知県","address1":"名古屋市","address2":"西区","addressAfter":"名駅2-28-1","addressDetail":"ナゴヤフェニックスビル3階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 43.00"},{"id":126,"schoolName":"個別指導塾スタンダード","className":"一番町教室","postCode":"456-0053","prefecture":"愛知県","address1":"名古屋市","address2":"熱田区","addressAfter":"一番3-7-6","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 44.00"},{"id":127,"schoolName":"個別指導塾スタンダード","className":"鶴舞教室","postCode":"460-0012","prefecture":"愛知県","address1":"名古屋市","address2":"中区","addressAfter":"千代田5-20-10","addressDetail":"文岡ビル3階C号室","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 45.00"},{"id":128,"schoolName":"個別指導塾スタンダード","className":"金山教室","postCode":"460-0022","prefecture":"愛知県","address1":"名古屋市","address2":"中区","addressAfter":"金山2-11-14","addressDetail":"金山ビル２階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 46.00"},{"id":129,"schoolName":"個別指導塾スタンダード","className":"楠如意教室","postCode":"462-0007","prefecture":"愛知県","address1":"名古屋市","address2":"北区","addressAfter":"如意1-169","addressDetail":"アーバンハイツ1階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 47.00"},{"id":130,"schoolName":"個別指導塾スタンダード","className":"新瑞橋教室","postCode":"467-0806","prefecture":"愛知県","address1":"名古屋市","address2":"瑞穂区","addressAfter":"瑞穂通8-7-2F","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 48.00"},{"id":131,"schoolName":"個別指導塾スタンダード","className":"新豊田教室","postCode":"471-0034","prefecture":"愛知県","address1":"豊田市","address2":null,"addressAfter":"小坂本町1-4-12","addressDetail":"梅村ビル202","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 49.00"},{"id":453,"schoolName":"学習塾ステップアップ","className":"スタプラ豊橋校","postCode":"440-0071","prefecture":"愛知県","address1":"豊橋市","address2":null,"addressAfter":"北島町字北島167₋3","addressDetail":"生涯学習センタースタプラ","phone":"0532-54-8631","access":"JR飯田線船町駅徒歩5分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください","tutationFee":null,"email1":"myst@sutapura.net","department1":"スタプラ豊橋校","personInCharge1":"担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"ICH0002"},{"id":774,"schoolName":"駿台予備学校","className":"名古屋校","postCode":"450-0003","prefecture":"愛知県","address1":"名古屋市","address2":"中村区","addressAfter":"名駅南1-28-14","addressDetail":null,"phone":"052-566-1660","access":"JR『名古屋駅』桜通口・地下鉄『名古屋駅』より徒歩約6分<br>\n名鉄『名古屋駅』・近鉄『名古屋駅』より徒歩約4分<br>\nあおなみ線『ささしまライブ駅』または『名古屋駅』より徒歩7分","targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":null,"email1":"t_mizuhara@mail.sundai.ac.jp","department1":"本部","personInCharge1":"担当者","email2":"t_kajikawa@mail.sundai.ac.jp","department2":"本部","personInCharge2":"担当者","email3":"k_yoshii@sundai-kyouken.jp>","department3":"本部","personInCharge3":"担当者","individualPage":"SND0010"},{"id":1006,"schoolName":"野田塾","className":"津島校","postCode":"496-0047","prefecture":"愛知県","address1":"津島市","address2":null,"addressAfter":"西柳原町3-1","addressDetail":null,"phone":"0567-31-6997","access":"津島駅より徒歩4分　津島警察署北","targetGrade":"高校1年～高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"fujinaga_kz@crew.nodajuku.co.jp","department1":"校長","personInCharge1":"藤永和利","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"NOD0001"},{"id":1007,"schoolName":"野田塾","className":"三郷駅前校","postCode":"488-0015","prefecture":"愛知県","address1":"尾張旭市","address2":null,"addressAfter":"三郷町栄51","addressDetail":null,"phone":"0561-53-8102","access":"三郷駅より徒歩3分","targetGrade":"高校1年～高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"kawato_yk@crew.nodajuku.co.jp","department1":"校長","personInCharge1":"河戸陽介","email2":"fujinaga_kz@crew.nodajuku.co.jp","department2":"本部長","personInCharge2":"藤永和利","email3":null,"department3":null,"personInCharge3":null,"individualPage":"NOD0002"},{"id":1008,"schoolName":"野田塾","className":"神領駅前校","postCode":"486-0821","prefecture":"愛知県","address1":"春日井市","address2":null,"addressAfter":"神領町2-28-2","addressDetail":null,"phone":"0568-37-2555","access":"神領駅すぐ","targetGrade":"高校1年～高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"adachi_km@crew.nodajuku.co.jp","department1":"校長","personInCharge1":"安達公俊","email2":"fujinaga_kz@crew.nodajuku.co.jp","department2":"本部長","personInCharge2":"藤永和利","email3":null,"department3":null,"personInCharge3":null,"individualPage":"NOD0003"},{"id":1009,"schoolName":"野田塾","className":"小牧駅前校","postCode":"485-0029","prefecture":"愛知県","address1":"小牧市","address2":null,"addressAfter":"中央2丁目149","addressDetail":"ステータスビル2F","phone":"0568-39-6363","access":"小牧駅より徒歩3分","targetGrade":"高校1年～高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"noda_hz@crew.nodajuku.co.jp","department1":"校長","personInCharge1":"野田浩和","email2":"fujinaga_kz@crew.nodajuku.co.jp","department2":"本部長","personInCharge2":"藤永和利","email3":null,"department3":null,"personInCharge3":null,"individualPage":"NOD0004"},{"id":1010,"schoolName":"野田塾","className":"矢作校","postCode":"444-0908","prefecture":"愛知県","address1":"岡崎市","address2":null,"addressAfter":"橋目町勘助屋敷77","addressDetail":null,"phone":"0564-64-3947","access":"矢作北小学校南へ400m","targetGrade":"高校1年～高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"tori_sj@crew.nodajuku.co.jp","department1":"校長","personInCharge1":"鳥居真治","email2":"fujinaga_kz@crew.nodajuku.co.jp","department2":"本部長","personInCharge2":"藤永和利","email3":null,"department3":null,"personInCharge3":null,"individualPage":"NOD0005"},{"id":1011,"schoolName":"野田塾","className":"太田川駅前校","postCode":"477-0031","prefecture":"愛知県","address1":"東海市","address2":null,"addressAfter":"大田町蟹田1021","addressDetail":"サンシャインゲートビル2F","phone":"0562-57-6775","access":"太田川駅より徒歩5分","targetGrade":"高校1年～高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"asakura_ys@crew.nodajuku.co.jp","department1":"校長","personInCharge1":"朝倉康仁","email2":"fujinaga_kz@crew.nodajuku.co.jp","department2":"本部長","personInCharge2":"藤永和利","email3":null,"department3":null,"personInCharge3":null,"individualPage":"NOD0006"},{"id":1012,"schoolName":"EISUゼミナール","className":"半田駅前校","postCode":"475-0911","prefecture":"愛知県","address1":"半田市","address2":null,"addressAfter":"星崎町3-37-1","addressDetail":"星崎ビル2F","phone":"0569-21-7971","access":"名鉄河和線「知多半田駅」より徒歩8分\n名鉄河和線「住吉町駅」より徒歩5分\n国道247号(半田街道)沿い かっぱ寿司さん向かい","targetGrade":"高校1年生〜高校3年生","classTime":"毎週月曜～土曜 16:00～21:50","schedule":"毎週月曜～土曜","time":"16:00〜21:50","tutationFee":"無料","email1":"ando@top-kyouiku.co.jp","department1":"半田駅前校","personInCharge1":"安藤","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TOP 1.00"},{"id":1013,"schoolName":"EISUゼミナール","className":"知多武豊校","postCode":"470-2346","prefecture":"愛知県","address1":"武豊町","address2":null,"addressAfter":"長尾山102-1","addressDetail":null,"phone":"0569-84-1141","access":"名鉄河和線「知多武豊駅」より徒歩1分","targetGrade":"高校1年生〜高校3年生","classTime":"毎週月曜～土曜 16:00～21:50","schedule":"毎週月曜～土曜","time":"16:00〜21:50","tutationFee":"無料","email1":"ando@top-kyouiku.co.jp","department1":"半田駅前校","personInCharge1":"安藤","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TOP 2.00"},{"id":1014,"schoolName":"完全個別指導Good","className":"半田北校","postCode":"475-0073","prefecture":"愛知県","address1":"半田市","address2":null,"addressAfter":"美原町1-207","addressDetail":null,"phone":"0569-21-7971","access":"「庚申町」交差点 セブンイレブンさん隣り","targetGrade":"高校1年生〜高校3年生","classTime":"毎週月曜～土曜 16:00～21:50","schedule":"毎週月曜～土曜","time":"16:00〜21:50","tutationFee":"無料","email1":"ando@top-kyouiku.co.jp","department1":"半田駅前校","personInCharge1":"安藤","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TOP 3.00"},{"id":1015,"schoolName":"完全個別指導Good","className":"半田南校","postCode":"475-0836","prefecture":"愛知県","address1":"半田市","address2":null,"addressAfter":"青山3-8-13","addressDetail":null,"phone":"0569-21-7971","access":"名鉄河和線「青山駅」より徒歩12分\n半田花園郵便局向かい","targetGrade":"高校1年生〜高校3年生","classTime":"毎週月曜～土曜 16:00～21:50","schedule":"毎週月曜～土曜","time":"16:00〜21:50","tutationFee":"無料","email1":"ando@top-kyouiku.co.jp","department1":"半田駅前校","personInCharge1":"安藤","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TOP 4.00"},{"id":1016,"schoolName":"完全個別指導Good","className":"半田中央校","postCode":"475-0911","prefecture":"愛知県","address1":"半田市","address2":null,"addressAfter":"星崎町3-37-1","addressDetail":"星崎ビル2F","phone":"0569-21-7971","access":"名鉄河和線「知多半田駅」より徒歩8分\n名鉄河和線「住吉町駅」より徒歩5分\n国道247号(半田街道)沿い かっぱ寿司さん向かい","targetGrade":"高校1年生〜高校3年生","classTime":"毎週月曜～土曜 16:00～21:50","schedule":"毎週月曜～土曜","time":"16:00〜21:50","tutationFee":"無料","email1":"ando@top-kyouiku.co.jp","department1":"半田駅前校","personInCharge1":"安藤","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TOP 5.00"},{"id":1017,"schoolName":"完全個別指導Good","className":"成岩校","postCode":"475-0922","prefecture":"愛知県","address1":"半田市","address2":null,"addressAfter":"昭和町4-5-1","addressDetail":null,"phone":"0569-21-7971","access":"名鉄河和線「成岩駅」より徒歩1分","targetGrade":"高校1年生〜高校3年生","classTime":"毎週月曜～土曜 16:00～21:50","schedule":"毎週月曜～土曜","time":"16:00〜21:50","tutationFee":"無料","email1":"ando@top-kyouiku.co.jp","department1":"半田駅前校","personInCharge1":"安藤","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TOP 6.00"},{"id":1018,"schoolName":"完全個別指導Good","className":"大府校","postCode":"474-0053","prefecture":"愛知県","address1":"大府市","address2":null,"addressAfter":"柊山町2-268","addressDetail":null,"phone":"0569-21-7971","access":"大府柊山郵便局向かい","targetGrade":"高校1年生〜高校3年生","classTime":"毎週月曜～土曜 16:00～21:50","schedule":"毎週月曜～土曜","time":"16:00〜21:50","tutationFee":"無料","email1":"ando@top-kyouiku.co.jp","department1":"半田駅前校","personInCharge1":"安藤","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TOP 7.00"},{"id":1019,"schoolName":"完全個別指導Good","className":"大府南校","postCode":"474-0038","prefecture":"愛知県","address1":"大府市","address2":null,"addressAfter":"森岡町5-3","addressDetail":null,"phone":"0569-21-7971","access":"マクドナルドさん・デニーズさん隣り","targetGrade":"高校1年生〜高校3年生","classTime":"毎週月曜～土曜 16:00～21:50","schedule":"毎週月曜～土曜","time":"16:00〜21:50","tutationFee":"無料","email1":"ando@top-kyouiku.co.jp","department1":"半田駅前校","personInCharge1":"安藤","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TOP 8.00"},{"id":1020,"schoolName":"完全個別指導Good","className":"東海荒尾校","postCode":"476-0003","prefecture":"愛知県","address1":"東海市","address2":null,"addressAfter":"荒尾町大恵毛76","addressDetail":null,"phone":"0569-21-7971","access":"名鉄常滑線「聚楽園駅」より徒歩10分\nフィールさん近く","targetGrade":"高校1年生〜高校3年生","classTime":"毎週月曜～土曜 16:00～21:50","schedule":"毎週月曜～土曜","time":"16:00〜21:50","tutationFee":"無料","email1":"ando@top-kyouiku.co.jp","department1":"半田駅前校","personInCharge1":"安藤","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TOP 9.00"},{"id":1021,"schoolName":"完全個別指導Good","className":"東浦駅前校","postCode":"470-2104","prefecture":"愛知県","address1":"東浦町","address2":null,"addressAfter":"生路池下61-11","addressDetail":null,"phone":"0569-21-7971","access":"JR武豊線「東浦駅」より徒歩5分\nコノミヤ東浦店さん隣り","targetGrade":"高校1年生〜高校3年生","classTime":"毎週月曜～土曜 16:00～21:50","schedule":"毎週月曜～土曜","time":"16:00〜21:50","tutationFee":"無料","email1":"ando@top-kyouiku.co.jp","department1":"半田駅前校","personInCharge1":"安藤","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TOP 10.00"},{"id":1022,"schoolName":"完全個別指導Good","className":"常滑校","postCode":"479-0045","prefecture":"愛知県","address1":"常滑市","address2":null,"addressAfter":"仲井3-1","addressDetail":null,"phone":"0569-21-7971","access":"フィールさん近く、愛知トヨタさん隣り","targetGrade":"高校1年生〜高校3年生","classTime":"毎週月曜～土曜 16:00～21:50","schedule":"毎週月曜～土曜","time":"16:00〜21:50","tutationFee":"無料","email1":"ando@top-kyouiku.co.jp","department1":"半田駅前校","personInCharge1":"安藤","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TOP 11.00"},{"id":1023,"schoolName":"完全個別指導Good","className":"武豊校","postCode":"470-2382","prefecture":"愛知県","address1":"武豊町","address2":null,"addressAfter":"東長宗9-4","addressDetail":null,"phone":"0569-21-7971","access":"名鉄河和線「上ゲ駅」より徒歩10分\nイシハラフード武豊店さん斜向かい","targetGrade":"高校1年生〜高校3年生","classTime":"毎週月曜～土曜 16:00～21:50","schedule":"毎週月曜～土曜","time":"16:00〜21:50","tutationFee":"無料","email1":"ando@top-kyouiku.co.jp","department1":"半田駅前校","personInCharge1":"安藤","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TOP 12.00"},{"id":1024,"schoolName":"完全個別指導Good","className":"知多武豊校","postCode":"470-2346","prefecture":"愛知県","address1":"武豊町","address2":null,"addressAfter":"長尾山102-1","addressDetail":null,"phone":"0569-21-7971","access":"名鉄河和線「知多武豊駅」より徒歩1分","targetGrade":"高校1年生〜高校3年生","classTime":"毎週月曜～土曜 16:00～21:50","schedule":"毎週月曜～土曜","time":"16:00〜21:50","tutationFee":"無料","email1":"ando@top-kyouiku.co.jp","department1":"半田駅前校","personInCharge1":"安藤","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TOP 13.00"},{"id":1025,"schoolName":"みらい学院","className":"阿久比校","postCode":"470-2204","prefecture":"愛知県","address1":"阿久比町","address2":null,"addressAfter":"宮津3-50-1","addressDetail":null,"phone":"0569-21-7971","access":"「オアシス大橋東」から東へ200m","targetGrade":"高校1年生〜高校3年生","classTime":"毎週月曜～土曜 16:00～21:50","schedule":"毎週月曜～土曜","time":"16:00〜21:50","tutationFee":"無料","email1":"ando@top-kyouiku.co.jp","department1":"半田駅前校","personInCharge1":"安藤","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TOP 14.00"},{"id":1028,"schoolName":"京進の大学受験TOPΣ","className":"千種校","postCode":"461-0003","prefecture":"愛知県","address1":"名古屋市","address2":"東区","addressAfter":"筒井3丁目22番38号","addressDetail":"メルカードあさい1階","phone":"052-937-4424","access":"地下鉄桜通線 車道駅より徒歩3分","targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":null,"email1":"matsushita.h@kyoshin.co.jp","department1":"校長","personInCharge1":"松下 弘成","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KYO0002"},{"id":1037,"schoolName":"エストスーパースクール","className":"千種校","postCode":"464-0827","prefecture":"愛知県","address1":"名古屋市","address2":"千種区","addressAfter":"田代本通3-24","addressDetail":null,"phone":"052-890-8181","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜木曜、土曜 16:20～21：20","schedule":"毎週月曜〜木曜、土曜","time":"16:20～21：20","tutationFee":null,"email1":null,"department1":null,"personInCharge1":null,"email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"ESS0001"},{"id":1038,"schoolName":"エストスーパースクール","className":"徳重校","postCode":"458-0815","prefecture":"愛知県","address1":"名古屋市","address2":"緑区","addressAfter":"徳重1-702-1","addressDetail":"2F","phone":"052-890-8118","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜木曜、土曜 16:20～21：20","schedule":"毎週月曜〜木曜、土曜","time":"16:20～21：20","tutationFee":"無料","email1":"fourxkushimoto@gmail.com","department1":"徳重校","personInCharge1":"久志本　崇峰","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"ESS0002"},{"id":1039,"schoolName":"エストスーパースクール","className":"原駅前校","postCode":"468-0015","prefecture":"愛知県","address1":"名古屋市","address2":"天白区","addressAfter":"原1-1616-1","addressDetail":null,"phone":"052-800-1291","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月・水・金 16：20～21：20","schedule":"毎週月・水・金","time":"16:20～21：20","tutationFee":"無料","email1":"fourxfuji@gmail.com","department1":"原駅前校","personInCharge1":"藤井　亮実","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"ESS0003"},{"id":1040,"schoolName":"エストスーパースクール","className":"日進駅前校","postCode":"470-0113","prefecture":"愛知県","address1":"日進市","address2":null,"addressAfter":"栄1-1115-1","addressDetail":"ステージア日進7B","phone":"0561-59-8585","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜木曜 16：20～21：20","schedule":"毎週月曜〜木曜","time":"16:20～21：20","tutationFee":"無料","email1":"fourxuehara@gmail.com","department1":"日進駅前校","personInCharge1":"上原　颯","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"ESS0004"},{"id":1041,"schoolName":"エストスーパースクール","className":"赤池校","postCode":"470-0125","prefecture":"愛知県","address1":"日進市","address2":null,"addressAfter":"赤池1-2313","addressDetail":"2F","phone":"052-806-3227","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜木曜 16：20～21：20","schedule":"毎週月曜〜木曜、土曜","time":"16:20～21：20","tutationFee":"無料","email1":"mmcsakou@gmail.com","department1":"赤池校","personInCharge1":"酒向　歩華","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"ESS0005"},{"id":1042,"schoolName":"エストスーパースクール","className":"香久山校","postCode":"470-0134","prefecture":"愛知県","address1":"日進市","address2":null,"addressAfter":"香久山2-1602","addressDetail":"2F","phone":"052-807-4220","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜木曜 16：20～21：20","schedule":"毎週月曜〜木曜、土曜","time":"16:20～21：20","tutationFee":"無料","email1":"mizunofourx@gmail.com","department1":"香久山校","personInCharge1":"水野　敦大","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"ESS0006"},{"id":1043,"schoolName":"エストスーパースクール","className":"兵庫校","postCode":"470-0166","prefecture":"愛知県","address1":"東郷町","address2":null,"addressAfter":"兵庫2-3-8","addressDetail":null,"phone":"0561-59-8880","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週火・木・土 16：20～21：20","schedule":"毎週火・木・土","time":"16:20～21：20","tutationFee":"無料","email1":"fourxfuji@gmail.com","department1":"兵庫校","personInCharge1":"藤井　亮実","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"ESS0007"},{"id":1123,"schoolName":"ヤマダパソコンスクール","className":"名古屋本店校","postCode":"454-0855","prefecture":"愛知県","address1":"名古屋市","address2":"中川区","addressAfter":"昭明町5丁目1-5","addressDetail":"ﾃｯｸﾗﾝﾄﾞ名古屋本店","phone":"052-659-6880","access":"名古屋市営バス「昭明町」より徒歩1分","targetGrade":"中学2年生～高校3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"sem-saka@tecc.co.jp","department1":"ｿﾘｭｰｼｮﾝｻｰﾋﾞｽ事業部","personInCharge1":"柴田恵理子","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"YMD0011"},{"id":1129,"schoolName":"ヤマダパソコンスクール","className":"星が丘校","postCode":"464-0801","prefecture":"愛知県","address1":"名古屋市","address2":"千種区","addressAfter":"星ヶ丘1-1-7","addressDetail":"ﾃｯｸﾗﾝﾄﾞ星ヶ丘店","phone":"052-788-2594","access":"地下鉄東山線「星ヶ丘駅」4番出口より徒歩1分","targetGrade":"中学2年生～高校3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"sem-saka@tecc.co.jp","department1":"ｿﾘｭｰｼｮﾝｻｰﾋﾞｽ事業部","personInCharge1":"柴田恵理子","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"YMD0017"},{"id":1133,"schoolName":"ヤマダパソコンスクール","className":"半田校","postCode":"475-0871","prefecture":"愛知県","address1":"半田市","address2":null,"addressAfter":"本町1丁目1番地","addressDetail":"家電住まいる館YAMADA半田店","phone":"0569-25-2114","access":"名古屋鉄道「住吉町駅」より徒歩15分","targetGrade":"中学2年生～高校3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"sem-saka@tecc.co.jp","department1":"ｿﾘｭｰｼｮﾝｻｰﾋﾞｽ事業部","personInCharge1":"柴田恵理子","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"YMD0021"},{"id":1142,"schoolName":"ピタゴラミン春日井校","className":"春日井教室","postCode":"486-0921","prefecture":"愛知県","address1":"春日井市","address2":null,"addressAfter":"杁ケ島町16番地4","addressDetail":null,"phone":"070-1278-8562","access":"中部中学校より徒歩10分","targetGrade":"高校1年〜高校3年","classTime":"毎週月曜〜金曜 19:00〜21:00、土曜 17:00〜19:00","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"contact@pitagon-kasugai.com","department1":"教室長","personInCharge1":"稲垣　朋洋","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"CIN0001"},{"id":1147,"schoolName":"クリエイターハウス","className":"自由ヶ丘教室（本校）","postCode":"464-0044","prefecture":"愛知県","address1":"名古屋市","address2":"千種区","addressAfter":"自由ヶ丘2丁目-10-17","addressDetail":"啓周ビル110","phone":"070-2238-9366","access":"地下鉄名城線自由ケ丘駅より徒歩１分","targetGrade":"高校生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@creatorhouse.net","department1":"教育事業部","personInCharge1":"藤井 遼太郎","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"CKL0001"}];
+    const dropDownData = ["愛西市","阿久比町","あま市","安城市","一宮市","稲沢市","犬山市","岩倉市","大口町","大治町","大府市","岡崎市","尾張旭市","春日井市","蟹江町","蒲郡市","刈谷市","北名古屋市","清須市","幸田町","江南市","小牧市","設楽町","新城市","瀬戸市","高浜市","武豊町","田原市","知多市","知立市","津島市","東栄町","東海市","東郷町","常滑市","飛島村","豊明市","豊川市","豊田市","豊根村","豊橋市","豊山町","長久手市","名古屋市","- 熱田区","- 北区","- 昭和区","- 千種区","- 天白区","- 中川区","- 中区","- 中村区","- 西区","- 東区","- 瑞穂区","- 緑区","- 港区","- 南区","- 名東区","- 守山区","西尾市","日進市","半田市","東浦町","扶桑町","碧南市","南知多町","美浜町","みよし市","弥富市"];
+    const tokyo23 = ["足立区","荒川区","板橋区","江戸川区","大田区","葛飾区","北区","江東区","品川区","渋谷区","新宿区","杉並区","墨田区","世田谷区","台東区","中央区","千代田区","豊島区","中野区","練馬区","文京区","港区","目黒区"];
+    const prefecture = '愛知県';
+    let parentAddess1 = null;
+    let dropDownInnerHTML = '';
+    const schoolDataMapping = {};
+    const dropdownMap = {};
+    const empty = document.getElementById('empty');
+
+    if (data.length) {
+      empty.style.display = 'none';
+    }
+
+    const dropdownMenu = document.getElementById('drop-down');
+    const createDropDownItem = (address1, address2) => {
+      return `
+          <li><a class="dropdown-item" href="#area_${address1}_${address2}">${address2 ? '- ' + address2 : address1}</a></li>
+        `
+    }
+
+    dropDownData.map((v) => {
+      if (v.includes('- ')) {
+        if (!schoolDataMapping[`${parentAddess1}`][`${v.slice(2)}`]) {
+          schoolDataMapping[`${parentAddess1}`][`${v.slice(2)}`] = [];
+        }
+      }
+      else {
+        parentAddess1 = v;
+        if (!schoolDataMapping[`${v}`]) {
+          schoolDataMapping[`${v}`] = {};
+        }
+      }
+    })
+
+    for (let i = 0; i < data.length; i += 1) {
+      if (data[i].prefecture === '東京都') {
+        if (tokyo23.includes(data[i].address1)) {
+          data[i].address2 = data[i].address1;
+          data[i].address1 = '23区';
+        }
+        else if (tokyo23.includes(data[i].address2)) {
+          data[i].address1 = '23区';
+        }
+      }
+      dropdownMap[`${data[i].address1}`] = 1;
+      dropdownMap[`${data[i].address1}_${data[i].address2}`] = 1;
+      if (!schoolDataMapping[`${data[i].address1}`]) {
+        schoolDataMapping[`${data[i].address1}`] = {};
+      }
+      if (!schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`]) {
+        schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`] = [];
+      }
+      schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`].push(data[i]);
+    }
+
+    parentAddess1 = null;
+    dropDownData.map((v) => {
+      if (v.includes('- ')) {
+        if (!dropdownMap[`${parentAddess1}_${v.slice(2)}`]) {
+          return;
+        }
+        const dropdownItem = createDropDownItem(parentAddess1, v.slice(2));
+        dropDownInnerHTML += dropdownItem;
+      }
+      else {
+        parentAddess1 = v;
+        if (!dropdownMap[`${v}`]) {
+          return;
+        }
+        const dropdownItem = createDropDownItem(parentAddess1, null)
+        dropDownInnerHTML += dropdownItem;
+      }
+    })
+
+    if(prefecture === 'オンライン教室' || !dropDownInnerHTML.length) {
+      const dropdownBtn = document.querySelector('.dropdown-btn');
+      if (dropdownBtn) {
+        dropdownBtn.style.display = 'none';
+      }
+    }
+    
+    dropdownMenu.innerHTML = dropDownInnerHTML;
+
+    let index = 0;
+
+    const accordion = document.getElementById('accordion');
+
+    const createAreaCardItem = (address1) => {
+      return `
+        <div class="area-card"  id="area_${address1}_null">
+          <div class="area-card-header"><a class="collapsed d-flex justify-content-between align-content-center"
+              data-bs-toggle="collapse" href="#collapse_${address1}_null">
+              <div>${address1}</div><img src="images/ic-down-arrow.png">
+            </a></div>
+        </div>`
+    }
+
+    const createCollapseItem = (address1, subCardList) => {
+      return `
+        <div id="collapse_${address1}_null" class="collapse">
+          <div class="area-card-body">
+            <div class="collapsed" data-bs-toggle="collapse">
+              ${subCardList}
+            </div>
+          </div>
+        </div>`
+    }
+
+    const createSubCardItems = (address1, address2, subCardListItems) => {
+      return `
+        <div class="sub-card-title" id='target_${address1}_${address2}'>
+          ${address2 !== 'null' && address2 !== '-' ? address2 : ''}
+        </div>
+        <div class="sub-card-list">
+          ${subCardListItems}
+        </div>`
+    }
+
+    const onClick = (path) => {
+      window.location.href = path;
+    }
+
+    const createSubCardListItems = (listDatas) => {
+      let rs = '';
+      for (let i = 0; i < listDatas.length; i += 1) {
+        if(prefecture !== 'オンライン教室') {
+          if(listDatas[i].access) {
+            rs += `
+            <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+              <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+              <div class="school-address">
+                <img src="images/ic-map.png" />
+                <div>${listDatas[i].prefecture} ${(listDatas[i].address1 === '23区' || !listDatas[i].address1) ? '' : listDatas[i].address1} ${listDatas[i].address2 || ''} ${listDatas[i].addressAfter || ''} ${listDatas[i].addressDetail || ''}</div>
+              </div>
+              <div class="school-access">
+                <img src="images/ic-car.png" />
+                <div>${listDatas[i].access}</div>
+              </div>
+            </a>`
+          }
+          else {
+            rs += `
+            <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+              <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+              <div class="school-address">
+                <img src="images/ic-map.png" />
+                <div>${listDatas[i].prefecture} ${(listDatas[i].address1 === '23区' || !listDatas[i].address1) ? '' : listDatas[i].address1} ${listDatas[i].address2 || ''} ${listDatas[i].addressAfter || ''} ${listDatas[i].addressDetail || ''}</div>
+              </div>
+            </a>`
+          }
+        }
+        else {
+          rs += `
+          <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+            <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+          </a>`
+        }
+      }
+      return rs;
+    }
+
+    let areaInnerHTML = '';
+
+    for (const [key, value] of Object.entries(schoolDataMapping)) {
+      let subCard = "";
+      let hasSchoolData = false;
+      for (const [key2, value2] of Object.entries(value)) {
+        if (value2.length) {
+          hasSchoolData = true;
+          subCard += createSubCardItems(
+            key,
+            key2,
+            createSubCardListItems(value2)
+          );
+        }
+      }
+      if (hasSchoolData) {
+        const areaCard = createAreaCardItem(key);
+        areaInnerHTML += areaCard;
+        const collapse = createCollapseItem(key, subCard);
+        areaInnerHTML += collapse;
+      }
+
+      index++;
+    }
+
+    accordion.innerHTML = areaInnerHTML;
+
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+    dropdownItems.forEach(function (item) {
+      item.addEventListener('click', function (event) {
+        const attr = this.getAttribute('href').substring(1).split('_');
+        const address1 = attr[1];
+        const address2 = attr[2];
+        const areaCardId = `area_${address1}_null`;
+        const collapseId = `collapse_${address1}_null`;
+        const targetId = `target_${address1}_${address2}`;
+        const areaCard = document.getElementById(areaCardId);
+        const collapseElement = document.getElementById(collapseId);
+        const targetElement = document.getElementById(targetId);
+        if (collapseElement) {
+          if (!collapseElement.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(collapseElement);
+            bsCollapse.show();
+          }
+          setTimeout(() => {
+            if (targetElement && !targetId.includes('null')) {
+              targetElement.classList.add('highlight');
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+
+              setTimeout(() => {
+                targetElement.classList.remove('highlight');
+              }, 1500);
+            }
+            else {
+              areaCard.classList.add('highlight');
+
+              areaCard.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+
+              setTimeout(() => {
+                areaCard.classList.remove('highlight');
+              }, 1500);
+            }
+          }, 400);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
+  

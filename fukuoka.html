@@ -1,0 +1,727 @@
+
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List School</title>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MTDGLF5');</script>
+  <!-- Latest compiled and minified CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP";
+    }
+
+    .header {
+      display: flex;
+      align-items: start;
+      gap: 76px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .logo-container a {
+      display: block;
+      padding: 21px 16px;
+    }
+
+    .logo {
+      max-width: 240px;
+      height: auto;
+    }
+
+    .footer {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-info {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0px 32px;
+    }
+
+    .footer-info a {
+      color: var(--text_color, #323232);
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .banner {
+      display: flex;
+      background-image: url('images/bg_2.png');
+      background-position: center;
+      min-height: 235px;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .banner-link {
+      margin: 8px 32px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .area-link {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      margin-right: 1rem;
+    }
+
+    .banner-link span {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      margin-right: 1rem;
+    }
+
+    .child-link {
+      text-decoration: none;
+      color: var(--white-white-100, #FFF);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+    }
+
+    .banner-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .banner-title-main {
+      color: #FFF;
+      text-align: center;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.8px;
+      padding-bottom: 2px;
+      box-shadow: rgba(242, 195, 28, 0.6) 0px -15px 0px 0px inset;
+    }
+
+    .banner-title-sub {
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+    }
+
+    .banner-title-sub-2{
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-size: 13.295px ;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+      margin-top: 16px;
+    }
+
+    #main {
+      min-height: 54vh;
+    }
+    .filter-dropdown {
+      margin-top: 64px;
+    }
+
+    .dropdown-btn {
+      display: flex;
+      padding: 12px;
+      width: 280px;
+      justify-content: space-between;
+      border-radius: 6px;
+      border: 1px solid var(--Grayscale-Gray-35, #969CA1);
+      background: var(--white-white-100, #FFF);
+    }
+
+    .dropdown-btn img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .dropdown-menu {
+      width: 280px;
+      margin: 16px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .area-card-body {
+      background: var(--Grayscale-Gray-05, #F2F2F3);
+      padding: 16px;
+      min-height: 100px;
+    }
+
+    .sub-card-title {
+      color: var(--Brand-Brand-blue, #1793CC);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.32px;
+      margin-left: 16px;
+      margin-bottom: 8px;
+    }
+
+    .sub-card-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      min-height: 50px;
+    }
+
+    .sub-card-item {
+      border-radius: 8px;
+      width: calc(33.33% - 8px);
+      border: 1px solid var(--Grayscale-Gray-05, #F2F2F3);
+      background: var(--white-white-100, #FFF);
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+      padding: 16px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .school-name {
+      display: flex;
+      padding: 8px;
+      align-items: flex-start;
+      gap: 10px;
+      align-self: stretch;
+      background: var(--Primary-Primary-03, #EBF4FF);
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 0.16px;
+      margin-bottom: 16px;
+    }
+
+    .school-address {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.14px;
+      margin-bottom: 12px;
+    }
+
+    .school-access {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.14px;
+    }
+
+    .area-card-header {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--Grayscale-Gray-20, #CCCED1);
+    }
+
+    .area-card-header a {
+      color: var(--Brand-Brand-blue, #1793CC);
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+    }
+
+    .area-card-header img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .area-redirect {
+      margin-top: 48px;
+      margin-bottom: 108px;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .area-redirect a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--Brand-Brand-blue, #1793CC);
+      text-align: center;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0.16px;
+      gap: 8px;
+    }
+
+    .area-redirect img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .highlight {
+      background-color: #ffeeba;
+      transition: background-color 0.5s ease;
+    }
+
+    #empty {
+      display: flex;
+      justify-content: center;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      padding-left: 12px;
+      letter-spacing: 0.16px;
+      margin-top: 48px;
+      gap: 8px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .image-holder img {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: center;
+
+      }
+
+      .footer-info {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 64px;
+      }
+
+      .banner-title-main {
+        font-size: 24px;
+      }
+
+      .banner-title-sub  {
+        font-size: 20px;
+      }
+
+      .banner-title-sub-2 {
+        font-size: 11px;
+      }
+
+      .area-redirect a {
+        display: flex;
+        width: 100%;
+        padding: 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+        border: 1px solid var(--Brand-Brand-blue, #1793CC);
+        background: var(--white-white-100, #FFF);
+        box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.05);
+      }
+      
+      .area-link,
+      .child-link {
+        font-size: 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .banner-link {
+        margin: 8px 12px;
+        display: flex;
+        align-items: center;
+        width: 93%
+      }
+
+      .dropdown-btn {
+        width: 100%;
+      }
+
+      .dropdown-menu {
+        width: 94%;
+      }
+
+      .sub-card-item {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <iframe src=“https://www.googletagmanager.com/ns.html?id=GTM-MTDGLF5” height=“0" width=“0” style=“display:none;visibility:hidden”>
+    </iframe>
+  </noscript>
+  <header class=".container-fluid header">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+  </header>
+
+  <div class=".container-fluid banner">
+    <div class="banner-link">
+      <a class="area-link" href="./area.html">都道府県</a>
+      <span>></span>
+      <a class="child-link" href="#">福岡県の教室一覧</a>
+    </div>
+    <div class="banner-title">
+      <div>
+        <span class="banner-title-main">福岡県</span>
+        <span class="banner-title-sub">の教室一覧</span>
+      </div>
+      <div class="banner-title-sub-2">
+        ※授業曜日や授業料などは、各教室ページよりお問い合わせください。
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="main">
+    <div class="filter-dropdown">
+      <div class="dropdown-btn" data-bs-toggle="dropdown" aria-expanded="false">
+        <div>
+          市区町村を絞り込む
+        </div>
+        <img src="images/ic-down-arrow.png" />
+      </div>
+      <ul class="dropdown-menu" id="drop-down">
+      </ul>
+    </div>
+
+    <div class="accordion" id="accordion">
+    </div>
+
+    <div id="empty">
+      該当する教室はありません
+    </div>
+
+    <div class="area-redirect">
+      <a href="./area.html">
+        <img src="images/ic-left-arrow.png" />
+        <div>都道府県一覧に戻る</div>
+      </a>
+    </div>
+  </div>
+  <footer class=".container-fluid footer">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+    <div class="footer-info">
+      <a href="https://juku.lifeistech-lesson.jp/" target="_blank">
+        <div>学習塾の方はこちら</div>
+        <img src="images/ic-redirect-black.svg" />
+      </a>
+      <a href="https://life-is-tech.com/" target="_blank">
+        運営会社
+      </a>
+      <a href="https://life-is-tech.com/privacy-policy/" target="_blank">
+        個人情報保護方針
+      </a>
+      <a href="https://life-is-tech.com/privacy-handling/" target="_blank">
+        個人情報の取扱いについて
+      </a>
+    </div>
+  </footer>
+  <script>
+    const data = [{"id":19,"schoolName":"昴","className":"室見校","postCode":"814-0031","prefecture":"福岡県","address1":"福岡市","address2":"早良区","addressAfter":"南庄3丁目22-5","addressDetail":null,"phone":"092-844-8585","access":"［バス］西鉄バス：南庄停から徒歩2分\n［JR］空港線：室見駅から徒歩15分\n［駐車場］有：10台程度","targetGrade":"高校1年～高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"setot@subaru-net.com","department1":"教務指導部","personInCharge1":"瀬戸　孝","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"SBR0006"},{"id":32,"schoolName":"すばる個別指導","className":"西新教室","postCode":"814-0003","prefecture":"福岡県","address1":"福岡市","address2":"早良区","addressAfter":"城西1丁目8-40","addressDetail":null,"phone":"092-852-1651","access":"［バス］西鉄バス：城西1丁目バス停前より徒歩1分\n［地下鉄］西新駅より徒歩3分 (4番出口が便利)","targetGrade":"高校１年～高校３年","classTime":"（火～土）14:00～22:30（休館日）毎週日・月曜日※春・夏・冬の講習期間は変更になる場合がございます。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"setot@subaru-net.com","department1":"教務指導部","personInCharge1":"瀬戸　孝","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"SBR0019"},{"id":245,"schoolName":"個別指導塾スタンダード","className":"サニーサイドモール小倉教室","postCode":"800-0221","prefecture":"福岡県","address1":"北九州市","address2":"小倉南区","addressAfter":"下曽根新町10-1","addressDetail":"サニーサイドモール小倉1Ｆ","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 163.00"},{"id":246,"schoolName":"個別指導塾スタンダード","className":"苅田教室","postCode":"800-0361","prefecture":"福岡県","address1":"苅田町","address2":null,"addressAfter":"神田町1-6-9","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 164.00"},{"id":247,"schoolName":"個別指導塾スタンダード","className":"城野駅前教室","postCode":"802-0011","prefecture":"福岡県","address1":"北九州市","address2":"小倉北区","addressAfter":"重住3-7-10","addressDetail":"山内ビル203","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 165.00"},{"id":248,"schoolName":"個別指導塾スタンダード","className":"三萩野教室","postCode":"802-0065","prefecture":"福岡県","address1":"北九州市","address2":"小倉北区","addressAfter":"三萩野1-1-8","addressDetail":"PRINCESS.BLD4階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 166.00"},{"id":249,"schoolName":"個別指導塾スタンダード","className":"小倉田町教室","postCode":"803-0817","prefecture":"福岡県","address1":"北九州市","address2":"小倉北区","addressAfter":"田町16-14","addressDetail":"RAY田町ビル202","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 167.00"},{"id":250,"schoolName":"個別指導塾スタンダード","className":"九工大前教室","postCode":"804-0011","prefecture":"福岡県","address1":"北九州市","address2":"戸畑区","addressAfter":"中原西2-4-4-1F","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 168.00"},{"id":251,"schoolName":"個別指導塾スタンダード","className":"戸畑教室","postCode":"804-0082","prefecture":"福岡県","address1":"北九州市","address2":"戸畑区","addressAfter":"新池2-7-1","addressDetail":"I.TBLD202","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 169.00"},{"id":252,"schoolName":"個別指導塾スタンダード","className":"枝光教室","postCode":"805-0008","prefecture":"福岡県","address1":"北九州市","address2":"八幡東区","addressAfter":"枝光本町7-1","addressDetail":"2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 170.00"},{"id":253,"schoolName":"個別指導塾スタンダード","className":"黒崎駅前教室","postCode":"806-0021","prefecture":"福岡県","address1":"北九州市","address2":"八幡西区","addressAfter":"黒崎1-5-14","addressDetail":"黒崎ビルディング4階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 171.00"},{"id":254,"schoolName":"個別指導塾スタンダード","className":"水巻教室","postCode":"807-0006","prefecture":"福岡県","address1":"水巻町","address2":null,"addressAfter":"梅ノ木団地41-5","addressDetail":"HIBITANIビル2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 172.00"},{"id":255,"schoolName":"個別指導塾スタンダード","className":"永犬丸教室","postCode":"807-0846","prefecture":"福岡県","address1":"北九州市","address2":"八幡西区","addressAfter":"里中3-1-3","addressDetail":"辰巳屋ビル2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 173.00"},{"id":256,"schoolName":"個別指導塾スタンダード","className":"産業医大前教室","postCode":"807-0874","prefecture":"福岡県","address1":"北九州市","address2":"八幡西区","addressAfter":"大浦1-13-1","addressDetail":"ベレーザビル200号","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 174.00"},{"id":257,"schoolName":"個別指導塾スタンダード","className":"中間教室","postCode":"809-0019","prefecture":"福岡県","address1":"中間市","address2":null,"addressAfter":"東中間3-9-7","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 175.00"},{"id":258,"schoolName":"個別指導塾スタンダード","className":"はるまち教室","postCode":"811-2314","prefecture":"福岡県","address1":"粕屋町","address2":null,"addressAfter":"若宮2-3-3","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 176.00"},{"id":259,"schoolName":"個別指導塾スタンダード","className":"新飯塚駅前教室","postCode":"820-0005","prefecture":"福岡県","address1":"飯塚市","address2":null,"addressAfter":"新飯塚６-１","addressDetail":"新飯塚藤井店舗２F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 177.00"},{"id":260,"schoolName":"個別指導塾スタンダード","className":"直方教室","postCode":"822-0024","prefecture":"福岡県","address1":"直方市","address2":null,"addressAfter":"須崎町3-37","addressDetail":"竹田ビル6F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 178.00"},{"id":261,"schoolName":"個別指導塾スタンダード","className":"宮若教室","postCode":"823-0011","prefecture":"福岡県","address1":"宮若市","address2":null,"addressAfter":"宮田4822-1","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 179.00"},{"id":262,"schoolName":"個別指導塾スタンダード","className":"行橋教室","postCode":"824-0031","prefecture":"福岡県","address1":"行橋市","address2":null,"addressAfter":"西宮市4-2-8","addressDetail":"サンライトピース101","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 180.00"},{"id":263,"schoolName":"個別指導塾スタンダード","className":"田川伊田駅前教室","postCode":"825-0014","prefecture":"福岡県","address1":"田川市","address2":null,"addressAfter":"魚町8-27","addressDetail":"三愛ビル伊田駅前3F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 181.00"},{"id":264,"schoolName":"個別指導塾スタンダード","className":"薬院教室","postCode":"810-0004","prefecture":"福岡県","address1":"福岡市","address2":"中央区","addressAfter":"渡辺通2-9-16","addressDetail":"KANビル2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 182.00"},{"id":265,"schoolName":"個別指導塾スタンダード","className":"六本松教室","postCode":"810-0044","prefecture":"福岡県","address1":"福岡市","address2":"中央区","addressAfter":"六本松4-9-7","addressDetail":"ジャパン・パル801","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 183.00"},{"id":266,"schoolName":"個別指導塾スタンダード","className":"新宮教室","postCode":"811-0112","prefecture":"福岡県","address1":"新宮町","address2":null,"addressAfter":"下府3-1-27","addressDetail":"コスモビル2階2-C","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 184.00"},{"id":267,"schoolName":"個別指導塾スタンダード","className":"和白教室","postCode":"811-0213","prefecture":"福岡県","address1":"福岡市","address2":"東区","addressAfter":"和白丘2丁目10-10","addressDetail":"アーバン和白丘2階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 185.00"},{"id":268,"schoolName":"個別指導塾スタンダード","className":"須恵中央教室","postCode":"811-2113","prefecture":"福岡県","address1":"須恵町","address2":null,"addressAfter":"須惠1070-2","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 186.00"},{"id":269,"schoolName":"個別指導塾スタンダード","className":"月隈教室","postCode":"811-2203","prefecture":"福岡県","address1":"志免町","address2":null,"addressAfter":"石橋台6-1","addressDetail":"神田ビル203","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 187.00"},{"id":270,"schoolName":"個別指導塾スタンダード","className":"志免教室","postCode":"811-2207","prefecture":"福岡県","address1":"志免町","address2":null,"addressAfter":"南里4-12-18","addressDetail":"稲永四丁目貸店舗","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 188.00"},{"id":271,"schoolName":"個別指導塾スタンダード","className":"古賀駅前教室","postCode":"811-3101","prefecture":"福岡県","address1":"古賀市","address2":null,"addressAfter":"天神1丁目2-2","addressDetail":"古賀店舗1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 189.00"},{"id":272,"schoolName":"個別指導塾スタンダード","className":"福間教室","postCode":"811-3217","prefecture":"福岡県","address1":"福津市","address2":null,"addressAfter":"中央3-2-1","addressDetail":"2階2号室","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 190.00"},{"id":273,"schoolName":"個別指導塾スタンダード","className":"赤間教室","postCode":"811-4185","prefecture":"福岡県","address1":"宗像市","address2":null,"addressAfter":"赤間駅前1丁目9-16","addressDetail":"2階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 191.00"},{"id":274,"schoolName":"個別指導塾スタンダード","className":"岡垣教室","postCode":"811-4218","prefecture":"福岡県","address1":"岡垣町","address2":null,"addressAfter":"中央台4丁目1-12","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 192.00"},{"id":275,"schoolName":"個別指導塾スタンダード","className":"呉服町教室","postCode":"812-0024","prefecture":"福岡県","address1":"福岡市","address2":"博多区","addressAfter":"綱場町6-15","addressDetail":"博多綱場スクエア1階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 193.00"},{"id":276,"schoolName":"個別指導塾スタンダード","className":"吉塚教室","postCode":"812-0044","prefecture":"福岡県","address1":"福岡市","address2":"博多区","addressAfter":"千代1-31-24","addressDetail":"アポロビル3階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 194.00"},{"id":277,"schoolName":"個別指導塾スタンダード","className":"諸岡教室","postCode":"812-0894","prefecture":"福岡県","address1":"福岡市","address2":"博多区","addressAfter":"諸岡1丁目6番1号","addressDetail":"大祥ビル2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 195.00"},{"id":278,"schoolName":"個別指導塾スタンダード","className":"藤崎教室","postCode":"814-0011","prefecture":"福岡県","address1":"福岡市","address2":"早良区","addressAfter":"高取1-11-15","addressDetail":"ユーテラス高取202","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 196.00"},{"id":279,"schoolName":"個別指導塾スタンダード","className":"大橋教室","postCode":"815-0036","prefecture":"福岡県","address1":"福岡市","address2":"南区","addressAfter":"筑紫丘1-23-28","addressDetail":"丘1丁目ビル2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 197.00"},{"id":280,"schoolName":"個別指導塾スタンダード","className":"春日教室","postCode":"816-0846","prefecture":"福岡県","address1":"春日市","address2":null,"addressAfter":"下白水南1-1","addressDetail":"ハローデイ春日店1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 198.00"},{"id":281,"schoolName":"個別指導塾スタンダード","className":"九大学研都市駅前教室","postCode":"819-0379","prefecture":"福岡県","address1":"福岡市","address2":"西区","addressAfter":"北原1丁目61","addressDetail":"スタンダード九大学研都市ビル2Ｆ","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 199.00"},{"id":284,"schoolName":"個別指導塾スタンダード","className":"老司教室","postCode":"811-1346","prefecture":"福岡県","address1":"福岡市","address2":"南区","addressAfter":"老司2丁目23-85","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 202.00"},{"id":285,"schoolName":"個別指導塾スタンダード","className":"福岡大学前教室","postCode":"814-0142","prefecture":"福岡県","address1":"福岡市","address2":"城南区","addressAfter":"片江5丁目10-15","addressDetail":"1階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 203.00"},{"id":286,"schoolName":"個別指導塾スタンダード","className":"桜台教室","postCode":"818-0066","prefecture":"福岡県","address1":"筑紫野市","address2":null,"addressAfter":"永岡1021-2","addressDetail":"西邦ビル2階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 204.00"},{"id":287,"schoolName":"個別指導塾スタンダード","className":"五条駅前教室","postCode":"818-0125","prefecture":"福岡県","address1":"太宰府市","address2":null,"addressAfter":"五条2-6-31","addressDetail":"五条プラザ2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 205.00"},{"id":288,"schoolName":"個別指導塾スタンダード","className":"津福教室","postCode":"830-0061","prefecture":"福岡県","address1":"久留米市","address2":null,"addressAfter":"津福今町448","addressDetail":"1階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 206.00"},{"id":289,"schoolName":"個別指導塾スタンダード","className":"三潴教室","postCode":"830-0112","prefecture":"福岡県","address1":"久留米市","address2":null,"addressAfter":"三潴町玉満3068-4","addressDetail":"2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 207.00"},{"id":290,"schoolName":"個別指導塾スタンダード","className":"大川教室","postCode":"831-0028","prefecture":"福岡県","address1":"大川市","address2":null,"addressAfter":"郷原576-1","addressDetail":"1階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 208.00"},{"id":291,"schoolName":"個別指導塾スタンダード","className":"柳川教室","postCode":"832-0827","prefecture":"福岡県","address1":"柳川市","address2":null,"addressAfter":"三橋町蒲船津1401番地1","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 209.00"},{"id":292,"schoolName":"個別指導塾スタンダード","className":"筑後教室","postCode":"833-0031","prefecture":"福岡県","address1":"筑後市","address2":null,"addressAfter":"山ノ井306-6","addressDetail":"筑後開発ビル２F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 210.00"},{"id":293,"schoolName":"個別指導塾スタンダード","className":"八女教室","postCode":"834-0063","prefecture":"福岡県","address1":"八女市","address2":null,"addressAfter":"本村665-1","addressDetail":"三和貸店舗西棟","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 211.00"},{"id":344,"schoolName":"スクールIE","className":"百道校","postCode":"814-0006","prefecture":"福岡県","address1":"福岡市","address2":"早良区","addressAfter":"百道1丁目30-12","addressDetail":"UMIBE百道通りビル1F","phone":"092-836-8123","access":"西鉄バス百道浜四丁目バス停すぐ","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜金曜 16:30〜21:10、土曜 14:55〜19:35","schedule":"毎週月曜〜土曜","time":"月曜〜金曜 16:30〜21:10、土曜 14:55〜19:35","tutationFee":"無料","email1":"ie.momochi@gmail.com","department1":"室長","personInCharge1":"鈴木　功三","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"MMA0022"},{"id":464,"schoolName":"iTeen","className":"小倉霧丘校","postCode":"802-0051","prefecture":"福岡県","address1":"北九州市","address2":"小倉北区","addressAfter":"黒原３丁目１５","addressDetail":null,"phone":"0120-370-270","access":"バス「黒原一丁目」バス停　徒歩2分","targetGrade":"中学生～高校生・高卒生","classTime":"平日　14:30～20:30、土曜　10:30～17:00","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"manage@fc.iteen.jp","department1":"iTeen運営本部","personInCharge1":"担当者","email2":"kokura-kirigaoka@iteen.jp","department2":"小倉霧丘校","personInCharge2":"教室長","email3":null,"department3":null,"personInCharge3":null,"individualPage":"XIT0003"},{"id":467,"schoolName":"iTeen","className":"姪浜校","postCode":"819-0002","prefecture":"福岡県","address1":"福岡市","address2":"西区","addressAfter":"姪の浜2丁目13-14","addressDetail":"石橋ビル1F","phone":"092-707-4413","access":"姪浜駅　北口より徒歩9分","targetGrade":"中学生～高校生・高卒生","classTime":"平日　14:30～20:30、土曜　10:30～19:30","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"manage@fc.iteen.jp","department1":"iTeen運営本部","personInCharge1":"担当者","email2":"meinohama@iteen.jp","department2":"姪浜校","personInCharge2":"教室長","email3":null,"department3":null,"personInCharge3":null,"individualPage":"XIT0006"},{"id":559,"schoolName":"個別指導WAM","className":"西鉄久留米駅前校","postCode":"830-0033","prefecture":"福岡県","address1":"久留米市","address2":null,"addressAfter":"天神町1-8","addressDetail":"リベールB1F","phone":"0120-333-876","access":"西鉄久留米駅から徒歩1分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0044"},{"id":708,"schoolName":"全教研","className":"ZUP北九州本校","postCode":"803-0818","prefecture":"福岡県","address1":"北九州市","address2":"小倉北区","addressAfter":"竪町1-6-1","addressDetail":"NSビル3F","phone":"093-592-1755","access":"JR西小倉駅から徒歩10分","targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜 14:00〜22:00","schedule":"毎週火曜〜土曜 ","time":"14:00〜22:00","tutationFee":"無料","email1":"m-kamogawa@zenkyoken.jp","department1":"ZUP北九州本校","personInCharge1":"校舎長","email2":"t-hisamura@zenkyoken.jp","department2":"ZUP北九州本校","personInCharge2":"担当者","email3":"takamitsu-iwasaki@zenkyoken.jp","department3":"ZUP第２ブロック","personInCharge3":"岩﨑　孝充","individualPage":"ZKK0001"},{"id":709,"schoolName":"全教研","className":"ZUP行橋校","postCode":"824-0031","prefecture":"福岡県","address1":"行橋市","address2":null,"addressAfter":"西宮市2-2-7","addressDetail":null,"phone":"0930-22-6430","access":"JR行橋駅から徒歩2分","targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜 14:00〜22:00","schedule":"毎週火曜〜土曜 ","time":"14:00〜22:00","tutationFee":"無料","email1":"m-kamogawa@zenkyoken.jp","department1":"ZUP行橋校","personInCharge1":"校舎長","email2":"t-hisamura@zenkyoken.jp","department2":"ZUP行橋校","personInCharge2":"担当者","email3":"takamitsu-iwasaki@zenkyoken.jp","department3":"ZUP第２ブロック","personInCharge3":"岩﨑　孝充","individualPage":"ZKK0002"},{"id":710,"schoolName":"全教研","className":"ZUP赤坂校","postCode":"810-0042","prefecture":"福岡県","address1":"福岡市","address2":"中央区","addressAfter":"赤坂1-15-9","addressDetail":"全教研赤坂ビル","phone":"092-731-5575","access":"地下鉄赤坂駅から徒歩5分","targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜 14:00〜22:00","schedule":"毎週火曜〜土曜 ","time":"14:00〜22:00","tutationFee":"無料","email1":"takamitsu-iwasaki@zenkyoken.jp","department1":"ZUP赤坂校","personInCharge1":"校舎長","email2":"a-koki@zenkyoken.jp","department2":"ZUP赤坂校","personInCharge2":"担当者","email3":"takamitsu-iwasaki@zenkyoken.jp","department3":"ZUP第２ブロック","personInCharge3":"岩﨑　孝充","individualPage":"ZKK0003"},{"id":711,"schoolName":"全教研","className":"ZUP香椎本校","postCode":"813-0013","prefecture":"福岡県","address1":"福岡市","address2":"東区","addressAfter":"香椎駅前1-18-45","addressDetail":"香椎マーケットビル4F","phone":"092-672-6688","access":"JR香椎駅から徒歩3分","targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜 14:00〜22:00","schedule":"毎週火曜〜土曜 ","time":"14:00〜22:00","tutationFee":"無料","email1":"n-asami@zenkyoken.jp","department1":"ZUP香椎本校","personInCharge1":"校舎長","email2":"g-oshikawa@zenkyoken.jp","department2":"ZUP香椎本校","personInCharge2":"担当者","email3":"takamitsu-iwasaki@zenkyoken.jp","department3":"ZUP第２ブロック","personInCharge3":"岩﨑　孝充","individualPage":"ZKK0004"},{"id":712,"schoolName":"全教研","className":"ZUP西新校","postCode":"814-0011","prefecture":"福岡県","address1":"福岡市","address2":"早良区","addressAfter":"高取1-1-49","addressDetail":"ココファン福岡西新3F","phone":"092-400-0103","access":"地下鉄西新駅から徒歩7分","targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜 14:00〜22:00","schedule":"毎週火曜〜土曜 ","time":"14:00〜22:00","tutationFee":"無料","email1":"y-nakamura@zenkyoken.jp","department1":"ZUP西新校","personInCharge1":"校舎長","email2":"koichi-mikuriya@zenkyoken.jp","department2":"ZUP西新校","personInCharge2":"担当者","email3":"takamitsu-iwasaki@zenkyoken.jp","department3":"ZUP第２ブロック","personInCharge3":"岩﨑　孝充","individualPage":"ZKK0005"},{"id":713,"schoolName":"全教研","className":"ZUP高宮校","postCode":"815-0083","prefecture":"福岡県","address1":"福岡市","address2":"南区","addressAfter":"高宮5-3-12","addressDetail":"ニシコーリビング高宮3F","phone":"092-525-6511","access":"西鉄高宮駅から徒歩3分","targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜 14:00〜22:00","schedule":"毎週火曜〜土曜 ","time":"14:00〜22:00","tutationFee":"無料","email1":"y-nakamura@zenkyoken.jp","department1":"ZUP高宮校","personInCharge1":"校舎長","email2":"f-hirano@zenkyoken.jp","department2":"ZUP高宮校","personInCharge2":"担当者","email3":"takamitsu-iwasaki@zenkyoken.jp","department3":"ZUP第２ブロック","personInCharge3":"岩﨑　孝充","individualPage":"ZKK0006"},{"id":714,"schoolName":"全教研","className":"高校オンライン","postCode":"813-0013","prefecture":"福岡県","address1":"福岡市","address2":"東区","addressAfter":"香椎駅前1-18-45","addressDetail":"香椎マーケットビル4F","phone":"092-672-6688","access":"JR香椎駅から徒歩3分","targetGrade":"高校1年〜高校3年","classTime":"毎週火曜〜土曜 16:00〜22:00","schedule":"毎週火曜〜土曜 ","time":"16:00〜22:00","tutationFee":"無料","email1":"t-nagata@zenkyoken.jp","department1":"高校オンライン","personInCharge1":"校舎長","email2":"s-takamiya@zenkyoken.jp","department2":"高校オンライン","personInCharge2":"担当者","email3":"n-asami@zenkyoken.jp","department3":"高校オンライン","personInCharge3":"担当者","individualPage":"ZKK0007"},{"id":784,"schoolName":"駿台予備学校","className":"福岡校","postCode":"810-0073","prefecture":"福岡県","address1":"福岡市","address2":"中央区","addressAfter":"舞鶴1-2-5","addressDetail":null,"phone":"092-741-1911","access":"地下鉄「天神駅」より徒歩5分<br>\n（地下鉄天神駅1番出口経由）地下鉄「赤坂駅」より徒歩5分<br>\n（地下鉄赤坂駅5番出口経由）地下鉄「天神南駅」より徒歩12分<br>\n西鉄「福岡（天神）駅」より徒歩8分<br>\n西鉄バス「舞鶴1丁目」バス停前","targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":null,"email1":"t_mizuhara@mail.sundai.ac.jp","department1":"本部","personInCharge1":"担当者","email2":"t_kajikawa@mail.sundai.ac.jp","department2":"本部","personInCharge2":"担当者","email3":"k_yoshii@sundai-kyouken.jp>","department3":"本部","personInCharge3":"担当者","individualPage":"SND0020"},{"id":791,"schoolName":"Vスタ","className":"薬院本校","postCode":"810-0022","prefecture":"福岡県","address1":"福岡市","address2":"中央区","addressAfter":"薬院3-16-32","addressDetail":"総合教育センタービル","phone":"092-533-7263","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0001"},{"id":792,"schoolName":"Vスタ","className":"大橋教室","postCode":"815-0033","prefecture":"福岡県","address1":"福岡市","address2":"南区","addressAfter":"大橋3-26-324-25-30","addressDetail":"ベルエール大橋1F","phone":"092-541-8841","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0002"},{"id":793,"schoolName":"Vスタ","className":"香椎教室","postCode":"813-0013","prefecture":"福岡県","address1":"福岡市","address2":"東区","addressAfter":"香椎駅前2-5-1","addressDetail":"ノイエスビル1F","phone":"092-681-1680","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0003"},{"id":794,"schoolName":"Vスタ","className":"高宮教室","postCode":"815-0041","prefecture":"福岡県","address1":"福岡市","address2":"南区","addressAfter":"野間1-14-26","addressDetail":"グランシャリオ高宮1F","phone":"092-551-4116","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0004"},{"id":795,"schoolName":"Vスタ","className":"春日原教室","postCode":"816-0924","prefecture":"福岡県","address1":"大野城市","address2":null,"addressAfter":"栄町2-5-18","addressDetail":null,"phone":"092-589-5550","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0005"},{"id":796,"schoolName":"Vスタ","className":"姪浜教室","postCode":"819-0002","prefecture":"福岡県","address1":"福岡市","address2":"西区","addressAfter":"姪の浜4-7-11","addressDetail":"グランデマーレ姪浜駅前201","phone":"092-885-9312","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0006"},{"id":797,"schoolName":"Vスタ","className":"美しが丘教室","postCode":"818-0035","prefecture":"福岡県","address1":"筑紫野市","address2":null,"addressAfter":"美しが丘北3-14-4","addressDetail":null,"phone":"092-555-9150","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0007"},{"id":798,"schoolName":"Vスタ","className":"六本松教室","postCode":"810-0044","prefecture":"福岡県","address1":"福岡市","address2":"中央区","addressAfter":"六本松4-9-15","addressDetail":"パシフィックコート六本松2F","phone":"092-732-8958","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0008"},{"id":799,"schoolName":"Vスタ","className":"小笹教室","postCode":"810-0033","prefecture":"福岡県","address1":"福岡市","address2":"中央区","addressAfter":"小笹1-1-5","addressDetail":"武田ビル2F","phone":"092-524-0683","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0009"},{"id":800,"schoolName":"Vスタ","className":"西新教室","postCode":"814-0002","prefecture":"福岡県","address1":"福岡市","address2":"早良区","addressAfter":"西新3-4-16","addressDetail":"第2スリーMビル2F","phone":"092-832-1800","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0010"},{"id":801,"schoolName":"Vスタ","className":"二日市教室","postCode":"818-0056","prefecture":"福岡県","address1":"筑紫野市","address2":null,"addressAfter":"二日市北1-3-8","addressDetail":"スパシオ・コモド2F","phone":"092-928-2385","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0011"},{"id":802,"schoolName":"Vスタ","className":"室見教室","postCode":"814-0015","prefecture":"福岡県","address1":"福岡市","address2":"早良区","addressAfter":"室見5-4-1","addressDetail":"シオン室見2F","phone":"092-847-5525","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0012"},{"id":803,"schoolName":"Vスタ","className":"長者原教室","postCode":"811-2317","prefecture":"福岡県","address1":"粕屋町","address2":null,"addressAfter":"長者原東6-15-12","addressDetail":"ツインリービル2F","phone":"092-939-9371","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0013"},{"id":804,"schoolName":"Vスタ","className":"須玖教室","postCode":"816-0863","prefecture":"福岡県","address1":"春日市","address2":null,"addressAfter":"須玖南1-113","addressDetail":"2F","phone":"092-587-1200","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0014"},{"id":805,"schoolName":"Vスタ","className":"柳川教室","postCode":"832-0822","prefecture":"福岡県","address1":"柳川市","address2":null,"addressAfter":"三橋町下百町6-1","addressDetail":"1F","phone":"0944-74-4207","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0015"},{"id":806,"schoolName":"Vスタ","className":"那珂川教室","postCode":"811-1213","prefecture":"福岡県","address1":"那珂川市","address2":null,"addressAfter":"中町2-124","addressDetail":"オーデブラン博多南2F","phone":"092-951-8067","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0016"},{"id":807,"schoolName":"Vスタ","className":"三苫教室","postCode":"811-0201","prefecture":"福岡県","address1":"福岡市","address2":"東区","addressAfter":"三苫6-14-2","addressDetail":"レフティヒルズ三苫1F","phone":"092-607-7961","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0017"},{"id":808,"schoolName":"Vスタ","className":"国分教室","postCode":"839-0863","prefecture":"福岡県","address1":"久留米市","address2":null,"addressAfter":"国分町1532-5","addressDetail":"栗木第7ビル2F","phone":"0942-51-8809","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0018"},{"id":809,"schoolName":"Vスタ","className":"曽根教室","postCode":"800-0221","prefecture":"福岡県","address1":"北九州市","address2":"小倉南区","addressAfter":"下曽根新町16-3","addressDetail":null,"phone":"093-474-3387","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0019"},{"id":810,"schoolName":"Vスタ","className":"荒木教室","postCode":"830-0062","prefecture":"福岡県","address1":"久留米市","address2":"荒木町","addressAfter":"白口1884-4","addressDetail":null,"phone":"0942-27-4393","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0020"},{"id":811,"schoolName":"Vスタ","className":"久留米中央教室","postCode":"830-0042","prefecture":"福岡県","address1":"久留米市","address2":null,"addressAfter":"荘島町17-2","addressDetail":"サントップビル1F","phone":"0942-36-7334","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0021"},{"id":812,"schoolName":"Vスタ","className":"野芥教室","postCode":"814-0171","prefecture":"福岡県","address1":"福岡市","address2":"早良区","addressAfter":"野芥4-45-55","addressDetail":"SAI ARCHI BLDG 1F","phone":"092-865-9501","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0022"},{"id":813,"schoolName":"Vスタ","className":"南ヶ丘教室","postCode":"816-0964","prefecture":"福岡県","address1":"大野城市","address2":null,"addressAfter":"南ヶ丘2-25-5","addressDetail":"1F","phone":"092-589-7101","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0023"},{"id":814,"schoolName":"Vスタ","className":"守恒教室","postCode":"802-0972","prefecture":"福岡県","address1":"北九州市","address2":"小倉南区","addressAfter":"守恒2-4-30","addressDetail":"スターゲートマジョリティー1F","phone":"093-965-1637","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0024"},{"id":815,"schoolName":"Vスタ","className":"前原教室","postCode":"819-1112","prefecture":"福岡県","address1":"糸島市","address2":null,"addressAfter":"浦志1-8-13","addressDetail":null,"phone":"092-323-0929","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0025"},{"id":816,"schoolName":"Vスタ","className":"学研都市教室","postCode":"819-0379","prefecture":"福岡県","address1":"福岡市","address2":"西区","addressAfter":"北原2-41-15","addressDetail":null,"phone":"092-807-2371","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":null,"schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"honbu@v-st.jp","department1":"Vスタ本部","personInCharge1":"事務","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"JVA0026"},{"id":842,"schoolName":"対話式進学塾1対1ネッツ","className":"薬院本校","postCode":"810-0022","prefecture":"福岡県","address1":"福岡市","address2":"中央区","addressAfter":"薬院1-5-8","addressDetail":"アルマティック薬院2F","phone":"0120-969-121","access":"西鉄天神大牟田線「薬院駅」または、地下鉄七隈線「薬院駅」徒歩2分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"薬院本校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0006"},{"id":843,"schoolName":"対話式進学塾1対1ネッツ","className":"大橋校","postCode":"815-0033","prefecture":"福岡県","address1":"福岡市","address2":"南区","addressAfter":"大橋1-2-8","addressDetail":"レーベント大橋202","phone":"0120-969-121","access":"西鉄バス「西鉄大橋駅」西鉄電車「大橋」徒歩1分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"大橋校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0007"},{"id":844,"schoolName":"対話式進学塾1対1ネッツ","className":"井尻校","postCode":"811-1302","prefecture":"福岡県","address1":"福岡市","address2":"南区","addressAfter":"井尻3-15-12","addressDetail":"ライオンビル1F","phone":"0120-969-121","access":"ＪＲ「笹原駅」徒歩１分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"井尻校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0008"},{"id":845,"schoolName":"対話式進学塾1対1ネッツ","className":"長住校","postCode":"814-0153","prefecture":"福岡県","address1":"福岡市","address2":"南区","addressAfter":"樋井川3-17-7","addressDetail":"木村ガーデンビル2F","phone":"0120-969-121","access":"樋井川３丁目交差点から桧原・柏原方面へ徒歩2分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"長住校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0009"},{"id":846,"schoolName":"対話式進学塾1対1ネッツ","className":"都府楼前校","postCode":"818-0104","prefecture":"福岡県","address1":"太宰府市","address2":null,"addressAfter":"通古賀3-13-13","addressDetail":"西都ビル201","phone":"0120-969-121","access":"西鉄都府楼前駅ロータリー内","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"都府楼前校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0010"},{"id":847,"schoolName":"対話式進学塾1対1ネッツ","className":"小郡校","postCode":"838-0144","prefecture":"福岡県","address1":"小郡市","address2":null,"addressAfter":"祇園1-14-12","addressDetail":"宮崎ビル2Ｆ","phone":"0120-969-121","access":"西鉄大牟田線「甘木鉄道」徒歩1分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"小郡校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0011"},{"id":848,"schoolName":"対話式進学塾1対1ネッツ","className":"西鉄久留米本校","postCode":"830-0035","prefecture":"福岡県","address1":"久留米市","address2":null,"addressAfter":"東和町1-12","addressDetail":"万来屋ビル2F","phone":"0120-969-121","access":"「西鉄久留米駅」西口徒歩２分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"西鉄久留米本校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0012"},{"id":849,"schoolName":"対話式進学塾1対1ネッツ","className":"西新修猷館前校","postCode":"814-0002","prefecture":"福岡県","address1":"福岡市","address2":"早良区","addressAfter":"西新5-1-30","addressDetail":"朝日生命ビル2F","phone":"0120-969-121","access":"福岡市営地下鉄「西新駅」徒歩3分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"西新修猷館前校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0013"},{"id":850,"schoolName":"対話式進学塾1対1ネッツ","className":"六本松校","postCode":"810-0045","prefecture":"福岡県","address1":"福岡市","address2":"中央区","addressAfter":"草香江2-2-11","addressDetail":"ハイツ草香江1F","phone":"0120-969-121","access":"地下鉄七隈線「六本松駅」徒歩3分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"六本松校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0014"},{"id":851,"schoolName":"対話式進学塾1対1ネッツ","className":"原校","postCode":"814-0022","prefecture":"福岡県","address1":"福岡市","address2":"早良区","addressAfter":"原3-17-45","addressDetail":"はまち興産ビル2F","phone":"0120-969-121","access":"「原」（原通り）のバス停徒歩１分、「原」（202号）のバス停徒歩２分。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"原校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0015"},{"id":852,"schoolName":"対話式進学塾1対1ネッツ","className":"橋本校","postCode":"819-0031","prefecture":"福岡県","address1":"福岡市","address2":"西区","addressAfter":"橋本1-10-27","addressDetail":"ミスターマックス橋本ショッピングセンターSS棟205","phone":"0120-969-121","access":"地下鉄七隈線「橋本駅」徒歩５分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"橋本校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0016"},{"id":853,"schoolName":"対話式進学塾1対1ネッツ","className":"九大学研都市駅前本校","postCode":"819-0367","prefecture":"福岡県","address1":"福岡市","address2":"西区","addressAfter":"西都1丁目6-1","addressDetail":"TAKEOKA.BLD3F","phone":"0120-969-121","access":"「九大学研都市駅前」のロータリー内","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"九大学研都市駅前本校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0017"},{"id":854,"schoolName":"対話式進学塾1対1ネッツ","className":"前原駅前校","postCode":"819-1116","prefecture":"福岡県","address1":"糸島市","address2":null,"addressAfter":"前原中央2-5-1","addressDetail":"鬼木ﾋﾞﾙ2F","phone":"0120-969-121","access":"「筑前前原駅」徒歩１分。駅前のロータリー向かい","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"前原駅前校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0018"},{"id":855,"schoolName":"対話式進学塾1対1ネッツ","className":"香椎本校","postCode":"813-0013","prefecture":"福岡県","address1":"福岡市","address2":"東区","addressAfter":"香椎駅前2-9-1","addressDetail":"香椎TARIビル2F　1号","phone":"0120-969-121","access":"バス停香椎そば、「西鉄香椎駅」徒歩5分・JR「香椎駅」徒歩10分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"香椎本校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0019"},{"id":856,"schoolName":"対話式進学塾1対1ネッツ","className":"箱崎校","postCode":"812-0053","prefecture":"福岡県","address1":"福岡市","address2":"東区","addressAfter":"箱崎1-4-10","addressDetail":"エレガントライフ筥崎104","phone":"0120-969-121","access":"JR「箱崎駅」徒歩3分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"箱崎校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0020"},{"id":857,"schoolName":"対話式進学塾1対1ネッツ","className":"和白校","postCode":"811-0213","prefecture":"福岡県","address1":"福岡市","address2":"東区","addressAfter":"和白丘2丁目3-30　2F","addressDetail":null,"phone":"0120-969-121","access":"JR「和白駅」「西鉄和白駅」徒歩5分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"和白校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0021"},{"id":858,"schoolName":"対話式進学塾1対1ネッツ","className":"志免南里校","postCode":"811-2205","prefecture":"福岡県","address1":"志免町","address2":null,"addressAfter":"別府137-4","addressDetail":"田中店舗104","phone":"0120-969-121","access":"「南里バス停」徒歩3分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"志免南里校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0022"},{"id":859,"schoolName":"対話式進学塾1対1ネッツ","className":"古賀駅前校","postCode":"811-3101","prefecture":"福岡県","address1":"古賀市","address2":null,"addressAfter":"天神1-3-1","addressDetail":"ホワイトリバー駅前201号","phone":"0120-969-121","access":"JR「古賀駅」徒歩3分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"古賀駅前校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0023"},{"id":860,"schoolName":"対話式進学塾1対1ネッツ","className":"東郷校","postCode":"811-3431","prefecture":"福岡県","address1":"宗像市","address2":null,"addressAfter":"田熊3-3-21-201","addressDetail":null,"phone":"0120-969-121","access":"JR「東郷駅」徒歩５分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"東郷校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0024"},{"id":861,"schoolName":"対話式進学塾1対1ネッツ","className":"赤間校","postCode":"811-4173","prefecture":"福岡県","address1":"宗像市","address2":null,"addressAfter":"栄町13-1","addressDetail":"栄町ビル2F","phone":"0120-969-121","access":"ＪＲ「赤間駅」南口ロータリー内","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"赤間校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0025"},{"id":862,"schoolName":"対話式進学塾1対1ネッツ","className":"西小倉駅前本校","postCode":"803-0812","prefecture":"福岡県","address1":"北九州市","address2":"小倉北区","addressAfter":"室町3-2-57","addressDetail":"北部九州地域本社ビル103号","phone":"0120-969-121","access":"JR「西小倉駅」 駅前ロータリー内","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"西小倉駅前本校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0026"},{"id":863,"schoolName":"対話式進学塾1対1ネッツ","className":"門司駅前校","postCode":"800-0025","prefecture":"福岡県","address1":"北九州市","address2":"門司区","addressAfter":"柳町2-2-26　1F","addressDetail":null,"phone":"0120-969-121","access":"ＪＲ「門司駅」のロータリー向かい","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"門司駅前校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0027"},{"id":864,"schoolName":"対話式進学塾1対1ネッツ","className":"守恒駅前校","postCode":"802-0971","prefecture":"福岡県","address1":"北九州市","address2":"小倉南区","addressAfter":"守恒本町1-3-10","addressDetail":"守恒駅前ビル2F","phone":"0120-969-121","access":"モノレール「守恒駅前」西出口から徒歩１分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"守恒駅前校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0028"},{"id":865,"schoolName":"対話式進学塾1対1ネッツ","className":"下曽根校","postCode":"800-0217","prefecture":"福岡県","address1":"北九州市","address2":"小倉南区","addressAfter":"下曽根1-2-33","addressDetail":"下曽根店舗201号室","phone":"0120-969-121","access":"JR「下曽根駅」北口より徒歩5分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"下曽根校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0029"},{"id":866,"schoolName":"対話式進学塾1対1ネッツ","className":"戸畑駅前本校","postCode":"804-0061","prefecture":"福岡県","address1":"北九州市","address2":"戸畑区","addressAfter":"中本町8-14","addressDetail":"FARO戸畑駅前ﾋﾞﾙ3F","phone":"0120-969-121","access":"「戸畑駅」ロータリー向かい","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"戸畑駅前本校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0030"},{"id":867,"schoolName":"対話式進学塾1対1ネッツ","className":"八幡校","postCode":"805-0061","prefecture":"福岡県","address1":"北九州市","address2":"八幡東区","addressAfter":"西本町4-4-17","addressDetail":"第9岡部ビル2F","phone":"0120-969-121","access":"ＪＲ「八幡駅」より徒歩５分、西鉄バス「西本町4丁目」バス停すぐ","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"八幡校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0031"},{"id":868,"schoolName":"対話式進学塾1対1ネッツ","className":"荒生田校","postCode":"805-0015","prefecture":"福岡県","address1":"北九州市","address2":"八幡東区","addressAfter":"荒生田1-2-7　1F","addressDetail":null,"phone":"0120-969-121","access":"県道２９６号線沿い西鉄「荒生田」バス停すぐ","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"荒生田校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0032"},{"id":869,"schoolName":"対話式進学塾1対1ネッツ","className":"折尾駅前校","postCode":"807-0825","prefecture":"福岡県","address1":"北九州市","address2":"八幡西区","addressAfter":"折尾4-8-10","addressDetail":"折尾クロスステージ1F","phone":"0120-969-121","access":"JR「折尾駅」徒歩3分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"折尾駅前校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0033"},{"id":870,"schoolName":"対話式進学塾1対1ネッツ","className":"高須校","postCode":"808-0147","prefecture":"福岡県","address1":"北九州市","address2":"若松区","addressAfter":"高須北3-2-1","addressDetail":null,"phone":"0120-969-121","access":"北九州市営バス「高須公営住宅前」徒歩１分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"toiawase@edu-netz.com","department1":"高須校","personInCharge1":"問合せ担当者","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"KKS0034"},{"id":925,"schoolName":"北九州予備校","className":"小倉駅校","postCode":"802-0001","prefecture":"福岡県","address1":"北九州市","address2":"小倉北区","addressAfter":"浅野1-3-27","addressDetail":null,"phone":"093-511-2771","access":null,"targetGrade":"高校1年生〜3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":null,"email1":"kokura@net.kitayobi.ac.jp","department1":"キタヨビハイスクール","personInCharge1":"高校生コース担当","email2":"net_kitayobi2@net.kitayobi.ac.jp","department2":"業務部","personInCharge2":"現役生担当","email3":null,"department3":null,"personInCharge3":null,"individualPage":"KPS0001"},{"id":926,"schoolName":"北九州予備校","className":"博多駅校","postCode":"812-0011","prefecture":"福岡県","address1":"福岡市","address2":"博多区","addressAfter":"博多駅前1-21-4","addressDetail":null,"phone":"092-415-6259","access":null,"targetGrade":"高校1年生〜3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":null,"email1":"hakata@net.kitayobi.ac.jp","department1":"キタヨビハイスクール","personInCharge1":"高校生コース担当","email2":"net_kitayobi2@net.kitayobi.ac.jp","department2":"業務部","personInCharge2":"現役生担当","email3":null,"department3":null,"personInCharge3":null,"individualPage":"KPS0002"},{"id":929,"schoolName":"北九州予備校","className":"黒崎校","postCode":"806-0021","prefecture":"福岡県","address1":"北九州市","address2":"八幡西区","addressAfter":"黒崎3-12-21","addressDetail":null,"phone":"093-642-2360","access":null,"targetGrade":"高校1年生〜3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":null,"email1":"kurosaki@net.kitayobi.ac.jp","department1":"キタヨビハイスクール","personInCharge1":"高校生コース担当","email2":"net_kitayobi2@net.kitayobi.ac.jp","department2":"業務部","personInCharge2":"現役生担当","email3":null,"department3":null,"personInCharge3":null,"individualPage":"KPS0005"},{"id":938,"schoolName":"あお葉ゼミナール","className":"福間駅前校","postCode":"811-3209","prefecture":"福岡県","address1":"福津市","address2":null,"addressAfter":"日蒔野1-5-5","addressDetail":null,"phone":"0120-597-108","access":"JR福間駅より徒歩3分","targetGrade":"高校1年生〜高校3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"aobaseminal@gmail.com","department1":"エリアマネジャー","personInCharge1":"石塚浩教","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"GRK0001"},{"id":939,"schoolName":"あお葉ゼミナール","className":"諸岡校","postCode":"812-0894","prefecture":"福岡県","address1":"福岡市","address2":"博多区","addressAfter":"諸岡1-2-26","addressDetail":null,"phone":"0120-597-108","access":"JR竹下駅より徒歩10分","targetGrade":"高校1年生〜高校3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"aobaseminal@gmail.com","department1":"エリアマネジャー","personInCharge1":"石塚浩教","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"GRK0002"},{"id":940,"schoolName":"あお葉ゼミナール","className":"原校","postCode":"814-0022","prefecture":"福岡県","address1":"福岡市","address2":"早良区","addressAfter":"原4-26-5","addressDetail":"アプライド西福岡店1F","phone":"0120-597-108","access":"地下鉄藤崎駅より徒歩15分","targetGrade":"高校1年生〜高校3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"aobaseminal@gmail.com","department1":"エリアマネジャー","personInCharge1":"石塚浩教","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"GRK0003"},{"id":941,"schoolName":"あお葉ゼミナール","className":"太宰府校","postCode":"818-0104","prefecture":"福岡県","address1":"太宰府市","address2":null,"addressAfter":"通古賀1-12-10","addressDetail":null,"phone":"0120-597-108","access":"西鉄都府楼駅より徒歩5分","targetGrade":"高校1年生〜高校3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"aobaseminal@gmail.com","department1":"エリアマネジャー","personInCharge1":"石塚浩教","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"GRK0004"},{"id":942,"schoolName":"あお葉ゼミナール","className":"糸島校","postCode":"819-1117","prefecture":"福岡県","address1":"糸島市","address2":null,"addressAfter":"前原西2-3-3","addressDetail":null,"phone":"0120-597-108","access":"JR前原駅より徒歩10分","targetGrade":"高校1年生〜高校3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"aobaseminal@gmail.com","department1":"エリアマネジャー","personInCharge1":"石塚浩教","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"GRK0005"},{"id":943,"schoolName":"あお葉ゼミナール","className":"九大前校","postCode":"819-0388","prefecture":"福岡県","address1":"福岡市","address2":"西区","addressAfter":"九大新町5-1","addressDetail":"いとLab内","phone":"0120-597-108","access":"JR九大学研都市駅より徒歩15分","targetGrade":"高校1年生〜高校3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"aobaseminal@gmail.com","department1":"エリアマネジャー","personInCharge1":"石塚浩教","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"GRK0006"},{"id":1026,"schoolName":"進学塾ジャスト","className":"篠栗校","postCode":"811‐2415","prefecture":"福岡県","address1":"篠栗町","address2":null,"addressAfter":"中央3-1-3","addressDetail":"フレセント21　１F","phone":"092-931-5560","access":"篠栗駅より徒歩10分","targetGrade":"高校1年～高校3年","classTime":"月曜日～金曜日16:50～22：10","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"hoto17921477@yahoo.co.jp","department1":"篠栗校","personInCharge1":"今泉達也","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"SLG0001"},{"id":1121,"schoolName":"ヤマダパソコンスクール","className":"北九州八幡校","postCode":"807-0823","prefecture":"福岡県","address1":"北九州市","address2":"八幡西区","addressAfter":"中須2丁目7-23","addressDetail":"家電住まいる館YAMADA北九州八幡店","phone":"093-693-2822","access":"西鉄バス「折尾警察署」より徒歩3分","targetGrade":"中学2年生～高校3年生、高卒生","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"sem-saka@tecc.co.jp","department1":"ｿﾘｭｰｼｮﾝｻｰﾋﾞｽ事業部","personInCharge1":"柴田恵理子","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"YMD0009"},{"id":1150,"schoolName":"ひびきラボ","className":"八幡西教室","postCode":"807-0805","prefecture":"福岡県","address1":"北九州市","address2":"八幡西区","addressAfter":"光貞台1-1-1","addressDetail":"UR1号棟1階","phone":"093-883-8983","access":null,"targetGrade":"高校1年生〜3年生、高卒生","classTime":"毎週月曜〜金曜 17:30〜21:30、第1,3土曜 10:00〜17:30","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@hibikilab.com","department1":"八幡西教室","personInCharge1":"佐藤正淳","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HIB0001"}];
+    const dropDownData = ["赤村","朝倉市","芦屋町","飯塚市","糸島市","糸田町","うきは市","宇美町","大川市","大木町","大任町","大野城市","大牟田市","岡垣町","小郡市","遠賀町","春日市","粕屋町","嘉麻市","川崎町","香春町","苅田町","北九州市","- 小倉北区","- 小倉南区","- 戸畑区","- 門司区","- 八幡西区","- 八幡東区","- 若松区","鞍手町","久留米市","桂川町","上毛町","古賀市","小竹町","篠栗町","志免町","新宮町","須恵町","添田町","田川市","太宰府市","大刀洗町","筑後市","筑紫野市","築上町","筑前町","東峰村","那珂川市","中間市","直方市","久山町","広川町","福岡市","- 早良区","- 城南区","- 中央区","- 西区","- 博多区","- 東区","- 南区","福智町","福津市","豊前市","水巻町","みやこ町","みやま市","宮若市","宗像市","柳川市","八女市","行橋市","吉富町"];
+    const tokyo23 = ["足立区","荒川区","板橋区","江戸川区","大田区","葛飾区","北区","江東区","品川区","渋谷区","新宿区","杉並区","墨田区","世田谷区","台東区","中央区","千代田区","豊島区","中野区","練馬区","文京区","港区","目黒区"];
+    const prefecture = '福岡県';
+    let parentAddess1 = null;
+    let dropDownInnerHTML = '';
+    const schoolDataMapping = {};
+    const dropdownMap = {};
+    const empty = document.getElementById('empty');
+
+    if (data.length) {
+      empty.style.display = 'none';
+    }
+
+    const dropdownMenu = document.getElementById('drop-down');
+    const createDropDownItem = (address1, address2) => {
+      return `
+          <li><a class="dropdown-item" href="#area_${address1}_${address2}">${address2 ? '- ' + address2 : address1}</a></li>
+        `
+    }
+
+    dropDownData.map((v) => {
+      if (v.includes('- ')) {
+        if (!schoolDataMapping[`${parentAddess1}`][`${v.slice(2)}`]) {
+          schoolDataMapping[`${parentAddess1}`][`${v.slice(2)}`] = [];
+        }
+      }
+      else {
+        parentAddess1 = v;
+        if (!schoolDataMapping[`${v}`]) {
+          schoolDataMapping[`${v}`] = {};
+        }
+      }
+    })
+
+    for (let i = 0; i < data.length; i += 1) {
+      if (data[i].prefecture === '東京都') {
+        if (tokyo23.includes(data[i].address1)) {
+          data[i].address2 = data[i].address1;
+          data[i].address1 = '23区';
+        }
+        else if (tokyo23.includes(data[i].address2)) {
+          data[i].address1 = '23区';
+        }
+      }
+      dropdownMap[`${data[i].address1}`] = 1;
+      dropdownMap[`${data[i].address1}_${data[i].address2}`] = 1;
+      if (!schoolDataMapping[`${data[i].address1}`]) {
+        schoolDataMapping[`${data[i].address1}`] = {};
+      }
+      if (!schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`]) {
+        schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`] = [];
+      }
+      schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`].push(data[i]);
+    }
+
+    parentAddess1 = null;
+    dropDownData.map((v) => {
+      if (v.includes('- ')) {
+        if (!dropdownMap[`${parentAddess1}_${v.slice(2)}`]) {
+          return;
+        }
+        const dropdownItem = createDropDownItem(parentAddess1, v.slice(2));
+        dropDownInnerHTML += dropdownItem;
+      }
+      else {
+        parentAddess1 = v;
+        if (!dropdownMap[`${v}`]) {
+          return;
+        }
+        const dropdownItem = createDropDownItem(parentAddess1, null)
+        dropDownInnerHTML += dropdownItem;
+      }
+    })
+
+    if(prefecture === 'オンライン教室' || !dropDownInnerHTML.length) {
+      const dropdownBtn = document.querySelector('.dropdown-btn');
+      if (dropdownBtn) {
+        dropdownBtn.style.display = 'none';
+      }
+    }
+    
+    dropdownMenu.innerHTML = dropDownInnerHTML;
+
+    let index = 0;
+
+    const accordion = document.getElementById('accordion');
+
+    const createAreaCardItem = (address1) => {
+      return `
+        <div class="area-card"  id="area_${address1}_null">
+          <div class="area-card-header"><a class="collapsed d-flex justify-content-between align-content-center"
+              data-bs-toggle="collapse" href="#collapse_${address1}_null">
+              <div>${address1}</div><img src="images/ic-down-arrow.png">
+            </a></div>
+        </div>`
+    }
+
+    const createCollapseItem = (address1, subCardList) => {
+      return `
+        <div id="collapse_${address1}_null" class="collapse">
+          <div class="area-card-body">
+            <div class="collapsed" data-bs-toggle="collapse">
+              ${subCardList}
+            </div>
+          </div>
+        </div>`
+    }
+
+    const createSubCardItems = (address1, address2, subCardListItems) => {
+      return `
+        <div class="sub-card-title" id='target_${address1}_${address2}'>
+          ${address2 !== 'null' && address2 !== '-' ? address2 : ''}
+        </div>
+        <div class="sub-card-list">
+          ${subCardListItems}
+        </div>`
+    }
+
+    const onClick = (path) => {
+      window.location.href = path;
+    }
+
+    const createSubCardListItems = (listDatas) => {
+      let rs = '';
+      for (let i = 0; i < listDatas.length; i += 1) {
+        if(prefecture !== 'オンライン教室') {
+          if(listDatas[i].access) {
+            rs += `
+            <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+              <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+              <div class="school-address">
+                <img src="images/ic-map.png" />
+                <div>${listDatas[i].prefecture} ${(listDatas[i].address1 === '23区' || !listDatas[i].address1) ? '' : listDatas[i].address1} ${listDatas[i].address2 || ''} ${listDatas[i].addressAfter || ''} ${listDatas[i].addressDetail || ''}</div>
+              </div>
+              <div class="school-access">
+                <img src="images/ic-car.png" />
+                <div>${listDatas[i].access}</div>
+              </div>
+            </a>`
+          }
+          else {
+            rs += `
+            <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+              <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+              <div class="school-address">
+                <img src="images/ic-map.png" />
+                <div>${listDatas[i].prefecture} ${(listDatas[i].address1 === '23区' || !listDatas[i].address1) ? '' : listDatas[i].address1} ${listDatas[i].address2 || ''} ${listDatas[i].addressAfter || ''} ${listDatas[i].addressDetail || ''}</div>
+              </div>
+            </a>`
+          }
+        }
+        else {
+          rs += `
+          <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+            <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+          </a>`
+        }
+      }
+      return rs;
+    }
+
+    let areaInnerHTML = '';
+
+    for (const [key, value] of Object.entries(schoolDataMapping)) {
+      let subCard = "";
+      let hasSchoolData = false;
+      for (const [key2, value2] of Object.entries(value)) {
+        if (value2.length) {
+          hasSchoolData = true;
+          subCard += createSubCardItems(
+            key,
+            key2,
+            createSubCardListItems(value2)
+          );
+        }
+      }
+      if (hasSchoolData) {
+        const areaCard = createAreaCardItem(key);
+        areaInnerHTML += areaCard;
+        const collapse = createCollapseItem(key, subCard);
+        areaInnerHTML += collapse;
+      }
+
+      index++;
+    }
+
+    accordion.innerHTML = areaInnerHTML;
+
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+    dropdownItems.forEach(function (item) {
+      item.addEventListener('click', function (event) {
+        const attr = this.getAttribute('href').substring(1).split('_');
+        const address1 = attr[1];
+        const address2 = attr[2];
+        const areaCardId = `area_${address1}_null`;
+        const collapseId = `collapse_${address1}_null`;
+        const targetId = `target_${address1}_${address2}`;
+        const areaCard = document.getElementById(areaCardId);
+        const collapseElement = document.getElementById(collapseId);
+        const targetElement = document.getElementById(targetId);
+        if (collapseElement) {
+          if (!collapseElement.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(collapseElement);
+            bsCollapse.show();
+          }
+          setTimeout(() => {
+            if (targetElement && !targetId.includes('null')) {
+              targetElement.classList.add('highlight');
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+
+              setTimeout(() => {
+                targetElement.classList.remove('highlight');
+              }, 1500);
+            }
+            else {
+              areaCard.classList.add('highlight');
+
+              areaCard.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+
+              setTimeout(() => {
+                areaCard.classList.remove('highlight');
+              }, 1500);
+            }
+          }, 400);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
+  

@@ -1,0 +1,727 @@
+
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List School</title>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MTDGLF5');</script>
+  <!-- Latest compiled and minified CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP";
+    }
+
+    .header {
+      display: flex;
+      align-items: start;
+      gap: 76px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .logo-container a {
+      display: block;
+      padding: 21px 16px;
+    }
+
+    .logo {
+      max-width: 240px;
+      height: auto;
+    }
+
+    .footer {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-info {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0px 32px;
+    }
+
+    .footer-info a {
+      color: var(--text_color, #323232);
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .banner {
+      display: flex;
+      background-image: url('images/bg_2.png');
+      background-position: center;
+      min-height: 235px;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .banner-link {
+      margin: 8px 32px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .area-link {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      margin-right: 1rem;
+    }
+
+    .banner-link span {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      margin-right: 1rem;
+    }
+
+    .child-link {
+      text-decoration: none;
+      color: var(--white-white-100, #FFF);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+    }
+
+    .banner-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .banner-title-main {
+      color: #FFF;
+      text-align: center;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.8px;
+      padding-bottom: 2px;
+      box-shadow: rgba(242, 195, 28, 0.6) 0px -15px 0px 0px inset;
+    }
+
+    .banner-title-sub {
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+    }
+
+    .banner-title-sub-2{
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-size: 13.295px ;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+      margin-top: 16px;
+    }
+
+    #main {
+      min-height: 54vh;
+    }
+    .filter-dropdown {
+      margin-top: 64px;
+    }
+
+    .dropdown-btn {
+      display: flex;
+      padding: 12px;
+      width: 280px;
+      justify-content: space-between;
+      border-radius: 6px;
+      border: 1px solid var(--Grayscale-Gray-35, #969CA1);
+      background: var(--white-white-100, #FFF);
+    }
+
+    .dropdown-btn img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .dropdown-menu {
+      width: 280px;
+      margin: 16px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .area-card-body {
+      background: var(--Grayscale-Gray-05, #F2F2F3);
+      padding: 16px;
+      min-height: 100px;
+    }
+
+    .sub-card-title {
+      color: var(--Brand-Brand-blue, #1793CC);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.32px;
+      margin-left: 16px;
+      margin-bottom: 8px;
+    }
+
+    .sub-card-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+      min-height: 50px;
+    }
+
+    .sub-card-item {
+      border-radius: 8px;
+      width: calc(33.33% - 8px);
+      border: 1px solid var(--Grayscale-Gray-05, #F2F2F3);
+      background: var(--white-white-100, #FFF);
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+      padding: 16px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .school-name {
+      display: flex;
+      padding: 8px;
+      align-items: flex-start;
+      gap: 10px;
+      align-self: stretch;
+      background: var(--Primary-Primary-03, #EBF4FF);
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 0.16px;
+      margin-bottom: 16px;
+    }
+
+    .school-address {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.14px;
+      margin-bottom: 12px;
+    }
+
+    .school-access {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.14px;
+    }
+
+    .area-card-header {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--Grayscale-Gray-20, #CCCED1);
+    }
+
+    .area-card-header a {
+      color: var(--Brand-Brand-blue, #1793CC);
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+    }
+
+    .area-card-header img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .area-redirect {
+      margin-top: 48px;
+      margin-bottom: 108px;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .area-redirect a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--Brand-Brand-blue, #1793CC);
+      text-align: center;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0.16px;
+      gap: 8px;
+    }
+
+    .area-redirect img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .highlight {
+      background-color: #ffeeba;
+      transition: background-color 0.5s ease;
+    }
+
+    #empty {
+      display: flex;
+      justify-content: center;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      padding-left: 12px;
+      letter-spacing: 0.16px;
+      margin-top: 48px;
+      gap: 8px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .image-holder img {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: center;
+
+      }
+
+      .footer-info {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 64px;
+      }
+
+      .banner-title-main {
+        font-size: 24px;
+      }
+
+      .banner-title-sub  {
+        font-size: 20px;
+      }
+
+      .banner-title-sub-2 {
+        font-size: 11px;
+      }
+
+      .area-redirect a {
+        display: flex;
+        width: 100%;
+        padding: 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+        border: 1px solid var(--Brand-Brand-blue, #1793CC);
+        background: var(--white-white-100, #FFF);
+        box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.05);
+      }
+      
+      .area-link,
+      .child-link {
+        font-size: 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .banner-link {
+        margin: 8px 12px;
+        display: flex;
+        align-items: center;
+        width: 93%
+      }
+
+      .dropdown-btn {
+        width: 100%;
+      }
+
+      .dropdown-menu {
+        width: 94%;
+      }
+
+      .sub-card-item {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <iframe src=“https://www.googletagmanager.com/ns.html?id=GTM-MTDGLF5” height=“0" width=“0” style=“display:none;visibility:hidden”>
+    </iframe>
+  </noscript>
+  <header class=".container-fluid header">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+  </header>
+
+  <div class=".container-fluid banner">
+    <div class="banner-link">
+      <a class="area-link" href="./area.html">都道府県</a>
+      <span>></span>
+      <a class="child-link" href="#">富山県の教室一覧</a>
+    </div>
+    <div class="banner-title">
+      <div>
+        <span class="banner-title-main">富山県</span>
+        <span class="banner-title-sub">の教室一覧</span>
+      </div>
+      <div class="banner-title-sub-2">
+        ※授業曜日や授業料などは、各教室ページよりお問い合わせください。
+      </div>
+    </div>
+  </div>
+
+  <div class="container" id="main">
+    <div class="filter-dropdown">
+      <div class="dropdown-btn" data-bs-toggle="dropdown" aria-expanded="false">
+        <div>
+          市区町村を絞り込む
+        </div>
+        <img src="images/ic-down-arrow.png" />
+      </div>
+      <ul class="dropdown-menu" id="drop-down">
+      </ul>
+    </div>
+
+    <div class="accordion" id="accordion">
+    </div>
+
+    <div id="empty">
+      該当する教室はありません
+    </div>
+
+    <div class="area-redirect">
+      <a href="./area.html">
+        <img src="images/ic-left-arrow.png" />
+        <div>都道府県一覧に戻る</div>
+      </a>
+    </div>
+  </div>
+  <footer class=".container-fluid footer">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+    <div class="footer-info">
+      <a href="https://juku.lifeistech-lesson.jp/" target="_blank">
+        <div>学習塾の方はこちら</div>
+        <img src="images/ic-redirect-black.svg" />
+      </a>
+      <a href="https://life-is-tech.com/" target="_blank">
+        運営会社
+      </a>
+      <a href="https://life-is-tech.com/privacy-policy/" target="_blank">
+        個人情報保護方針
+      </a>
+      <a href="https://life-is-tech.com/privacy-handling/" target="_blank">
+        個人情報の取扱いについて
+      </a>
+    </div>
+  </footer>
+  <script>
+    const data = [{"id":105,"schoolName":"個別指導塾スタンダード","className":"立山教室","postCode":"930-0227","prefecture":"富山県","address1":"立山町","address2":null,"addressAfter":"草野101","addressDetail":"ナビオ立山ショッピングセンター","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 23.00"},{"id":106,"schoolName":"個別指導塾スタンダード","className":"上市教室","postCode":"930-0353","prefecture":"富山県","address1":"上市町","address2":null,"addressAfter":"法音寺1","addressDetail":"上市ショッピングセンターパル店舗","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 24.00"},{"id":107,"schoolName":"個別指導塾スタンダード","className":"富山大学前教室","postCode":"930-0887","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"五福1910-2","addressDetail":"五福アーバンステイツ3A・3B","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 25.00"},{"id":108,"schoolName":"個別指導塾スタンダード","className":"高岡教室","postCode":"933-0021","prefecture":"富山県","address1":"高岡市","address2":null,"addressAfter":"下関町6-1","addressDetail":"クルン髙岡3階","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 26.00"},{"id":109,"schoolName":"個別指導塾スタンダード","className":"氷見教室","postCode":"935-0021","prefecture":"富山県","address1":"氷見市","address2":null,"addressAfter":"幸町4-15","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 27.00"},{"id":110,"schoolName":"個別指導塾スタンダード","className":"滑川教室","postCode":"936-0053","prefecture":"富山県","address1":"滑川市","address2":null,"addressAfter":"上小泉2697-1","addressDetail":"Jポートビル1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 28.00"},{"id":111,"schoolName":"個別指導塾スタンダード","className":"魚津教室","postCode":"937-0067","prefecture":"富山県","address1":"魚津市","address2":null,"addressAfter":"釈迦堂1-14-17","addressDetail":"魚津市JA会館2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 29.00"},{"id":112,"schoolName":"個別指導塾スタンダード","className":"黒部教室","postCode":"938-0037","prefecture":"富山県","address1":"黒部市","address2":null,"addressAfter":"新牧野311","addressDetail":"黒部ショッピングセンターメルシー1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 30.00"},{"id":113,"schoolName":"個別指導塾スタンダード","className":"小杉教室","postCode":"939-0351","prefecture":"富山県","address1":"射水市","address2":null,"addressAfter":"戸破1554-1","addressDetail":null,"phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 31.00"},{"id":114,"schoolName":"個別指導塾スタンダード","className":"砺波教室","postCode":"939-1368","prefecture":"富山県","address1":"砺波市","address2":null,"addressAfter":"本町13-27","addressDetail":"アラックスビル砺波1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 32.00"},{"id":115,"schoolName":"個別指導塾スタンダード","className":"福光教室","postCode":"939-1702","prefecture":"富山県","address1":"南砺市","address2":null,"addressAfter":"吉江中661","addressDetail":"アラックスビル福光Ⅲ2F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 33.00"},{"id":116,"schoolName":"個別指導塾スタンダード","className":"グリーンバレー大沢野教室","postCode":"939-2252","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"上大久保1210-1","addressDetail":"グリーンバレー大沢野1F","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 34.00"},{"id":117,"schoolName":"個別指導塾スタンダード","className":"根塚教室","postCode":"939-8205","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"新根塚町2丁目9-9","addressDetail":"ツカサビル2-A","phone":"0120-747-818","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"火-金17:30-22:00　土 13:00-20:30　(24時間自宅受講OK)","schedule":"ご自宅で自由な日時で体験頂けます","time":"ご自宅で自由な日時で体験頂けます","tutationFee":"無料","email1":"kyomu@sc-ko.jp","department1":"教育研究企画課","personInCharge1":"井上 聡之","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"STN 35.00"},{"id":355,"schoolName":"アルファ進学スクール","className":"藤の木校","postCode":"930-0936","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"藤木2145-3","addressDetail":null,"phone":"076-493-7020","access":null,"targetGrade":"高校1年〜高校3年、高卒生","classTime":"当教室の開校時間内で、臨機応変に対応します。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"fujinoki@alpha-es.co.jp","department1":null,"personInCharge1":"笠嶋　英司","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0001"},{"id":356,"schoolName":"アルファ進学スクール","className":"朝日校","postCode":"939-0744","prefecture":"富山県","address1":"朝日町","address2":null,"addressAfter":"平柳629","addressDetail":null,"phone":"0765-82-2174","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@alpha-es.co.jp","department1":"本部","personInCharge1":"黒田　亜希","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0002"},{"id":357,"schoolName":"アルファ進学スクール","className":"入善校","postCode":"939-0626","prefecture":"富山県","address1":"入善町","address2":null,"addressAfter":"入膳4716-1","addressDetail":null,"phone":"0765-74-0320","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@alpha-es.co.jp","department1":"本部","personInCharge1":"黒田　亜希","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0003"},{"id":358,"schoolName":"アルファ進学スクール","className":"石田校","postCode":"938-0051","prefecture":"富山県","address1":"黒部市","address2":null,"addressAfter":"立野26-1","addressDetail":null,"phone":"0765-54-4884","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@alpha-es.co.jp","department1":"本部","personInCharge1":"黒田　亜希","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0004"},{"id":359,"schoolName":"アルファ進学スクール","className":"桜井校","postCode":"938-0037","prefecture":"富山県","address1":"黒部市","address2":null,"addressAfter":"新牧野102","addressDetail":"シティビル3F","phone":"0765-54-4557","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@alpha-es.co.jp","department1":"本部","personInCharge1":"黒田　亜希","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0005"},{"id":360,"schoolName":"アルファ進学スクール","className":"魚津校","postCode":"937-0067","prefecture":"富山県","address1":"魚津市","address2":null,"addressAfter":"釈迦堂1-12-10","addressDetail":"M1ビル1F","phone":"0765-22-3665","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@alpha-es.co.jp","department1":"本部","personInCharge1":"黒田　亜希","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0006"},{"id":361,"schoolName":"アルファ進学スクール","className":"滑川校","postCode":"936-0033","prefecture":"富山県","address1":"滑川市","address2":null,"addressAfter":"吾妻町426-28","addressDetail":"公園通り","phone":"076-475-9090","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@alpha-es.co.jp","department1":"本部","personInCharge1":"黒田　亜希","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0007"},{"id":362,"schoolName":"アルファ進学スクール","className":"上市校","postCode":"930-0353","prefecture":"富山県","address1":"上市町","address2":null,"addressAfter":"法音寺12","addressDetail":null,"phone":"076-473-1966","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@alpha-es.co.jp","department1":"本部","personInCharge1":"黒田　亜希","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0008"},{"id":363,"schoolName":"アルファ進学スクール","className":"立山校","postCode":"930-0221","prefecture":"富山県","address1":"立山町","address2":null,"addressAfter":"前沢1029-18","addressDetail":"駅前プラザ3F","phone":"076-463-0907","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@alpha-es.co.jp","department1":"本部","personInCharge1":"黒田　亜希","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0009"},{"id":364,"schoolName":"アルファ進学スクール","className":"水橋校","postCode":"939-0521","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"水橋中村町108","addressDetail":"河合ビル2F","phone":"076-478-4536","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@alpha-es.co.jp","department1":"本部","personInCharge1":"黒田　亜希","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0010"},{"id":365,"schoolName":"アルファ進学スクール","className":"堀川校","postCode":"939-8055","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"下堀54-3","addressDetail":"2F","phone":"076-461-4010","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@alpha-es.co.jp","department1":"本部","personInCharge1":"黒田　亜希","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0011"},{"id":366,"schoolName":"アルファ進学スクール","className":"興南校","postCode":"939-8153","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"吉岡439","addressDetail":null,"phone":"076-464-3768","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@alpha-es.co.jp","department1":"本部","personInCharge1":"黒田　亜希","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0012"},{"id":367,"schoolName":"アルファ進学スクール","className":"大沢野校","postCode":"939-2252","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"上大久保801-1","addressDetail":null,"phone":"076-467-3727","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@alpha-es.co.jp","department1":"本部","personInCharge1":"黒田　亜希","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0013"},{"id":368,"schoolName":"アルファ進学スクール","className":"婦中校","postCode":"939-2706","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"婦中町速星288-1","addressDetail":null,"phone":"076-465-2102","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@alpha-es.co.jp","department1":"本部","personInCharge1":"黒田　亜希","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0014"},{"id":369,"schoolName":"アルファ進学スクール","className":"射水校","postCode":"939-0274","prefecture":"富山県","address1":"射水市","address2":null,"addressAfter":"小島3943","addressDetail":"山田ビル2F","phone":"0766-51-7191","access":null,"targetGrade":"高校1年〜高校3年","classTime":"教室までお問い合わせください。","schedule":"教室までお問い合わせください。","time":"教室までお問い合わせください。","tutationFee":"無料","email1":"info@alpha-es.co.jp","department1":"本部","personInCharge1":"黒田　亜希","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"AKS0015"},{"id":611,"schoolName":"個別指導WAM","className":"藤の木校","postCode":"930-0944","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"開767-2","addressDetail":null,"phone":"0120-333-876","access":"富山地鉄バス「開」より徒歩8分。県道6号線「大阪屋　藤の木店」向かい。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0096"},{"id":612,"schoolName":"個別指導WAM","className":"豊田校","postCode":"931-8312","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"豊田本町2-4-16","addressDetail":null,"phone":"0120-333-876","access":"国道8号線　豊田東交差点を北へ、産業道路沿い「ジョイフル　シマヤ」南側。 県道172号線　豊田本町1丁目交差点を南へ約100m。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0097"},{"id":613,"schoolName":"個別指導WAM","className":"萩浦校","postCode":"931-8334","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"千原崎2-2-2","addressDetail":null,"phone":"0120-333-876","access":"富山港線　蓮町駅　徒歩６分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0098"},{"id":614,"schoolName":"個別指導WAM","className":"高岡駅南校","postCode":"933-0016","prefecture":"富山県","address1":"高岡市","address2":null,"addressAfter":"大野316-5","addressDetail":null,"phone":"0120-333-876","access":"JR高岡駅　徒歩１５分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0099"},{"id":615,"schoolName":"個別指導WAM","className":"小杉校","postCode":"939-0341","prefecture":"富山県","address1":"射水市","address2":null,"addressAfter":"三ケ2580-7 ツーファイト","addressDetail":null,"phone":"0120-333-876","access":"あいの風とやま鉄道「小杉」駅から250ｍ","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0100"},{"id":616,"schoolName":"個別指導WAM","className":"婦中校","postCode":"939-2716","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"婦中町下轡田393-6","addressDetail":null,"phone":"0120-333-876","access":"ファボーレ前バス停　徒歩３分","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0101"},{"id":617,"schoolName":"個別指導WAM","className":"山室校","postCode":"939-8036","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"高屋敷833-1","addressDetail":null,"phone":"0120-333-876","access":"山室交差点から東へ約400ｍ、「しゃぶ葉」が目印。１階に「石田眼科」があるビルの２階が教室。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0102"},{"id":618,"schoolName":"個別指導WAM","className":"堀川校","postCode":"939-8072","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"堀川町273-3","addressDetail":null,"phone":"0120-333-876","access":"南富山駅より850ｍ。県道188号沿い、富山南郵便局道向かい。<br>\n業務スーパー富山堀川店隣。<br>\nバス停「富山市農協前」下車、南へ200ｍ。富山ICより北へ2.2km。朝菜町駅より800ｍ。","targetGrade":"高校1年〜高校3年、高卒生","classTime":"毎週月曜〜土曜 16:00〜21:30","schedule":"毎週月曜〜土曜","time":"16:00〜21:30","tutationFee":"無料","email1":"navigate@hmgroup.co.jp","department1":"ナビ課","personInCharge1":"福井渉","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"HMG0103"},{"id":984,"schoolName":"富山育英予備校","className":null,"postCode":"930-0006","prefecture":"富山県","address1":"富山市","address2":null,"addressAfter":"新桜町2-15","addressDetail":null,"phone":"076-433-2325","access":"富山駅より徒歩5分","targetGrade":"高卒生","classTime":"毎週月曜～土曜　平日8：00～21：00、土曜8：00～19：00、日祝9：00～17：00","schedule":"無し","time":null,"tutationFee":null,"email1":"tiy-ikuiyobiko@toyama-ikuei.com","department1":null,"personInCharge1":"早瀬　千尋","email2":null,"department2":null,"personInCharge2":null,"email3":null,"department3":null,"personInCharge3":null,"individualPage":"TIY0001"}];
+    const dropDownData = ["朝日町","射水市","魚津市","小矢部市","上市町","黒部市","高岡市","立山町","砺波市","富山市","滑川市","南砺市","入善町","氷見市","舟橋村"];
+    const tokyo23 = ["足立区","荒川区","板橋区","江戸川区","大田区","葛飾区","北区","江東区","品川区","渋谷区","新宿区","杉並区","墨田区","世田谷区","台東区","中央区","千代田区","豊島区","中野区","練馬区","文京区","港区","目黒区"];
+    const prefecture = '富山県';
+    let parentAddess1 = null;
+    let dropDownInnerHTML = '';
+    const schoolDataMapping = {};
+    const dropdownMap = {};
+    const empty = document.getElementById('empty');
+
+    if (data.length) {
+      empty.style.display = 'none';
+    }
+
+    const dropdownMenu = document.getElementById('drop-down');
+    const createDropDownItem = (address1, address2) => {
+      return `
+          <li><a class="dropdown-item" href="#area_${address1}_${address2}">${address2 ? '- ' + address2 : address1}</a></li>
+        `
+    }
+
+    dropDownData.map((v) => {
+      if (v.includes('- ')) {
+        if (!schoolDataMapping[`${parentAddess1}`][`${v.slice(2)}`]) {
+          schoolDataMapping[`${parentAddess1}`][`${v.slice(2)}`] = [];
+        }
+      }
+      else {
+        parentAddess1 = v;
+        if (!schoolDataMapping[`${v}`]) {
+          schoolDataMapping[`${v}`] = {};
+        }
+      }
+    })
+
+    for (let i = 0; i < data.length; i += 1) {
+      if (data[i].prefecture === '東京都') {
+        if (tokyo23.includes(data[i].address1)) {
+          data[i].address2 = data[i].address1;
+          data[i].address1 = '23区';
+        }
+        else if (tokyo23.includes(data[i].address2)) {
+          data[i].address1 = '23区';
+        }
+      }
+      dropdownMap[`${data[i].address1}`] = 1;
+      dropdownMap[`${data[i].address1}_${data[i].address2}`] = 1;
+      if (!schoolDataMapping[`${data[i].address1}`]) {
+        schoolDataMapping[`${data[i].address1}`] = {};
+      }
+      if (!schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`]) {
+        schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`] = [];
+      }
+      schoolDataMapping[`${data[i].address1}`][`${data[i].address2}`].push(data[i]);
+    }
+
+    parentAddess1 = null;
+    dropDownData.map((v) => {
+      if (v.includes('- ')) {
+        if (!dropdownMap[`${parentAddess1}_${v.slice(2)}`]) {
+          return;
+        }
+        const dropdownItem = createDropDownItem(parentAddess1, v.slice(2));
+        dropDownInnerHTML += dropdownItem;
+      }
+      else {
+        parentAddess1 = v;
+        if (!dropdownMap[`${v}`]) {
+          return;
+        }
+        const dropdownItem = createDropDownItem(parentAddess1, null)
+        dropDownInnerHTML += dropdownItem;
+      }
+    })
+
+    if(prefecture === 'オンライン教室' || !dropDownInnerHTML.length) {
+      const dropdownBtn = document.querySelector('.dropdown-btn');
+      if (dropdownBtn) {
+        dropdownBtn.style.display = 'none';
+      }
+    }
+    
+    dropdownMenu.innerHTML = dropDownInnerHTML;
+
+    let index = 0;
+
+    const accordion = document.getElementById('accordion');
+
+    const createAreaCardItem = (address1) => {
+      return `
+        <div class="area-card"  id="area_${address1}_null">
+          <div class="area-card-header"><a class="collapsed d-flex justify-content-between align-content-center"
+              data-bs-toggle="collapse" href="#collapse_${address1}_null">
+              <div>${address1}</div><img src="images/ic-down-arrow.png">
+            </a></div>
+        </div>`
+    }
+
+    const createCollapseItem = (address1, subCardList) => {
+      return `
+        <div id="collapse_${address1}_null" class="collapse">
+          <div class="area-card-body">
+            <div class="collapsed" data-bs-toggle="collapse">
+              ${subCardList}
+            </div>
+          </div>
+        </div>`
+    }
+
+    const createSubCardItems = (address1, address2, subCardListItems) => {
+      return `
+        <div class="sub-card-title" id='target_${address1}_${address2}'>
+          ${address2 !== 'null' && address2 !== '-' ? address2 : ''}
+        </div>
+        <div class="sub-card-list">
+          ${subCardListItems}
+        </div>`
+    }
+
+    const onClick = (path) => {
+      window.location.href = path;
+    }
+
+    const createSubCardListItems = (listDatas) => {
+      let rs = '';
+      for (let i = 0; i < listDatas.length; i += 1) {
+        if(prefecture !== 'オンライン教室') {
+          if(listDatas[i].access) {
+            rs += `
+            <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+              <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+              <div class="school-address">
+                <img src="images/ic-map.png" />
+                <div>${listDatas[i].prefecture} ${(listDatas[i].address1 === '23区' || !listDatas[i].address1) ? '' : listDatas[i].address1} ${listDatas[i].address2 || ''} ${listDatas[i].addressAfter || ''} ${listDatas[i].addressDetail || ''}</div>
+              </div>
+              <div class="school-access">
+                <img src="images/ic-car.png" />
+                <div>${listDatas[i].access}</div>
+              </div>
+            </a>`
+          }
+          else {
+            rs += `
+            <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+              <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+              <div class="school-address">
+                <img src="images/ic-map.png" />
+                <div>${listDatas[i].prefecture} ${(listDatas[i].address1 === '23区' || !listDatas[i].address1) ? '' : listDatas[i].address1} ${listDatas[i].address2 || ''} ${listDatas[i].addressAfter || ''} ${listDatas[i].addressDetail || ''}</div>
+              </div>
+            </a>`
+          }
+        }
+        else {
+          rs += `
+          <a class="sub-card-item" onClick="onClick('./${listDatas[i].individualPage || listDatas[i].id}.html')">
+            <div class="school-name">${listDatas[i].schoolName || ""} ${listDatas[i].className || ""}</div>
+          </a>`
+        }
+      }
+      return rs;
+    }
+
+    let areaInnerHTML = '';
+
+    for (const [key, value] of Object.entries(schoolDataMapping)) {
+      let subCard = "";
+      let hasSchoolData = false;
+      for (const [key2, value2] of Object.entries(value)) {
+        if (value2.length) {
+          hasSchoolData = true;
+          subCard += createSubCardItems(
+            key,
+            key2,
+            createSubCardListItems(value2)
+          );
+        }
+      }
+      if (hasSchoolData) {
+        const areaCard = createAreaCardItem(key);
+        areaInnerHTML += areaCard;
+        const collapse = createCollapseItem(key, subCard);
+        areaInnerHTML += collapse;
+      }
+
+      index++;
+    }
+
+    accordion.innerHTML = areaInnerHTML;
+
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+    dropdownItems.forEach(function (item) {
+      item.addEventListener('click', function (event) {
+        const attr = this.getAttribute('href').substring(1).split('_');
+        const address1 = attr[1];
+        const address2 = attr[2];
+        const areaCardId = `area_${address1}_null`;
+        const collapseId = `collapse_${address1}_null`;
+        const targetId = `target_${address1}_${address2}`;
+        const areaCard = document.getElementById(areaCardId);
+        const collapseElement = document.getElementById(collapseId);
+        const targetElement = document.getElementById(targetId);
+        if (collapseElement) {
+          if (!collapseElement.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(collapseElement);
+            bsCollapse.show();
+          }
+          setTimeout(() => {
+            if (targetElement && !targetId.includes('null')) {
+              targetElement.classList.add('highlight');
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+
+              setTimeout(() => {
+                targetElement.classList.remove('highlight');
+              }, 1500);
+            }
+            else {
+              areaCard.classList.add('highlight');
+
+              areaCard.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+
+              setTimeout(() => {
+                areaCard.classList.remove('highlight');
+              }, 1500);
+            }
+          }, 400);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
+  
