@@ -1,0 +1,558 @@
+
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List Area</title>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NV3Z5RZK');</script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto Sans JP">
+  <!-- Latest compiled and minified CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP";
+    }
+
+    .header {
+      display: flex;
+      align-items: start;
+      gap: 76px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .logo-container a {
+      display: block;
+      padding: 21px 16px;
+    }
+
+    .logo {
+      max-width: 240px;
+      height: auto;
+    }
+
+    .footer {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-info {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0px 32px;
+    }
+
+    .footer-info a {
+      color: var(--text_color, #323232);
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .banner {
+      display: flex;
+      background-image: url('images/bg_2.png');
+      justify-content: center;
+      align-items: center;
+      background-position: center;
+      min-height: 235px;
+    }
+
+    .banner-link {
+      margin: 8px 32px;
+    }
+
+    .banner-link a {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      text-decoration: none;
+      margin-right: 1rem;
+    }
+
+    .banner-title {
+      display: flex; 
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .banner-title-main {
+      color: #FFF;
+      text-align: center;
+      font-size: 36px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.8px;
+      padding-bottom: 2px;
+      box-shadow: rgba(242, 195, 28, 0.6) 0px -15px 0px 0px inset;
+    }
+
+    .banner-title-sub {
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-size: 13.295px ;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+      margin-top: 16px;
+    }
+
+    #main-desktop {
+      margin-top: 64px;
+      margin-bottom: 64px;
+    }
+
+    #main-mobile {
+      display: none;
+    }
+
+    .area-item {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .area-item-title {
+      padding: 16px;
+      color: var(--black-black-100, #000);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.32px;
+      border-bottom: 1px solid var(--Grayscale-Gray-20, #CCCED1);
+    }
+
+    .area-item-list {
+      padding: 16px;
+    }
+    
+    .area-item-city {
+      margin-bottom: 24px;
+    }
+
+    .area-item-city a {
+      padding-right: 24px;
+      color: var(--Brand-Brand-blue, #1793CC);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 0.16px;
+    }
+
+    .area-redirect {
+      margin-bottom: 108px;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .area-redirect a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--Brand-Brand-blue, #1793CC);
+      gap: 8px;
+      text-align: center;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0.16px;
+    }
+
+    .area-redirect img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .area-card-header {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--Grayscale-Gray-20, #CCCED1);
+    }
+
+    .area-card-header a {
+      padding: 0;
+      color: var(--black-black-100, #000);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.32px;
+    }
+
+    .area-card-body {
+      padding: 12px 16px 12px 32px;
+      border-bottom: 1px solid var(--Grayscale-Gray-10, #E7E8E9);
+    }
+
+    .area-card-body a {
+      padding: 0;
+      color: var(--black-black-100, #000);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 160%;
+      letter-spacing: 0.32px;
+    }
+
+    .area-card-body img {
+      width: 16px;
+      height: 16px;
+    }
+
+    @media (min-width: 1200px) {
+
+      .container,
+      .container-lg,
+      .container-md,
+      .container-sm,
+      .container-xl {
+        max-width: 1000px;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .image-holder img {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+ 
+      .footer {
+        flex-direction: column;
+        align-items: center;
+
+      }
+
+      .footer-info {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 48px;
+      }
+
+      .banner-link a {
+        display: none;
+      }
+
+      .banner-title-main {
+        font-size: 24px;
+      }
+
+      .banner-title-sub  {
+        font-size: 11px;
+      }
+
+      #main-desktop {
+        display: none;
+      }
+
+      #main-mobile {
+        display: block;
+      }
+
+      .area-card-header a {
+        text-decoration: none;
+      }
+
+      .area-card-body a {
+        text-decoration: none;
+      }
+
+      .area-redirect {
+        width: 100%;
+        margin-top: 0;
+      }
+
+      .area-redirect a {
+        margin-top: 56px;
+        display: flex;
+        width: 100%;
+        padding: 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+        border: 1px solid var(--Brand-Brand-blue, #1793CC);
+        background: var(--white-white-100, #FFF);
+        box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.05);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NV3Z5RZK"height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <header class=".container-fluid header">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+  </header>
+
+  <div class=".container-fluid banner">
+    <div class="banner-title">
+      <div>
+        <span class="banner-title-main">都道府県別 教室一覧</span>
+      </div>
+      <div class="banner-title-sub">
+        ※授業曜日や授業料などは、各教室ページよりお問い合わせください。
+      </div>
+    </div>
+  </div>
+  <div class="container" id="main-desktop">
+  </div>
+  <div class=".container-fluid" id="main-mobile">
+    <div id="accordion">
+    </div>
+  </div>
+  <div class="container area-redirect">
+    <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+      <div>サービスサイトへ戻る</div>
+      <img src="images/ic-redirect.svg" />
+    </a>
+  </div>
+  <footer class=".container-fluid footer">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+    <div class="footer-info">
+      <a href="https://juku.lifeistech-lesson.jp/" target="_blank">
+        <div>学習塾の方はこちら</div>
+        <img src="images/ic-redirect-black.svg" />
+      </a>
+      <a href="https://life-is-tech.com/" target="_blank">
+        運営会社
+      </a>
+      <a href="https://life-is-tech.com/privacy-policy/" target="_blank">
+        個人情報保護方針
+      </a>
+      <a href="https://life-is-tech.com/privacy-handling/" target="_blank">
+        個人情報の取扱いについて
+      </a>
+    </div>
+  </footer>
+  <script>
+    const jsonData = {
+      "北海道・東北": {
+        "北海道": "Hokkaido",
+        "青森": "Aomori",
+        "岩手": "Iwate",
+        "宮城": "Miyagi",
+        "秋田": "Akita",
+        "山形": "Yamagata",
+        "福島": "Fukushima"
+      },
+      "北関東・甲信": {
+        "茨城": "Ibaraki",
+        "栃木": "Tochigi",
+        "群馬": "Gunma",
+        "山梨": "Yamanashi",
+        "長野": "Nagano"
+      },
+      "南関東": {
+        "埼玉": "Saitama",
+        "千葉": "Chiba",
+        "東京": "Tokyo",
+        "神奈川": "Kanagawa"
+      },
+      "北陸": {
+        "新潟": "Niigata",
+        "富山": "Toyama",
+        "石川": "Ishikawa",
+        "福井": "Fukui"
+      },
+      "東海": {
+        "岐阜": "Gifu",
+        "静岡": "Shizuoka",
+        "愛知": "Aichi",
+        "三重": "Mie"
+      },
+      "近畿": {
+        "滋賀": "Shiga",
+        "京都": "Kyoto",
+        "大阪": "Osaka",
+        "兵庫": "Hyogo",
+        "奈良": "Nara",
+        "和歌山": "Wakayama"
+      },
+      "中国": {
+        "鳥取": "Tottori",
+        "島根": "Shimane",
+        "岡山": "Okayama",
+        "広島": "Hiroshima",
+        "山口": "Yamaguchi"
+      },
+      "四国": {
+        "徳島": "Tokushima",
+        "香川": "Kagawa",
+        "愛媛": "Ehime",
+        "高知": "Kochi"
+      },
+      "九州・沖縄": {
+        "福岡": "Fukuoka",
+        "佐賀": "Saga",
+        "長崎": "Nagasaki",
+        "熊本": "Kumamoto",
+        "大分": "Oita",
+        "宮崎": "Miyazaki",
+        "鹿児島": "Kagoshima",
+        "沖縄": "Okinawa"
+      },
+      "オンライン": {
+        "オンライン教室": "Online"
+      }
+    }
+    let index = 0;
+    const mainContainer = document.getElementById('main-desktop');
+    const accordion = document.getElementById('accordion');
+
+    let rowArea = null;
+    for (const [area, cities] of Object.entries(jsonData)) {
+      // Desktop
+      const colLeftContainer = document.createElement('div');
+      const colRightContainer = document.createElement('div');
+      colLeftContainer.classList.add('col-6');
+      colLeftContainer.id = 'left';
+      colRightContainer.classList.add('col-6');
+      colRightContainer.id = 'right';
+
+      colLeftContainer.classList.add('col-6')
+      const areaItem = document.createElement('div');
+      areaItem.classList.add('area-item');
+
+      const areaTitle = document.createElement('div');
+      areaTitle.classList.add('area-item-title');
+      areaTitle.textContent = area;
+
+      const areaItemList = document.createElement('div');
+      areaItemList.classList.add('area-item-list', 'd-flex', 'flex-wrap', 'align-content-start')
+
+      // Mobile
+      const areaCard = document.createElement('div');
+      areaCard.classList.add('area-card');
+
+      const areaCardHeader = document.createElement('div');
+      areaCardHeader.classList.add('area-card-header');
+
+      const aCard = document.createElement('a');
+      aCard.classList.add("collapsed", "d-flex", "justify-content-between", "align-content-center");
+      aCard.setAttribute('data-bs-toggle', 'collapse');
+      aCard.href = `#collapse${index}`;
+      const aCardDiv = document.createElement('div');
+      aCardDiv.textContent = area;
+      const aCardImage = document.createElement('img');
+      aCardImage.src = 'images/ic-down-arrow.png';
+
+      aCard.appendChild(aCardDiv);
+      aCard.appendChild(aCardImage);
+
+      areaCardHeader.appendChild(aCard);
+
+      const collapse = document.createElement('div');
+      collapse.id = `collapse${index}`;
+      collapse.classList.add('collapse');
+      collapse.setAttribute('data-bs-parent', '#accordion');
+      collapse.addEventListener('shown.bs.collapse', function () {
+        aCardImage.src = 'images/ic-up-arrow.png'; // Change arrow icon when expanded
+      });
+
+      collapse.addEventListener('hidden.bs.collapse', function () {
+        aCardImage.src = 'images/ic-down-arrow.png'; // Change arrow icon when collapsed
+      });
+
+
+      for (const [jpCity, enCity] of Object.entries(cities)) {
+        // Desktop
+        const cityWrapper = document.createElement('div');
+        cityWrapper.classList.add('area-item-city');
+
+        const cityLink = document.createElement('a');
+        cityLink.textContent = jpCity;
+        cityLink.href = `./${enCity.toLocaleLowerCase()}.html`;
+
+        cityWrapper.appendChild(cityLink);
+        areaItemList.appendChild(cityWrapper);
+
+        // Mobile
+        const areaCardBody = document.createElement('div');
+        areaCardBody.classList.add('area-card-body');
+        const aAreaCard = document.createElement('a');
+        aAreaCard.classList.add("collapsed", "d-flex", "justify-content-between", "align-items-center");
+        aAreaCard.setAttribute('data-bs-toggle', 'collapse');
+        areaCardBody.addEventListener("click", () => {
+          window.location.href = `./${enCity.toLocaleLowerCase()}.html`
+        });
+        const aAreaCardDiv = document.createElement('div');
+        aAreaCardDiv.textContent = jpCity;
+        const aAreaCardImage = document.createElement('img');
+        aAreaCardImage.src = 'images/ic-right-arrow.png';
+        aAreaCard.appendChild(aAreaCardDiv);
+        aAreaCard.appendChild(aAreaCardImage);
+        areaCardBody.appendChild(aAreaCard);
+        collapse.appendChild(areaCardBody);
+      }
+
+      // Desktop
+      areaItem.appendChild(areaTitle);
+      areaItem.appendChild(areaItemList);
+      if (index % 2 === 0) {
+        colLeftContainer.appendChild(areaItem);
+        rowArea = document.createElement('div');
+        rowArea.classList.add('row');
+        rowArea.id = 'area';
+        rowArea.appendChild(colLeftContainer);
+      }
+      else {
+        colRightContainer.appendChild(areaItem)
+        rowArea.appendChild(colRightContainer);
+        mainContainer.appendChild(rowArea);
+        rowArea = null;
+      }
+
+      // Mobile
+      areaCard.appendChild(areaCardHeader);
+      areaCard.appendChild(collapse);
+      accordion.appendChild(areaCard);
+      index++;
+    }
+  </script>
+</body>
+
+</html>
+  

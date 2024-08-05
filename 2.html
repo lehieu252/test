@@ -1,0 +1,677 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Detail</title>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NV3Z5RZK');</script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto Sans JP">
+
+  <!-- Latest compiled and minified CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP">
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP";
+    }
+
+    .header {
+      display: flex;
+      align-items: start;
+      gap: 76px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .logo-container a {
+      display: block;
+      padding: 21px 16px;
+    }
+
+    .logo {
+      max-width: 240px;
+      height: auto;
+    }
+
+    .footer {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-info {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0px 32px;
+    }
+
+    .footer-info a {
+      color: var(--text_color, #323232);
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .banner {
+      display: flex;
+      background-image: url('images/bg_2.png');
+      background-position: center;
+      min-height: 235px;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .banner-link {
+      margin: 8px 32px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .area-link {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      margin-right: 1rem;
+    }
+
+    .banner-link span {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+      margin-right: 1rem;
+    }
+
+    .child-link {
+      text-decoration: none;
+      color: var(--white-white-100, #FFF);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+    }
+
+    .banner-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .banner-title-main {
+      color: #FFF;
+      text-align: center;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.8px;
+      padding-bottom: 2px;
+      box-shadow: rgba(242, 195, 28, 0.6) 0px -15px 0px 0px inset;
+    }
+
+    .banner-title-sub {
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-family: Noto Sans JP;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+    }
+
+    .school-title {
+      color: #FFF;
+      text-align: center;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+
+    .school-description {
+      color: #FFF;
+      text-align: center;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.16px;
+    }
+
+    .content-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 1000px;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      padding-top: 64px;
+    }
+
+    .basic-info {
+      width: 100%;
+      margin-bottom: 64px;
+      border: 1px solid #e6e6e6;
+      border-radius: 8px;
+    }
+
+    .session-info {
+      width: 100%;
+      margin-bottom: 64px;
+      border: 1px solid #e6e6e6;
+      border-radius: 8px;
+    }
+
+    .contact-info {
+      width: 100%;
+      margin-bottom: 48px;
+      border: 1px solid #e6e6e6;
+      border-radius: 8px;
+    }
+
+    .content-title {
+      color: var(--black-black-100, #000);
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 160%;
+      letter-spacing: 0.48px;
+      margin-bottom: 8px;
+    }
+
+    .row-item {
+      display: flex;
+      width: 100%;
+    }
+
+    .row-item-1 {
+      background-color: white;
+    }
+
+    .row-item-2 {
+      background-color: #F7F7F7;
+    }
+
+    .header-item {
+      display: flex;
+      padding: 24px 16px;
+      justify-content: end;
+      flex-shrink: 0;
+      align-self: stretch;
+      min-width: 116px;
+      width: 20%;
+      color: var(--Grayscale-Gray-100, #020303);
+      text-align: right;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.16px;
+    }
+
+    .description-item {
+      display: flex;
+      flex-direction: column;
+      padding: 24px 16px;
+      align-items: start;
+      align-self: stretch;
+      width: 100%;
+      gap: 16px;
+      color: var(--Grayscale-Gray-100, #020303);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 0.16px;
+    }
+
+    #map {
+      height: 310px;
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .map-redirect {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+    }
+
+    .map-redirect a {
+      color: #4490C6;
+      text-align: right;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.14px;
+      text-decoration-line: underline;
+    }
+
+    .image-holder {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .image-holder img {
+      border-radius: 8px;
+      flex: 0 0 calc(50% - 8px);
+      max-width: calc(50% - 8px);
+    }
+
+    .button-holder {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .button-holder a {
+      display: flex;
+      padding: 16px 30px;
+      justify-content: center;
+      width: 320px;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+      color: var(--white-white-100, #FFF);
+      text-align: center;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 0.2px;
+      text-decoration: none;
+    }
+
+    .submit-button-1 {
+      background: var(--Brand-Brand-red, #DB3F37);
+      box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.05);
+      transition: 0.3s;
+    }
+
+    .submit-button-2 {
+      background: var(--Brand-Brand-green, #66AF32);
+      box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.05);
+      transition: 0.3s;
+    }
+
+    .submit-button-1:hover {
+      background: white;
+      box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.05);
+      outline: 1px solid #DB3F37;
+      color: #DB3F37;
+    }
+
+    .submit-button-2:hover {
+      background: white;
+      box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.05);
+      outline: 1px solid #66AF32;
+      color: #66AF32;
+    }
+
+    .area-redirect {
+      margin-top: 48px;
+      margin-bottom: 108px;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .area-redirect a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--Brand-Brand-blue, #1793CC);
+      text-align: center;
+      font-size: 16px; 
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0.16px;
+      gap: 8px;
+    }
+
+    .area-redirect img {
+      width: 20px;
+      height: 20px;
+    }
+
+
+    @media (min-width: 768px) {
+      .container {
+        max-width: 768px;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-info {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 48px;
+      }
+
+      .banner-title-main {
+        font-size: 24px;
+      }
+
+      .banner-title-sub  {
+        font-size: 20px;
+      }
+
+      .area-redirect {
+        width: 100%;
+        margin-top: 0;
+      }
+
+      .area-redirect a {
+        display: flex;
+        width: 100%;
+        padding: 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+        border: 1px solid var(--Brand-Brand-blue, #1793CC);
+        background: var(--white-white-100, #FFF);
+        box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.05);
+      }
+
+      .area-link,
+      .child-link {
+        font-size: 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .banner-link {
+        margin: 8px 12px;
+        display: flex;
+        align-items: center;
+        width: 93%
+      }
+
+      .button-holder {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 16px;
+        gap: 16px;
+      }
+
+      .button-holder a {
+        display: flex;
+        width: 100%;
+        padding: 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NV3Z5RZK"height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <header class=".container-fluid header">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+  </header>
+
+  <div class=".container-fluid banner">
+    <div class="banner-link">
+      <a class="area-link" href="./area.html">都道府県</a>
+      <span>></span>
+      <a class="area-link" href="./chiba.html">千葉県の教室一覧</a>
+      <span>></span>
+      <a class="child-link" href="#">フローズテック阿部 千葉県教室</a>
+    </div>
+    <div class="banner-title">
+      <div>
+        <span class="banner-title-main">フローズテック阿部 千葉県教室</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="content-container">
+      <div class="container">
+        <div class="content-title">
+          基本情報
+        </div>
+        <div class="basic-info">
+          <div id="targetGrade" class="row-item">
+            <div class="header-item"><span>対象学年</span></div>
+            <div id="targetGrade_Value" class="description-item">
+              高校1年〜高校3年
+            </div>
+          </div>
+          <div id="classTime" class="row-item">
+            <div class="header-item"><span>授業曜日<br>時間</span></div>
+            <div id="classTime_Value" class="description-item">
+              教室までお問い合わせください。
+            </div>
+          </div>
+          <div id="address" class="row-item">
+            <div class="header-item"><span>住所</span></div>
+            <div id="address_Value"class="description-item">
+              <div>
+                千葉県 武蔵村山市 千葉県 武蔵村山市 696 伊藤 Street 070-5206-6934 松田 Street駅より徒歩14分
+              </div>
+              <div>
+                東京メトロ南北線白金高輪駅より徒歩5分
+              </div>
+              <div id="map">
+                <iframe width="100%" height="310" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=ja&amp;q=                千葉県 武蔵村山市 千葉県 武蔵村山市 696 伊藤 Street 070-5206-6934 松田 Street駅より徒歩14分
+                &amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                </iframe>
+              </div>
+              <div class="map-redirect" id="map-redirect">
+                <a
+                  href="https://www.google.com/maps?hl=ja&q=千葉県 武蔵村山市 千葉県 武蔵村山市 696 伊藤 Street 070-5206-6934 松田 Street駅より徒歩14分
+                  " target="_blank">
+                  Google Mapはこちら
+                </a>
+              </div>
+            </div>
+          </div>
+          <div id="phone" class="row-item" style="border-radius: 0px 0px 8px 8px;">
+            <div class="header-item"><span>電話番号</span></div>
+            <div id="phone_Value" class="description-item">
+              03-XXXX-XXXX
+            </div>
+          </div>
+        </div>
+        <div class="content-title">
+          体験会情報
+        </div>
+        <div class="image-holder">
+          <img src="images/school-detail-image-1.jpg" />
+          <img src="images/school-detail-image-2.jpg" />
+        </div>
+        <div class="session-info">
+          <div id="schedule" class="row-item">
+            <div class="header-item"><span>日程</span></div>
+            <div id="schedule_Value" class="description-item">
+              教室までお問い合わせください。
+            </div>
+          </div>
+          <div id="time" class="row-item">
+            <div class="header-item"><span>時間</span></div>
+            <div id="time_Value" class="description-item">
+              教室までお問い合わせください。
+            </div>
+          </div>
+          <div id="tutationFee" class="row-item" style="border-radius: 0px 0px 8px 8px;">
+            <div class="header-item"><span>受講料金</span></div>
+            <div id="tutationFee_Value" class="description-item">
+              無料
+            </div>
+          </div>
+        </div>
+        <div class="button-holder">
+          <a class="submit-button submit-button-1" href="https://form.run/@joho-ai-drill-lifeistech-entry?_field_6=フローズテック阿部 千葉県教室&_field_7=フローズテック阿部 千葉県教室">
+            体験会お申し込み
+          </a>
+          <a class="submit-button submit-button-2" href="https://form.run/@joho-ai-drill-lifeistech-inquiry?_field_11=フローズテック阿部 千葉県教室&_field_8=フローズテック阿部 千葉県教室">
+            お問い合わせ
+          </a>
+          <a class="submit-button submit-button-3" id="temp-btn" href="https://form.run/@joho-ai-drill-lifeistech-inquiry?_field_11=フローズテック阿部 千葉県教室&_field_8=フローズテック阿部 千葉県教室">
+            お問い合わせ
+          </a>
+        </div>
+
+        <div class="area-redirect">
+          <a href="./chiba.html">
+            <img src="images/ic-left-arrow.png" />
+            <div>教室一覧に戻る</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class=".container-fluid footer">
+    <div class="logo-container">
+      <a href="https://joho-ai-drill.lifeistech-lesson.jp/">
+        <img class="logo" src="images/logo.png" alt="logo" />
+      </a>
+    </div>
+    <div class="footer-info">
+      <a href="https://juku.lifeistech-lesson.jp/" target="_blank">
+        <div>学習塾の方はこちら</div>
+        <img src="images/ic-redirect-black.svg" />
+      </a>
+      <a href="https://life-is-tech.com/" target="_blank">
+        運営会社
+      </a>
+      <a href="https://life-is-tech.com/privacy-policy/" target="_blank">
+        個人情報保護方針
+      </a>
+      <a href="https://life-is-tech.com/privacy-handling/" target="_blank">
+        個人情報の取扱いについて
+      </a>
+    </div>
+  </footer>
+  <script>
+    const basicInfoPriority = {
+      targetGrade: 1,
+      classTime: 2,
+      address: 3,
+      phone: 4,
+    };
+
+    const sessionInfo = {
+      schedule: 1,
+      time: 2,
+      tutationFee: 3,
+    }
+
+    const setStyle = (objectPriority) => {
+      let basicInfoStartIndex = -1;
+      let basicInfoEndIndex = -1;
+      let lastRowStyle = null;
+      let lastItem = null;
+      for(const [key, value] of Object.entries(objectPriority)) {
+        lastItem = document.getElementById(`${key}`);
+        const itemValue = document.getElementById(`${key}_Value`);
+        if(itemValue.innerHTML.trim() === 'null') {
+          lastItem.style.display = "none";
+          continue;
+        }
+
+        if(basicInfoStartIndex === -1) {
+          basicInfoStartIndex = value;
+          lastItem.classList.add('row-item-1');
+          lastItem.style.borderRadius = '8px 8px 0px 0px';
+          lastRowStyle = 'row-item-1';
+        }
+        basicInfoEndIndex = value;
+
+        if(value !== basicInfoStartIndex) {
+          lastRowStyle = lastRowStyle === 'row-item-1' ? 'row-item-2' : 'row-item-1';
+          lastItem.classList.add(lastRowStyle);
+        }
+      }
+      if(basicInfoStartIndex === basicInfoEndIndex) {
+        lastItem.style.borderRadius = '8px 8px 8px 8px';
+      }
+      else {
+        lastItem.style.borderRadius = '0px 0px 8px 8px';
+      }
+    }
+    
+    setStyle(basicInfoPriority);
+    setStyle(sessionInfo);
+
+    const tempBtn = document.getElementById('temp-btn');
+    const currentDateTime = new Date();
+    const startDate = new Date(`${currentDateTime.getFullYear()}-08-15`);
+    const endDate = new Date(`${currentDateTime.getFullYear()}-09-15`);
+    if (currentDateTime >= startDate && currentDateTime <= endDate) {
+      tempBtn.style.display = 'block';
+    }
+    else {
+      tempBtn.style.display = 'none';
+    }
+  </script>
+</body>
+
+</html>
+  
